@@ -22,4 +22,4 @@ Always stay updated on the top-notched framework, and technologies. Excited and 
 
 ## My blog⚡：
 
-<div align="center"><a href=”https://stephenlkc.com/”><img src="https://i.imgur.com/Ns7zm3O.png" data-img="1" width="400" height="300"></img></a></div>
+<div align="center"><img src="https://i.imgur.com/Ns7zm3O.png" data-img="1" width="400" height="300"></img></div>
