@@ -11,11 +11,11 @@ Always stay updated on the top-notched framework, and technologies. Excited and 
 ## Projects：
 
 ### Study plan 🌱
-* [website-basic](https://github.com/Stephenlkc1/Coursea-test)：web design practise
-* [Leetcode-basic](https://github.com/Stephenlkc1)：Leetcode practise
+* [website-basic](https://github.com/Stephenlkc1/Coursea-test)：web design practise with CSS
+* [Leetcode-basic](https://github.com/Stephenlkc1)：Leetcode practise with Java
 
 ### Processing data 🔭
-* [Graduate-project](https://github.com/Stephenlkc1/FYP-Lip_analysis-2021)🔥：Lip detection with image processing tools
+* [Graduate-project](https://github.com/Stephenlkc1/FYP-Lip_analysis-2021)🔥：Lip detection with Matlab 
 
 ### Built project sample 📫
 * [work-project-function](https://github.com/Stephenlkc1/Job-Sample-Quiz-system-2021)🔥：simple quiz logic with JavaScript
