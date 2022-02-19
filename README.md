@@ -22,7 +22,7 @@ Always stay updated on the top-notched framework, and technologies. Excited and 
 
 ## My blog⚡：
 
-<div align="center"><img src="https://i.imgur.com/Ns7zm3O.png" data-img="1" width="400" height="300"></img>
+<div align="center"><img src="https://i.imgur.com/Ns7zm3O.png" data-img="1" width="600" height="400"></img>
 <br>
-<a href="https://github.com/Stephenlkc1/Job-Sample-Quiz-system-2021" target="_blank">Click</a>
+<a href="https://github.com/Stephenlkc1/Job-Sample-Quiz-system-2021" target="_blank">Click :heart:</a> 
 </div>
