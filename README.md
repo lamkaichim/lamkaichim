@@ -1,7 +1,5 @@
 ## Hi 👋
-<p align="center">
-  <img src="https://github.com/matyo91/matyo91/raw/main/assets/github.gif" alt="hi❤️">
-</p>
+
 I’m Stephen. Graduated at MUHK with computer enginneering degree and working in DXC.
 
 - Experienced developer with 2+ years’ work experience specialized in design on web applications that integrate to large scale/ mission critical systems using different technologies. 
