@@ -1,8 +1,7 @@
+# Hi there! 👋
 <img src="https://github.com/lamkaichim/lamkaichim/blob/main/banner.gif" alt="banner" title="banner"/>
 
-# Hi there! 👋
-
-I'm [Your Name], an aspiring software developer and technology enthusiast passionate about building scalable distributed infrastructure and exploring cloud-native solutions. Here’s a bit about me:
+I'm Stephen, an aspiring software developer and technology enthusiast passionate about building scalable distributed infrastructure and exploring cloud-native solutions. Here’s a bit about me:
 
 ## About Me 🌟
 
