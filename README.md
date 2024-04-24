@@ -1,5 +1,5 @@
 
-<img src="https://github.com/lamkaichim/lamkaichim/blob/main/banner.gif" alt="banner" title="banner"/>
+[<img src="https://github.com/lamkaichim/lamkaichim/blob/main/banner.gif" alt="banner" title="banner"/>](https://www.linkedin.com/in/lamkaichim/)
 
 XXXX
 
