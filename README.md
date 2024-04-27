@@ -1,7 +1,7 @@
 
 [<img src="https://github.com/lamkaichim/lamkaichim/blob/main/banner.gif" alt="banner" title="banner"/>](https://www.linkedin.com/in/lamkaichim/)
 
-![visitors](https://visitor-badge.glitch.me/badge?page_id=lamkaichim&left_color=green&right_color=red)
+![visitors](https://vbr.nathanchung.dev/badge?page_id=lamkaichim&color=white&logo=github&style=plastic&text=VISITORS)
 
 ## :book: About Me
 - 🖥 **Interest:** Dedicated to full stack development, with a strong emphasis on software development principles and best practices.
