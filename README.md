@@ -23,21 +23,25 @@ XXXX
 [<img src="https://github.com/lamkaichim/lamkaichim/blob/main/Social/instagram.svg" height="40em" align="center" alt="Follow Raymo111 on Instagram" title="Follow Raymo111 on Instagram"/>](https://instagram.com/Stephenlkc_)
 
 
-<p align="center">
+<p align="left">
   <!-- Link and Image for Website 1 -->
-  <a href="URL_TO_WEBSITE_1" target="_blank" style="text-decoration: none;">
+  <a href="https://stephenlkc.com" target="_blank" style="text-decoration: none; display: inline-block; margin-right: 10px;">
     <img src="https://github.com/lamkaichim/lamkaichim/blob/main/IMG_3498.jpg" alt="Website 1 Preview" width="30%"
-         style="margin: 10px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.2);">
-  </a>
-  <!-- Link and Image for Website 2 -->
-  <a href="URL_TO_WEBSITE_2" target="_blank" style="text-decoration: none;">
+         style="border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.2);">
+  </a><!--
+  --><!-- Link and Image for Website 2 -->
+  <a href="https://stephenlkc.com" target="_blank" style="text-decoration: none; display: inline-block; margin-right: 10px;">
     <img src="https://github.com/lamkaichim/lamkaichim/blob/main/IMG_3498.jpg" alt="Website 2 Preview" width="30%"
-         style="margin: 10px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.2);">
-  </a>
-  <!-- Link and Image for Website 3 -->
-  <a href="URL_TO_WEBSITE_3" target="_blank" style="text-decoration: none;">
+         style="border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.2);">
+  </a><!--
+  --><!-- Link and Image for Website 3 -->
+  <a href="https://stephenlkc.com" target="_blank" style="text-decoration: none; display: inline-block;">
     <img src="https://github.com/lamkaichim/lamkaichim/blob/main/IMG_3498.jpg" alt="Website 3 Preview" width="30%"
-         style="margin: 10px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.2);">
+         style="border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.2);">
   </a>
 </p>
+
+
+
+
 
