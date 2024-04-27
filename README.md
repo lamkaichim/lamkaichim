@@ -4,18 +4,21 @@
 ![visitors](https://vbr.nathanchung.dev/badge?page_id=lamkaichim&color=white&logo=github&style=plastic&text=VISITORS)
 
 ## :book: About Me
-- 🖥 **Interest:** Dedicated to full stack development, with a strong emphasis on software development principles and best practices.
-- 💼 **Professional Background:** Former Developer at DXC Technology, now running a side business to sharpen my technical skills.
-- 🎓 **Education:** Completed a Bachelor of Science in Computer Engineering at HKMU.
-- 🌐 **Active Projects:** Continuously updating and refining my projects on GitHub, showcasing my latest work in software development.
-
+- 🖥 **Interest:** 𝙵𝚘𝚌𝚞𝚜𝚎𝚍 𝚘𝚗 𝚏𝚞𝚕𝚕-𝚜𝚝𝚊𝚌𝚔 𝚍𝚎𝚟𝚎𝚕𝚘𝚙𝚖𝚎𝚗𝚝, 𝚎𝚖𝚙𝚑𝚊𝚜𝚒𝚣𝚒𝚗𝚐 𝚜𝚘𝚏𝚝𝚠𝚊𝚛𝚎 𝚋𝚎𝚜𝚝 𝚙𝚛𝚊𝚌𝚝𝚒𝚌𝚎𝚜.
+- 💼 **Professional Background:** 𝙵𝚘𝚛𝚖𝚎𝚛 𝙳𝚇𝙲 𝚃𝚎𝚌𝚑𝚗𝚘𝚕𝚘𝚐𝚢 𝙳𝚎𝚟𝚎𝚕𝚘𝚙𝚎𝚛, 𝚌𝚞𝚛𝚛𝚎𝚗𝚝𝚕𝚢 𝚎𝚗𝚑𝚊𝚗𝚌𝚒𝚗𝚐 𝚜𝚔𝚒𝚕𝚕𝚜 𝚝𝚑𝚛𝚘𝚞𝚐𝚑 𝚊 𝚜𝚒𝚍𝚎 𝚋𝚞𝚜𝚒𝚗𝚎𝚜𝚜.
+- 🎓 **Education:** 𝙷𝚘𝚕𝚍𝚜 𝚊 𝙱𝚂𝚌 𝚒𝚗 𝙲𝚘𝚖𝚙𝚞𝚝𝚎𝚛 𝙴𝚗𝚐𝚒𝚗𝚎𝚎𝚛𝚒𝚗𝚐 𝚏𝚛𝚘𝚖 𝙷𝙺𝙼𝚄.
+- 🌐 **Active Projects:** 𝚁𝚎𝚐𝚞𝚕𝚊𝚛𝚕𝚢 𝚞𝚙𝚍𝚊𝚝𝚒𝚗𝚐 𝚊𝚗𝚍 𝚒𝚖𝚙𝚛𝚘𝚟𝚒𝚗𝚐 𝚖𝚢 𝙶𝚒𝚝𝙷𝚞𝚋 𝚙𝚛𝚘𝚓𝚎𝚌𝚝𝚜, 𝚍𝚎𝚖𝚘𝚗𝚜𝚝𝚛𝚊𝚝𝚒𝚗𝚐 𝚖𝚢 𝚍𝚎𝚟𝚎𝚕𝚘𝚙𝚖𝚎𝚗𝚝 𝚎𝚡𝚙𝚎𝚛𝚝𝚒𝚜𝚎.
 - 🔨 𝙸'𝚖 𝚌𝚞𝚛𝚛𝚎𝚗𝚝𝚕𝚢...
 ```yaml
 - Creating EventBridge, a backend event processing service that uses microservices architecture to ensure efficient data flow and system responsiveness.
 ```
 <details>
-  <summary>Achievement</summary>
-
+  <summary>🄰🄲🄷🄸🄴🅅🄴🄼🄴🄽🅃</summary>
+<!-- achivement description
+  icons
+some statics 
+  websites-->
+  
   
 </details>
 
