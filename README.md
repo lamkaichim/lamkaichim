@@ -23,6 +23,13 @@ some statics
   <!--START_SECTION:activity-->
   
 <p align="center" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+  <!--START_SECTION:activity-->
+
+
+
+
+
+  <!--END_SECTION:activity-->
     <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=lamkaichim&hide_langs_below=1&theme=default&line_height=27&layout=compact" style="margin: 10px;" />
     <img src="https://github-readme-stats.vercel.app/api?username=lamkaichim&show_icons=true&count_private=true&include_all_commits=true&line_height=21" alt="lam kai chim's Github Stats" style="margin: 10px;" />
     <img src="https://github-profile-trophy.vercel.app/?username=lamkaichim&row=2&column=3&theme=oldie" alt="lamkaichim's Github Trophy" style="margin: 10px;" />
