@@ -34,9 +34,9 @@ some statics
 ## 📫 **How to reach me:**
 𝚈𝚘𝚞 𝚌𝚊𝚗 𝚛𝚎𝚊𝚌𝚑 𝚖𝚎 𝚊𝚝 𝚝𝚑𝚎 𝚎𝚖𝚊𝚒𝚕 𝚒𝚗 𝚖𝚢 𝚐𝚒𝚝𝚑𝚞𝚋 𝚙𝚛𝚘𝚏𝚒𝚕𝚎. 𝙵𝚘𝚕𝚕𝚘𝚠 𝚖𝚢 𝚜𝚘𝚌𝚒𝚊𝚕𝚜!
 
-[<img src="https://github.com/lamkaichim/lamkaichim/blob/main/Social/linkedin.png" height="40em" align="center" alt="Follow Raymo111 on LinkedIn" title="Follow Raymo111 on LinkedIn"/>](https://linkedin.com/in/lamkaichim)
-[<img src="https://github.com/lamkaichim/lamkaichim/blob/main/Social/twitter.svg" height="40em" align="center" alt="Follow Raym0111 on Twitter" title="Follow Raymo111 on Twitter"/>](https://twitter.com/stephen_lkc)
-[<img src="https://github.com/lamkaichim/lamkaichim/blob/main/Social/instagram.svg" height="40em" align="center" alt="Follow Raymo111 on Instagram" title="Follow Raymo111 on Instagram"/>](https://instagram.com/Stephenlkc_)
+[<img src="https://github.com/lamkaichim/lamkaichim/blob/main/Social/linkedin.png" height="40em" align="center" alt="Follow Raymo111 on LinkedIn" title="Follow Stephen on LinkedIn"/>](https://linkedin.com/in/lamkaichim)
+[<img src="https://github.com/lamkaichim/lamkaichim/blob/main/Social/twitter.svg" height="40em" align="center" alt="Follow Raym0111 on Twitter" title="Follow Stephen on Twitter"/>](https://twitter.com/stephen_lkc)
+
 
 
 
