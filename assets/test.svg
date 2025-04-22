@@ -4,46 +4,64 @@
      viewBox="0 0 600 100"
      preserveAspectRatio="xMidYMid slice">
 
-  <!-- 背景 -->
+  <!-- 背景色 -->
   <rect width="100%" height="100%" fill="#3c3e40"/>
 
-  <!-- HTML/CSS 嵌入 typewriter -->
+  <!-- 用 foreignObject 嵌入 HTML/CSS 实现动画 -->
   <foreignObject x="0" y="0" width="600" height="100">
     <div xmlns="http://www.w3.org/1999/xhtml"
-         style="width:600px;height:100px;
-                display:flex;justify-content:center;
-                align-items:center;overflow:hidden;
+         style="width:600px; height:100px;
+                display:flex; justify-content:center;
+                align-items:center; overflow:visible;
                 position:relative;">
-      <div class="typewriter">Demo Text</div>
+      <!-- 外层容器，仅居中定位 -->
+      <div class="typewriter-wrap">
+        <!-- 文本动画容器 -->
+        <span class="text-inner">Demo Text</span>
+      </div>
     </div>
   </foreignObject>
 
-  <!-- CSS -->
+  <!-- CSS 样式 -->
   <style type="text/css"><![CDATA[
-    .typewriter {
+    /* 文字和光标的包装器，处理居中和不裁剪 */
+    .typewriter-wrap {
+      display: inline-block;
+      overflow: visible;               /* 保证光标不被裁剪 */ :contentReference[oaicite:0]{index=0}
+      position: relative;
+    }
+    /* 内部文本容器：负责弹入/删除动画 */
+    .text-inner {
+      display: inline-block;           /* 宽度可动画 */
       font-family: monospace;
       font-size: 32px;
       font-weight: bold;
       color: #ffffff;
-      white-space: nowrap;
-      overflow: hidden;
-      width: 0;
+      white-space: nowrap;             /* 单行显示 */ :contentReference[oaicite:1]{index=1}
+      overflow: hidden;                /* 隐藏未“打出”字符 */ :contentReference[oaicite:2]{index=2}
+      width: 0;                        /* 初始宽度 */ :contentReference[oaicite:3]{index=3}
+      padding-right: 0;                /* 去除额外间距 */ 
       position: relative;
-      padding-right: 1em;               /* 为圆球腾出空间 */
-      animation: typing 2s steps(9) forwards; /* 9 字符 */
+      /* 6s 循环：2s 打字 → 1s 停留 → 2s 删除 → 1s 停留 */
+      animation: typing 6s steps(9,end) infinite;  /* steps(字符数,end) 精准逐字&#8203;:contentReference[oaicite:4]{index=4} */
     }
-    .typewriter::after {
+    /* 完整圆球光标，始终紧贴文本末尾 */
+    .text-inner::after {
       content: "";
       position: absolute;
       top: 50%; right: 0;
       transform: translate(50%,-50%);
-      width: 1em; height: 1em;          /* 与字体大小匹配 */
+      width: 1em; height: 1em;          /* 与字体大小一致 */ :contentReference[oaicite:5]{index=5}
       background-color: #ffffff;
-      border-radius: 100%;              /* 完全圆形 */ :contentReference[oaicite:0]{index=0}
+      border-radius: 100%;              /* 完全圆形 */ :contentReference[oaicite:6]{index=6}
     }
+    /* 打字／删除关键帧 */
     @keyframes typing {
-      from { width: 0; }
-      to   { width: 9ch; }              /* 9 个字符 */ :contentReference[oaicite:1]{index=1}
+      0%   { width: 0; }                /* 开始无字符 */  
+      33%  { width: 9ch; }              /* 2s 内逐字弹入，全行 */  
+      50%  { width: 9ch; }              /* 停留 1s */  
+      83%  { width: 0; }                /* 2s 内逐字删除 */ :contentReference[oaicite:7]{index=7}
+      100% { width: 0; }                /* 停留 1s */  
     }
   ]]></style>
 </svg>
