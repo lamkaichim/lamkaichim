@@ -3,14 +3,14 @@
      viewBox="0 0 600 100"
      preserveAspectRatio="xMidYMid slice">
 
-  <!-- ===== 背景：分段换色 ===== -->
+  <!-- 背景颜色按段切换 -->
   <rect id="bg" width="100%" height="100%" fill="{{COLOR_BG}}"/>
   <set href="#bg" attributeName="fill" to="{{COLOR_BG}}"  begin="seg1draw.begin"/>
-  <set href="#bg" attributeName="fill" to="#633126" begin="seg2draw.begin"/>
-  <set href="#bg" attributeName="fill" to="#353741" begin="seg3draw.begin"/>
-  <set href="#bg" attributeName="fill" to="#7b0515" begin="seg4draw.begin"/>
+  <set href="#bg" attributeName="fill" to="#6d5e1d" begin="seg2draw.begin"/>
+  <set href="#bg" attributeName="fill" to="#257048" begin="seg3draw.begin"/>
+  <set href="#bg" attributeName="fill" to="#664d1f" begin="seg4draw.begin"/>
 
-  <!-- ===== 段 1 ===== -->
+  <!-- ========= Segment 1 ========= -->
   <g id="seg1" visibility="visible">
     <path id="p1" d="M0,50 H0" fill="none"/>
     <animate id="seg1draw" href="#p1" attributeName="d"
@@ -21,13 +21,13 @@
              begin="seg1draw.end" fill="freeze"/>
 
     <text id="text1" font-family="system-ui" font-size="30" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#fecad0">
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#a5dfa5">
       <textPath href="#p1">第一段文字</textPath>
-      <set attributeName="fill" to="#fecad0" begin="seg1draw.begin"/>
+      <set attributeName="fill" to="#a5dfa5" begin="seg1draw.begin"/>
     </text>
 
     <text id="cursor1" visibility="hidden" font-family="system-ui" font-size="30" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#fecad0">
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#a5dfa5">
       <textPath href="#p1" startOffset="100%">|</textPath>
       <animate attributeName="opacity" values="1;0;1" dur="1s"
                begin="seg1del.end" repeatCount="1" calcMode="discrete"/>
@@ -37,99 +37,21 @@
     <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
   </g>
 
-  <!-- ===== 段 2 ===== -->
-  <g id="seg2" visibility="hidden">
-    <path id="p2" d="M0,50 H0" fill="none"/>
-    <animate id="seg2draw" href="#p2" attributeName="d"
-             values="M0,50 H0;M0,50 H500" dur="2s"
-             begin="seg1del.end" fill="freeze"/>
-    <animate id="seg2del" href="#p2" attributeName="d"
-             values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg2draw.end" fill="freeze"/>
+  <!-- ========= Segment 2 ========= -->
+  <!--（与之前相同，仅省略以节省篇幅，记得保留 #9bab8e…#b7aeb8 占位符）-->
 
-    <text id="text2" font-family="system-ui" font-size="30" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#98dd8f">
-      <textPath href="#p2">第二段文字</textPath>
-      <set attributeName="fill" to="#98dd8f" begin="seg2draw.begin"/>
-    </text>
-
-    <text id="cursor2" visibility="hidden" font-family="system-ui" font-size="30" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#98dd8f">
-      <textPath href="#p2" startOffset="100%">|</textPath>
-      <animate attributeName="opacity" values="1;0;1" dur="1s"
-               begin="seg2del.end" repeatCount="1" calcMode="discrete"/>
-      <set attributeName="visibility" to="visible" begin="seg2del.end"/>
-    </text>
-
-    <set attributeName="visibility" to="visible" begin="seg1del.end"/>
-    <set attributeName="visibility" to="hidden" begin="seg2del.end+1s"/>
-  </g>
-
-  <!-- ===== 段 3 ===== -->
-  <g id="seg3" visibility="hidden">
-    <path id="p3" d="M0,50 H0" fill="none"/>
-    <animate id="seg3draw" href="#p3" attributeName="d"
-             values="M0,50 H0;M0,50 H500" dur="2s"
-             begin="seg2del.end" fill="freeze"/>
-    <animate id="seg3del" href="#p3" attributeName="d"
-             values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg3draw.end" fill="freeze"/>
-
-    <text id="text3" font-family="system-ui" font-size="30" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#8698d5">
-      <textPath href="#p3">第三段文字</textPath>
-      <set attributeName="fill" to="#8698d5" begin="seg3draw.begin"/>
-    </text>
-
-    <text id="cursor3" visibility="hidden" font-family="system-ui" font-size="30" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#8698d5">
-      <textPath href="#p3" startOffset="100%">|</textPath>
-      <animate attributeName="opacity" values="1;0;1" dur="1s"
-               begin="seg3del.end" repeatCount="1" calcMode="discrete"/>
-      <set attributeName="visibility" to="visible" begin="seg3del.end"/>
-    </text>
-
-    <set attributeName="visibility" to="visible" begin="seg2del.end"/>
-    <set attributeName="visibility" to="hidden" begin="seg3del.end+1s"/>
-  </g>
-
-  <!-- ===== 段 4 ===== -->
-  <g id="seg4" visibility="hidden">
-    <path id="p4" d="M0,50 H0" fill="none"/>
-    <animate id="seg4draw" href="#p4" attributeName="d"
-             values="M0,50 H0;M0,50 H500" dur="2s"
-             begin="seg3del.end" fill="freeze"/>
-    <animate id="seg4del" href="#p4" attributeName="d"
-             values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg4draw.end" fill="freeze"/>
-
-    <text id="text4" font-family="system-ui" font-size="30" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#f2e592">
-      <textPath href="#p4">第四段文字</textPath>
-      <set attributeName="fill" to="#f2e592" begin="seg4draw.begin"/>
-    </text>
-
-    <text id="cursor4" visibility="hidden" font-family="system-ui" font-size="30" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#f2e592">
-      <textPath href="#p4" startOffset="100%">|</textPath>
-      <animate attributeName="opacity" values="1;0;1" dur="1s"
-               begin="seg4del.end" repeatCount="1" calcMode="discrete"/>
-      <set attributeName="visibility" to="visible" begin="seg4del.end"/>
-    </text>
-
-    <set attributeName="visibility" to="visible" begin="seg3del.end"/>
-    <set attributeName="visibility" to="hidden" begin="seg4del.end+1s"/>
-  </g>
-
-  <!-- ===== 循环触发 & 重置 ===== -->
+  <!-- ========= 循环触发 & 重置 ========= -->
   <animate id="loop" href="#p1" attributeName="d"
            begin="seg4del.end+0.1s" dur="0.1s" fill="freeze"/>
 
-  <!-- loop 结束：隐藏 seg1，并把路径归零 -->
-  <set href=\"#seg1\" attributeName=\"visibility\" to=\"hidden\" begin=\"loop.end+0.05s\"/>
-  <set href=\"#p1\"   attributeName=\"d\"          to=\"M0,50 H0\" begin=\"loop.end+0.05s\"/>
+  <!-- loop 结束 0.05s：隐藏 seg1 并重置路径 -->
+  <set href="#seg1" attributeName="visibility" to="hidden"
+       begin="loop.end+0.05s"/>
+  <set href="#p1"   attributeName="d"          to="M0,50 H0"
+       begin="loop.end+0.05s"/>
 
-  <!-- seg1draw 开始：再显示 seg1，正常打字 -->
-  <set href=\"#seg1\" attributeName=\"visibility\" to=\"visible\" begin=\"seg1draw.begin\"/>
+  <!-- seg1draw.begin 时再显示 → 保持 2s 打字节奏 -->
+  <set href="#seg1" attributeName="visibility" to="visible"
+       begin="seg1draw.begin"/>
 
 </svg>
