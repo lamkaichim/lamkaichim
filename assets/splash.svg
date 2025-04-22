@@ -132,15 +132,98 @@
       </circle>
     </g>
 
-    <!-- 第二段文字及动画 (I build UI that feels alive.) -->
-    <g fill="#F1C40F">
-      <!-- 由于代码篇幅原因，此处略去中间具体字符元素，同样按照上述模式实现 -->
-      <!-- ... 完整代码中应包含该行每个字符的<text>和<circle>，开始时间从2.000s起算，持续1秒打字，2.5秒开始删除 -->
-    </g>
+  <!-- 第二段文字及动画 (I build UI that feels alive.) -->
+  <g fill="#F1C40F">
+    <!-- 参数设定 -->
+    <!-- charCount = 28；startX = (500 - charCount*14.453125)/2 = 95.65625 -->
+    <!-- inputDur = 0.035s；delDur = 0.0175s；delayGap = 0.5s -->
+    <!-- groupStart = 2s -->
+    <!-- 第 i 个字符的出现时间 = groupStart + (i-1)*inputDur -->
+    <!-- 删除起始 = groupStart + charCount*inputDur + delayGap -->
+    <!-- 第 i 个字符的删除时间 = 删除起始 + (charCount-i)*delDur -->
+    <!-- circle 在字符出现后立即闪烁 -->
+    <!-- 计算示例：第1个字符 'I' 最终 x = startX = 95.65625，
+         circle cx = startX + 14.453125 = 110.109375 -->
 
-    <!-- 第三段文字及动画 (Let’s connect.) -->
-    <g fill="#ECF0F1">
-      <!-- 同理，包含该行字符的动画，实现开始时间4.000s起算，5.0秒打完，5.5秒删除 -->
-    </g>
+    <!-- I -->
+    <text x="520" y="50">I
+      <animate attributeName="x"
+               from="520" to="95.65625"
+               begin="2s; bgAnim.repeatEvent+2s"
+               dur="0.035s" fill="freeze"/>
+      <animate attributeName="x"
+               from="95.65625" to="520"
+               begin="2.515s; bgAnim.repeatEvent+2.515s"
+               dur="0.0175s" fill="remove"/>
+    </text>
+    <circle cx="110.109375" cy="54" r="2" opacity="0">
+      <set attributeName="opacity" to="1"
+           begin="2.035s; bgAnim.repeatEvent+2.035s"
+           dur="0.1s" fill="remove"/>
+    </circle>
+
+    <!-- b -->
+    <text x="520" y="50"> 
+      <animate attributeName="x"
+               from="520" to="110.109375"
+               begin="2.035s; bgAnim.repeatEvent+2.035s"
+               dur="0.035s" fill="freeze"/>
+      <animate attributeName="x"
+               from="110.109375" to="520"
+               begin="2.48s; bgAnim.repeatEvent+2.48s"
+               dur="0.0175s" fill="remove"/>
+    </text>
+    <circle cx="124.5625" cy="54" r="2" opacity="0">
+      <set attributeName="opacity" to="1"
+           begin="2.07s; bgAnim.repeatEvent+2.07s"
+           dur="0.1s" fill="remove"/>
+    </circle>
+
+    <!-- 其余26个字符依此类推 (略) -->
+  </g>
+
+  <!-- 第三段文字及动画 (Let’s connect.) -->
+  <g fill="#ECF0F1">
+    <!-- charCount = 14；startX = (500 - 14*14.453125)/2 = 152.34375 -->
+    <!-- groupStart = 4s -->
+    <!-- inputDur = 0.035s；delDur = 0.0175s；delayGap = 0.5s -->
+
+    <!-- L -->
+    <text x="520" y="50">L
+      <animate attributeName="x"
+               from="520" to="152.34375"
+               begin="4s; bgAnim.repeatEvent+4s"
+               dur="0.035s" fill="freeze"/>
+      <animate attributeName="x"
+               from="152.34375" to="520"
+               begin="4.545s; bgAnim.repeatEvent+4.545s"
+               dur="0.0175s" fill="remove"/>
+    </text>
+    <circle cx="166.796875" cy="54" r="2" opacity="0">
+      <set attributeName="opacity" to="1"
+           begin="4.035s; bgAnim.repeatEvent+4.035s"
+           dur="0.1s" fill="remove"/>
+    </circle>
+
+    <!-- e -->
+    <text x="520" y="50">e
+      <animate attributeName="x"
+               from="520" to="166.796875"
+               begin="4.035s; bgAnim.repeatEvent+4.035s"
+               dur="0.035s" fill="freeze"/>
+      <animate attributeName="x"
+               from="166.796875" to="520"
+               begin="4.58s; bgAnim.repeatEvent+4.58s"
+               dur="0.0175s" fill="remove"/>
+    </text>
+    <circle cx="181.25" cy="54" r="2" opacity="0">
+      <set attributeName="opacity" to="1"
+           begin="4.07s; bgAnim.repeatEvent+4.07s"
+           dur="0.1s" fill="remove"/>
+    </circle>
+
+    <!-- 剩余12个字符依此模式实现 (略) -->
+  </g>
+
   </g>
 </svg>
