@@ -6,9 +6,9 @@
   <!-- Background: discrete color per segment -->
   <rect id="bg" width="100%" height="100%" fill="{{COLOR_BG}}"/>
   <set href="#bg" attributeName="fill" to="{{COLOR_BG}}" begin="seg1draw.begin" />
-  <set href="#bg" attributeName="fill" to="#637229" begin="seg2draw.begin" />
-  <set href="#bg" attributeName="fill" to="#6b6c37" begin="seg3draw.begin" />
-  <set href="#bg" attributeName="fill" to="#02016e" begin="seg4draw.begin" />
+  <set href="#bg" attributeName="fill" to="#034b01" begin="seg2draw.begin" />
+  <set href="#bg" attributeName="fill" to="#262009" begin="seg3draw.begin" />
+  <set href="#bg" attributeName="fill" to="#745440" begin="seg4draw.begin" />
 
   <!-- Segment 1 -->
   <g id="seg1" visibility="visible">
@@ -22,15 +22,15 @@
              values="M0,50 H500;M0,50 H0" dur="1s"
              begin="seg1draw.end" fill="freeze"/>
     <!-- text with discrete fill -->
-    <text id="text1" font-family="system-ui" font-size="32"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#b8a180">
+    <text id="text1" font-family="system-ui" font-size="30" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#f68ca6">
       <textPath href="#p1">第一段文字</textPath>
       <!-- set text color when this segment starts -->
-      <set attributeName="fill" to="#b8a180" begin="seg1draw.begin" />
+      <set attributeName="fill" to="#f68ca6" begin="seg1draw.begin" />
     </text>
     <!-- cursor -->
-    <text visibility="hidden" font-family="system-ui" font-size="32"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#b8a180">
+    <text visibility="hidden" font-family="system-ui" font-size="30" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#f68ca6">
       <textPath href="#p1" startOffset="100%">|</textPath>
       <animate attributeName="opacity" values="1;0;1" dur="1s"
                begin="seg1del.end" repeatCount="1" calcMode="discrete"/>
@@ -48,13 +48,13 @@
     <animate id="seg2del" href="#p2" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
              begin="seg2draw.end" fill="freeze"/>
-    <text id="text2" font-family="system-ui" font-size="32"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#eabaea">
+    <text id="text2" font-family="system-ui" font-size="30" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#aac9a7">
       <textPath href="#p2">第二段文字</textPath>
-      <set attributeName="fill" to="#eabaea" begin="seg2draw.begin" />
+      <set attributeName="fill" to="#aac9a7" begin="seg2draw.begin" />
     </text>
-    <text visibility="hidden" font-family="system-ui" font-size="32"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#eabaea">
+    <text visibility="hidden" font-family="system-ui" font-size="30" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#aac9a7">
       <textPath href="#p2" startOffset="100%">|</textPath>
       <animate attributeName="opacity" values="1;0;1" dur="1s"
                begin="seg2del.end" repeatCount="1" calcMode="discrete"/>
@@ -73,13 +73,13 @@
     <animate id="seg3del" href="#p3" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
              begin="seg3draw.end" fill="freeze"/>
-    <text id="text3" font-family="system-ui" font-size="32"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#9b96bc">
+    <text id="text3" font-family="system-ui" font-size="30" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#abc5d3">
       <textPath href="#p3">第三段文字</textPath>
-      <set attributeName="fill" to="#9b96bc" begin="seg3draw.begin" />
+      <set attributeName="fill" to="#abc5d3" begin="seg3draw.begin" />
     </text>
-    <text visibility="hidden" font-family="system-ui" font-size="32"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#9b96bc">
+    <text visibility="hidden" font-family="system-ui" font-size="30" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#abc5d3">
       <textPath href="#p3" startOffset="100%">|</textPath>
       <animate attributeName="opacity" values="1;0;1" dur="1s"
                begin="seg3del.end" repeatCount="1" calcMode="discrete"/>
@@ -98,20 +98,20 @@
     <animate id="seg4del" href="#p4" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
              begin="seg4draw.end" fill="freeze"/>
-    <text id="text4" font-family="system-ui" font-size="32"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#d985be">
+    <text id="text4" font-family="system-ui" font-size="30" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#8988bf">
       <textPath href="#p4">第四段文字</textPath>
-      <set attributeName="fill" to="#d985be" begin="seg4draw.begin" />
+      <set attributeName="fill" to="#8988bf" begin="seg4draw.begin" />
     </text>
-    <text visibility="hidden" font-family="system-ui" font-size="32"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#d985be">
+    <text visibility="hidden" font-family="system-ui" font-size="30" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#8988bf">
       <textPath href="#p4" startOffset="100%">|</textPath>
       <animate id="seg4_blink" attributeName="opacity" values="1;0;1"
                dur="1s" begin="seg4del.end" repeatCount="1" calcMode="discrete"/>
-      <set attributeName="visibility" to="visible" begin="seg4del.end"/>
+      <set attributeName="visibility` to="visible` begin="seg4del.end"/>
     </text>
-    <set attributeName="visibility" to="visible" begin="seg3del.end"/>
-    <set attributeName="visibility" to="hidden" begin="seg4del.end+1s"/>
+    <set attributeName="visibility` to="visible` begin="seg3del.end"/>
+    <set attributeName="visibility` to="hidden` begin="seg4del.end+1s`/>
   </g>
 
   <!-- Invisible loop trigger -->
