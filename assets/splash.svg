@@ -14,6 +14,8 @@
   <!-- Segment 1 -->
   <g id="seg1" visibility="visible">
     <path id="p1" d="M0,50 H0" fill="none"/>
+    <!-- Reset visibility on loop -->
+    <set attributeName="visibility" to="visible" begin="loop.end+0.1s" href="#seg1"/>
     <!-- Draw text, restarting on loop -->
     <animate id="seg1draw" href="#p1" attributeName="d"
              values="M0,50 H0; M0,50 H500"
