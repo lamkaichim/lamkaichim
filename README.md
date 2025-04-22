@@ -1,7 +1,5 @@
 ![Login Splash](./assets/splash.svg)
 
-[<img src="https://github.com/lamkaichim/lamkaichim/blob/main/banner.gif" alt="banner" title="banner"/>](https://www.linkedin.com/in/lamkaichim/)
-
 ![visitors](https://vbr.nathanchung.dev/badge?page_id=lamkaichim&color=white&logo=github&style=plastic&text=VISITORS)
 
 ## :book: About Me
