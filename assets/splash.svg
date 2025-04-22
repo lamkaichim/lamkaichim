@@ -3,17 +3,19 @@
      viewBox="0 0 600 100"
      preserveAspectRatio="xMidYMid slice">
 
-  <!-- Background: animate color transitions over 1s on delete begin -->
+  <!-- Background: animate color shifts over 1s on delete begin -->
   <rect id="bg" width="100%" height="100%" fill="{{COLOR_BG}}"/>
-  <animate id="bg-to-bg2" href="#bg" attributeName="fill"
-           to="{{COLOR_BG2}}" begin="seg2del.begin" dur="1s" fill="freeze"/>
-  <animate id="bg-to-bg3" href="#bg" attributeName="fill"
-           to="{{COLOR_BG3}}" begin="seg3del.begin" dur="1s" fill="freeze"/>
-  <animate id="bg-to-bg4" href="#bg" attributeName="fill"
-           to="{{COLOR_BG4}}" begin="seg4del.begin" dur="1s" fill="freeze"/>
-  <!-- Loop back to first color on loop -->
   <animate id="bg-to-bg1" href="#bg" attributeName="fill"
-           to="{{COLOR_BG}}" begin="loop.begin" dur="1s" fill="freeze"/>
+           to="{{COLOR_BG}}"     begin="seg1del.begin" dur="1s" fill="freeze"/>
+  <animate id="bg-to-bg2" href="#bg" attributeName="fill"
+           to="{{COLOR_BG2}}"    begin="seg2del.begin" dur="1s" fill="freeze"/>
+  <animate id="bg-to-bg3" href="#bg" attributeName="fill"
+           to="{{COLOR_BG3}}"    begin="seg3del.begin" dur="1s" fill="freeze"/>
+  <animate id="bg-to-bg4" href="#bg" attributeName="fill"
+           to="{{COLOR_BG4}}"    begin="seg4del.begin" dur="1s" fill="freeze"/>
+  <!-- loop back to first background color -->
+  <animate id="bg-to-bg-loop" href="#bg" attributeName="fill"
+           to="{{COLOR_BG}}"     begin="loop.begin"    dur="1s" fill="freeze"/>
 
   <!-- Segment 1 -->
   <g id="seg1" visibility="visible">
@@ -24,16 +26,16 @@
     <animate id="seg1del" href="#p1" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
              begin="seg1draw.end" fill="freeze"/>
-    <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
-    <set href="#seg1" attributeName="visibility" to="visible" begin="loop.begin"/>
+    <set    attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
+    <set    href="#seg1" attributeName="visibility" to="visible" begin="loop.begin"/>
 
+    <!-- text with bold + animated fill -->
     <text id="text1"
           font-family="system-ui"
           font-size="32"
           font-weight="bold"
           text-anchor="middle"
-          x="50%"
-          y="50"
+          x="50%" y="50"
           dominant-baseline="middle"
           fill="{{COLOR_TEXT1}}">
       <textPath href="#p1">第一段文字</textPath>
@@ -45,8 +47,7 @@
           font-size="32"
           font-weight="bold"
           text-anchor="middle"
-          x="50%"
-          y="50"
+          x="50%" y="50"
           dominant-baseline="middle"
           fill="{{COLOR_TEXT1}}">
       <textPath href="#p1" startOffset="100%">|</textPath>
@@ -70,8 +71,7 @@
           font-size="32"
           font-weight="bold"
           text-anchor="middle"
-          x="50%"
-          y="50"
+          x="50%" y="50"
           dominant-baseline="middle"
           fill="{{COLOR_TEXT2}}">
       <textPath href="#p2">第二段文字</textPath>
@@ -83,8 +83,7 @@
           font-size="32"
           font-weight="bold"
           text-anchor="middle"
-          x="50%"
-          y="50"
+          x="50%" y="50"
           dominant-baseline="middle"
           fill="{{COLOR_TEXT2}}">
       <textPath href="#p2" startOffset="100%">|</textPath>
@@ -92,7 +91,6 @@
                begin="seg2del.end" repeatCount="1" calcMode="discrete"/>
       <set attributeName="visibility" to="visible" begin="seg2del.end"/>
     </text>
-    <set attributeName="visibility" to="visible" begin="seg1del.end"/>
   </g>
 
   <!-- Segment 3 -->
@@ -109,8 +107,7 @@
           font-size="32"
           font-weight="bold"
           text-anchor="middle"
-          x="50%"
-          y="50"
+          x="50%" y="50"
           dominant-baseline="middle"
           fill="{{COLOR_TEXT3}}">
       <textPath href="#p3">第三段文字</textPath>
@@ -122,8 +119,7 @@
           font-size="32"
           font-weight="bold"
           text-anchor="middle"
-          x="50%"
-          y="50"
+          x="50%" y="50"
           dominant-baseline="middle"
           fill="{{COLOR_TEXT3}}">
       <textPath href="#p3" startOffset="100%">|</textPath>
@@ -131,7 +127,6 @@
                begin="seg3del.end" repeatCount="1" calcMode="discrete"/>
       <set attributeName="visibility" to="visible" begin="seg3del.end"/>
     </text>
-    <set attributeName="visibility" to="visible" begin="seg2del.end"/>
   </g>
 
   <!-- Segment 4 -->
@@ -148,8 +143,7 @@
           font-size="32"
           font-weight="bold"
           text-anchor="middle"
-          x="50%"
-          y="50"
+          x="50%" y="50"
           dominant-baseline="middle"
           fill="{{COLOR_TEXT4}}">
       <textPath href="#p4">第四段文字</textPath>
@@ -161,8 +155,7 @@
           font-size="32"
           font-weight="bold"
           text-anchor="middle"
-          x="50%"
-          y="50"
+          x="50%" y="50"
           dominant-baseline="middle"
           fill="{{COLOR_TEXT4}}">
       <textPath href="#p4" startOffset="100%">|</textPath>
@@ -170,7 +163,6 @@
                dur="1s" begin="seg4del.end" repeatCount="1" calcMode="discrete"/>
       <set attributeName="visibility" to="visible" begin="seg4del.end"/>
     </text>
-    <set attributeName="visibility" to="visible" begin="seg3del.end"/>
   </g>
 
   <!-- Invisible loop trigger -->
