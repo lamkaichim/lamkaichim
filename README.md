@@ -1,4 +1,5 @@
-[在新标签页查看动画 🚀](https://lamkaichim.github.io/lamkaichim/)
+![个人动画示例](./assets/splash.svg)
+
 
 
 [<img src="https://github.com/lamkaichim/lamkaichim/blob/main/banner.gif" alt="banner" title="banner"/>](https://www.linkedin.com/in/lamkaichim/)
