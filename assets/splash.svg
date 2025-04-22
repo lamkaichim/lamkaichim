@@ -5,10 +5,11 @@
 
   <!-- Background: discrete color per segment -->
   <rect id="bg" width="100%" height="100%" fill="{{COLOR_BG}}"/>
-  <set href="#bg" attributeName="fill" to="{{COLOR_BG}}" begin="seg1draw.begin"/>
-  <set href="#bg" attributeName="fill" to="#0b734c" begin="seg2draw.begin"/>
-  <set href="#bg" attributeName="fill" to="#135d43" begin="seg3draw.begin"/>
-  <set href="#bg" attributeName="fill" to="#593077" begin="seg4draw.begin"/>
+  <!-- fire on delete begin instead of draw -->
+  <set href="#bg" attributeName="fill" to="{{COLOR_BG}}"  begin="seg1del.begin"/>
+  <set href="#bg" attributeName="fill" to="#712519" begin="seg2del.begin"/>
+  <set href="#bg" attributeName="fill" to="#38796c" begin="seg3del.begin"/>
+  <set href="#bg" attributeName="fill" to="#0f6212" begin="seg4del.begin"/>
 
   <!-- Segment 1 -->
   <g id="seg1" visibility="visible">
@@ -26,7 +27,7 @@
     <!-- re-show at loop restart -->
     <set href="#seg1" attributeName="visibility" to="visible" begin="loop.begin"/>
 
-    <!-- text with discrete fill -->
+    <!-- text with bold + discrete fill on delete begin -->
     <text id="text1"
           font-family="system-ui"
           font-size="32"
@@ -35,9 +36,9 @@
           x="50%"
           y="50"
           dominant-baseline="middle"
-          fill="#caa4d9">
+          fill="#aeb4c2">
       <textPath href="#p1">第一段文字</textPath>
-      <set attributeName="fill" to="#caa4d9" begin="seg1draw.begin"/>
+      <set attributeName="fill" to="#aeb4c2" begin="seg1del.begin"/>
     </text>
     <!-- cursor -->
     <text visibility="hidden"
@@ -48,7 +49,7 @@
           x="50%"
           y="50"
           dominant-baseline="middle"
-          fill="#caa4d9">
+          fill="#aeb4c2">
       <textPath href="#p1" startOffset="100%">|</textPath>
       <animate attributeName="opacity" values="1;0;1" dur="1s"
                begin="seg1del.end" repeatCount="1" calcMode="discrete"/>
@@ -74,9 +75,9 @@
           x="50%"
           y="50"
           dominant-baseline="middle"
-          fill="#91bfaa">
+          fill="#90cdf6">
       <textPath href="#p2">第二段文字</textPath>
-      <set attributeName="fill" to="#91bfaa" begin="seg2draw.begin"/>
+      <set attributeName="fill" to="#90cdf6" begin="seg2del.begin"/>
     </text>
     <text visibility="hidden"
           font-family="system-ui"
@@ -86,7 +87,7 @@
           x="50%"
           y="50"
           dominant-baseline="middle"
-          fill="#91bfaa">
+          fill="#90cdf6">
       <textPath href="#p2" startOffset="100%">|</textPath>
       <animate attributeName="opacity" values="1;0;1" dur="1s"
                begin="seg2del.end" repeatCount="1" calcMode="discrete"/>
@@ -113,9 +114,9 @@
           x="50%"
           y="50"
           dominant-baseline="middle"
-          fill="#e9d7e1">
+          fill="#a389a5">
       <textPath href="#p3">第三段文字</textPath>
-      <set attributeName="fill" to="#e9d7e1" begin="seg3draw.begin"/>
+      <set attributeName="fill" to="#a389a5" begin="seg3del.begin"/>
     </text>
     <text visibility="hidden"
           font-family="system-ui"
@@ -125,7 +126,7 @@
           x="50%"
           y="50"
           dominant-baseline="middle"
-          fill="#e9d7e1">
+          fill="#a389a5">
       <textPath href="#p3" startOffset="100%">|</textPath>
       <animate attributeName="opacity" values="1;0;1" dur="1s"
                begin="seg3del.end" repeatCount="1" calcMode="discrete"/>
@@ -152,9 +153,9 @@
           x="50%"
           y="50"
           dominant-baseline="middle"
-          fill="#d0eec3">
+          fill="#cfddc3">
       <textPath href="#p4">第四段文字</textPath>
-      <set attributeName="fill" to="#d0eec3" begin="seg4draw.begin"/>
+      <set attributeName="fill" to="#cfddc3" begin="seg4del.begin"/>
     </text>
     <text visibility="hidden"
           font-family="system-ui"
@@ -164,7 +165,7 @@
           x="50%"
           y="50"
           dominant-baseline="middle"
-          fill="#d0eec3">
+          fill="#cfddc3">
       <textPath href="#p4" startOffset="100%">|</textPath>
       <animate id="seg4_blink" attributeName="opacity" values="1;0;1"
                dur="1s" begin="seg4del.end" repeatCount="1" calcMode="discrete"/>
