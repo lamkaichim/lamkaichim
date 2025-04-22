@@ -4,81 +4,135 @@
      viewBox="0 0 600 100"
      preserveAspectRatio="xMidYMid slice">
 
-  <!-- 背景矩形及离散色切换（在 delete 开始时触发） -->
+  <!-- 1. 定义 typewriter 样式 -->
+  <defs>
+    <style type="text/css"><![CDATA[
+      /* 为所有文字元素添加光标 caret 效果，不影响现有 fill 色 */
+      .typewriter {
+        box-sizing: content-box;                /* 保证宽度不包含 caret */
+        border-right: 4px solid currentColor;   /* 4px 宽光标，跟文字颜色一致 */ :contentReference[oaicite:0]{index=0}
+      }
+    ]]></style>
+  </defs>
+
+  <!-- 2. 背景色按段离散切换（保持不变） -->
   <rect id="bg" width="100%" height="100%" fill="{{COLOR_BG}}"/>
   <set href="#bg" attributeName="fill" to="{{COLOR_BG}}"  begin="seg1del.begin"/>
   <set href="#bg" attributeName="fill" to="#4e3874"      begin="seg2del.begin"/>
   <set href="#bg" attributeName="fill" to="#016109"      begin="seg3del.begin"/>
   <set href="#bg" attributeName="fill" to="#7e3a6a"      begin="seg4del.begin"/>
 
-  <!-- ********** Segment 1 ********** -->
+  <!-- Segment 1 -->
   <g id="seg1" visibility="visible">
     <path id="p1" d="M0,50 H0" fill="none"/>
     <animate id="seg1draw" href="#p1" attributeName="d"
-         values="M0,50 H0;M0,50 H500" dur="2s"
-         begin="0s;loop.end+0.1s" fill="freeze"/>
-    <animate id="seg1del"  href="#p1" attributeName="d"
-         values="M0,50 H500;M0,50 H0" dur="1s"
-         begin="seg1draw.end" fill="freeze"/>
+             values="M0,50 H0;M0,50 H500" dur="2s"
+             begin="0s;loop.end+0.1s" fill="freeze"/>
+    <animate id="seg1del" href="#p1" attributeName="d"
+             values="M0,50 H500;M0,50 H0" dur="1s"
+             begin="seg1draw.end" fill="freeze"/>
     <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
     <set href="#seg1" attributeName="visibility" to="visible" begin="loop.begin"/>
 
-    <!-- 逐字打字机效果：将“第一段文字”拆为tspan -->
-    <text font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="300" y="50" dominant-baseline="middle">
-      <!-- 分割后的字符，每个 tspan 初始 opacity=0 -->
-      <tspan id="s1c1" fill="#eb98fd" opacity="0">第</tspan>
-      <tspan id="s1c2" fill="#eb98fd" opacity="0">一</tspan>
-      <tspan id="s1c3" fill="#eb98fd" opacity="0">段</tspan>
-      <tspan id="s1c4" fill="#eb98fd" opacity="0">文</tspan>
-      <tspan id="s1c5" fill="#eb98fd" opacity="0">字</tspan>
-      <tspan id="s1c6" fill="#eb98fd" opacity="0">。</tspan>
-      <!-- 每个字符的显隐动画，间隔(2s÷6)=0.333s 打出，(1s停留)，(1s÷6)≈0.167s 删除 -->
-      <!-- 打字 -->
-      <animate xlink:href="#s1c1" attributeName="opacity" from="0" to="1"
-               begin="seg1draw.begin" dur="0.333s" fill="freeze"/>
-      <animate xlink:href="#s1c2" attributeName="opacity" from="0" to="1"
-               begin="seg1draw.begin+0.333s" dur="0.333s" fill="freeze"/>
-      <animate xlink:href="#s1c3" attributeName="opacity" from="0" to="1"
-               begin="seg1draw.begin+0.666s" dur="0.333s" fill="freeze"/>
-      <animate xlink:href="#s1c4" attributeName="opacity" from="0" to="1"
-               begin="seg1draw.begin+0.999s" dur="0.333s" fill="freeze"/>
-      <animate xlink:href="#s1c5" attributeName="opacity" from="0" to="1"
-               begin="seg1draw.begin+1.332s" dur="0.333s" fill="freeze"/>
-      <animate xlink:href="#s1c6" attributeName="opacity" from="0" to="1"
-               begin="seg1draw.begin+1.665s" dur="0.335s" fill="freeze"/>
-      <!-- 停留至 3s -->
-      <!-- 删除 -->
-      <animate xlink:href="#s1c6" attributeName="opacity" from="1" to="0"
-               begin="seg1del.begin+0s" dur="0.167s" fill="freeze"/>
-      <animate xlink:href="#s1c5" attributeName="opacity" from="1" to="0"
-               begin="seg1del.begin+0.167s" dur="0.167s" fill="freeze"/>
-      <animate xlink:href="#s1c4" attributeName="opacity" from="1" to="0"
-               begin="seg1del.begin+0.334s" dur="0.167s" fill="freeze"/>
-      <animate xlink:href="#s1c3" attributeName="opacity" from="1" to="0"
-               begin="seg1del.begin+0.501s" dur="0.167s" fill="freeze"/>
-      <animate xlink:href="#s1c2" attributeName="opacity" from="1" to="0"
-               begin="seg1del.begin+0.668s" dur="0.167s" fill="freeze"/>
-      <animate xlink:href="#s1c1" attributeName="opacity" from="1" to="0"
-               begin="seg1del.begin+0.835s" dur="0.165s" fill="freeze"/>
+    <!-- 在此处添加 class="typewriter" -->
+    <text id="text1" class="typewriter"
+          font-family="system-ui" font-size="32" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
+          fill="#eb98fd">
+      <textPath href="#p1">第一段文字</textPath>
+      <set attributeName="fill" to="#eb98fd" begin="seg1del.begin"/>
     </text>
-
-    <!-- 固定光标 -->
-    <text font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="300" y="50" dominant-baseline="middle"
-          fill="#eb98fd" opacity="0" id="c1">
-      <textPath href="#p1" startOffset="100%">●</textPath>
-      <animate attributeName="opacity" to="1" begin="seg1del.begin" dur="0s" fill="freeze"/>
-      <set attributeName="opacity" to="0" begin="seg1del.end+1s"/>
+    <text class="typewriter" visibility="hidden"
+          font-family="system-ui" font-size="32" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
+          fill="#eb98fd">
+      <textPath href="#p1" startOffset="100%">|</textPath>
+      <animate attributeName="opacity" values="1;0;1" dur="1s"
+               begin="seg1del.end" repeatCount="1" calcMode="discrete"/>
+      <set attributeName="visibility" to="visible" begin="seg1del.end"/>
     </text>
+    <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
   </g>
 
-  <!-- ********** Segment 2 同理 ********** -->
-  <!-- 您只需复制上面 Segment 1 的 <text> 与 <textPath> 部分，
-       替换 ID（如 s1c1→s2c1）、文本内容、fill 颜色及 begin 时间即可 -->
-  <!-- … -->
+  <!-- Segment 2 -->
+  <g id="seg2" visibility="hidden">
+    <path id="p2" d="M0,50 H0" fill="none"/>
+    <animate id="seg2draw" href="#p2" attributeName="d"
+             values="M0,50 H0;M0,50 H500" dur="2s"
+             begin="seg1del.end" fill="freeze"/>
+    <animate id="seg2del" href="#p2" attributeName="d"
+             values="M0,50 H500;M0,50 H0" dur="1s"
+             begin="seg2draw.end" fill="freeze"/>
+    <text id="text2" class="typewriter"
+          font-family="system-ui" font-size="32" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
+          fill="#dde8cb">
+      <textPath href="#p2">第二段文字</textPath>
+      <set attributeName="fill" to="#dde8cb" begin="seg2del.begin"/>
+    </text>
+    <text class="typewriter" visibility="hidden"
+          font-family="system-ui" font-size="32" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
+          fill="#dde8cb">
+      <textPath href="#p2" startOffset="100%">|</textPath>
+      <animate attributeName="opacity" values="1;0;1" dur="1s"
+               begin="seg2del.end" repeatCount="1" calcMode="discrete"/>
+      <set attributeName="visibility" to="visible" begin="seg2del.end"/>
+    </text>
+    <set attributeName="visibility" to="visible" begin="seg1del.end"/>
+    <set attributeName="visibility" to="hidden" begin="seg2del.end+1s"/>
+  </g>
 
-  <!-- 循环触发 -->
-  <animate id="loop" href="#p1" attributeName="d"
-           begin="seg4del.end+0.1s" dur="0.1s" fill="freeze"/>
-</svg>
+  <!-- Segment 3 -->
+  <g id="seg3" visibility="hidden">
+    <path id="p3" d="M0,50 H0" fill="none"/>
+    <animate id="seg3draw" href="#p3" attributeName="d"
+             values="M0,50 H0;M0,50 H500" dur="2s"
+             begin="seg2del.end" fill="freeze"/>
+    <animate id="seg3del" href="#p3" attributeName="d"
+             values="M0,50 H500;M0,50 H0" dur="1s"
+             begin="seg3draw.end" fill="freeze"/>
+    <text id="text3" class="typewriter"
+          font-family="system-ui" font-size="32" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
+          fill="#e296d2">
+      <textPath href="#p3">第三段文字</textPath>
+      <set attributeName="fill" to="#e296d2" begin="seg3del.begin"/>
+    </text>
+    <text class="typewriter" visibility="hidden"
+          font-family="system-ui" font-size="32" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
+          fill="#e296d2">
+      <textPath href="#p3" startOffset="100%">|</textPath>
+      <animate attributeName="opacity" values="1;0;1" dur="1s"
+               begin="seg3del.end" repeatCount="1" calcMode="discrete"/>
+      <set attributeName="visibility" to="visible" begin="seg3del.end"/>
+    </text>
+    <set attributeName="visibility" to="visible" begin="seg2del.end"/>
+    <set attributeName="visibility" to="hidden" begin="seg3del.end+1s"/>
+  </g>
+
+  <!-- Segment 4 -->
+  <g id="seg4" visibility="hidden">
+    <path id="p4" d="M0,50 H0" fill="none"/>
+    <animate id="seg4draw" href="#p4" attributeName="d"
+             values="M0,50 H0;M0,50 H500" dur="2s"
+             begin="seg3del.end" fill="freeze"/>
+    <animate id="seg4del" href="#p4" attributeName="d"
+             values="M0,50 H500;M0,50 H0" dur="1s"
+             begin="seg4draw.end" fill="freeze"/>
+    <text id="text4" class="typewriter"
+          font-family="system-ui" font-size="32" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
+          fill="#c1b3ce">
+      <textPath href="#p4">第四段文字</textPath>
+      <set attributeName="fill" to="#c1b3ce" begin="seg4del.begin"/>
+    </text>
+    <text class="typewriter" visibility="hidden"
+          font-family="system-ui" font-size="32" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
+          fill="#c1b3ce">
+      <textPath href="#p4" startOffset="100%">|</textPath>
+      <animate attributeName="opacity" values="1;0;1" dur="1s"
+               begin="seg4del.end" repeatCount="1" calcMode="discrete"/>
+      <set attributeName="visibility" to="visible" begin="seg4del.end"/>
