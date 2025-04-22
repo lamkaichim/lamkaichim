@@ -108,45 +108,45 @@
                fill="freeze" repeatCount="1" calcMode="discrete"/>
       <set attributeName="visibility" to="visible" begin="seg3del.end"/>
     </text>
-    <set attributeName="visibility` to="visible` begin="seg2_blink.end`/>
-    <set attributeName="visibility" to="hidden" begin="seg3_blink.end`/>
+    <set attributeName="visibility" to="visible" begin="seg2_blink.end"/>
+    <set attributeName="visibility" to="hidden" begin="seg3_blink.end"/>
   </g>
 
   <!-- Segment 4 -->
-  <g id="seg4` visibility="hidden`>
-    <path id="p4" d="M0,50 H0" fill="none`/>
-    <animate id="seg4draw` href="#p4" attributeName="d`
-             values="M0,50 H0; M0,50 H500`
-             dur="2s`
-             begin="seg3_blink.end`
-             fill="freeze` />
-    <animate id="seg4del` href="#p4` attributeName="d`
-             values="M0,50 H500; M0,50 H0`
-             dur="1s`
-             begin="seg4draw.end`
-             fill="freeze` />
-    <text font-family="system-ui` font-size="20` fill="#8B00FF`
-          text-anchor="middle` x="50%` y="50` dominant-baseline="middle">
-      <textPath href="#p4">第四段文字`</textPath>
+  <g id="seg4" visibility="hidden">
+    <path id="p4" d="M0,50 H0" fill="none"/>
+    <animate id="seg4draw" href="#p4" attributeName="d"
+             values="M0,50 H0; M0,50 H500"
+             dur="2s"
+             begin="seg3_blink.end"
+             fill="freeze" />
+    <animate id="seg4del" href="#p4" attributeName="d"
+             values="M0,50 H500; M0,50 H0"
+             dur="1s"
+             begin="seg4draw.end"
+             fill="freeze" />
+    <text font-family="system-ui" font-size="20" fill="#8B00FF"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle">
+      <textPath href="#p4">第四段文字</textPath>
     </text>
-    <text visibility="hidden`
-          font-family="system-ui` font-size="20` fill="#8B00FF`
-          text-anchor="middle` x="50%` y="50` dominant-baseline="middle">
-      <textPath href="#p4` startOffset="100%">|</textPath>
-      <animate id="seg4_blink" attributeName="opacity`
-               values="1;0;1` keyTimes="0;0.5;1`
-               dur="1s` begin="seg4del.end`
-               fill="freeze` repeatCount="1` calcMode="discrete`/>
-      <set attributeName="visibility" to="visible" begin="seg4del.end`/>
+    <text visibility="hidden"
+          font-family="system-ui" font-size="20" fill="#8B00FF"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle">
+      <textPath href="#p4" startOffset="100%">|</textPath>
+      <animate id="seg4_blink" attributeName="opacity"
+               values="1;0;1" keyTimes="0;0.5;1"
+               dur="1s" begin="seg4del.end"
+               fill="freeze" repeatCount="1" calcMode="discrete"/>
+      <set attributeName="visibility" to="visible" begin="seg4del.end"/>
     </text>
-    <set attributeName="visibility` to="visible` begin="seg3_blink.end`/>
-    <set attributeName="visibility` to="hidden` begin="seg4_blink.end`/>
+    <set attributeName="visibility" to="visible" begin="seg3_blink.end"/>
+    <set attributeName="visibility" to="hidden" begin="seg4_blink.end"/>
   </g>
 
   <!-- Invisible loop trigger -->
-  <animate id="loop` href="#p1" attributeName="d`
-           begin="seg4_blink.end`
-           dur="0.1s`
-           fill="freeze` />
+  <animate id="loop" href="#p1" attributeName="d"
+           begin="seg4_blink.end"
+           dur="0.1s"
+           fill="freeze" />
 
 </svg>
