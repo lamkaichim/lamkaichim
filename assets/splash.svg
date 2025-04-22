@@ -38,6 +38,7 @@
                begin="seg1del.end" repeatCount="1" calcMode="discrete"/>
       <set attributeName="visibility" to="visible" begin="seg1del.end"/>
     </text>
+    <!-- hide after cursor blink -->
     <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
   </g>
 
@@ -89,7 +90,7 @@
       <textPath href="#p3" startOffset="100%">|</textPath>
       <animate attributeName="opacity" values="1;0;1" dur="1s"
                begin="seg3del.end" repeatCount="1" calcMode="discrete"/>
-      <set attributeName="visibility` to="visible` begin="seg3del.end"/>  
+      <set attributeName="visibility" to="visible" begin="seg3del.end"/>
     </text>
     <set attributeName="visibility" to="visible" begin="seg2del.end"/>
     <set attributeName="visibility" to="hidden" begin="seg3del.end+1s"/>
@@ -111,17 +112,15 @@
                values="#FFFFFF;#FFCCCC;#CCFFCC;#CCCCFF;#FFFFFF"
                keyTimes="0;0.25;0.5;0.75;1"/>
     </text>
-    <text visibility="hidden` 
-          font-family="system-ui" font-size="20" fill="#8B00FF"
+    <text visibility="hidden" font-family="system-ui" font-size="20"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle">
       <textPath href="#p4" startOffset="100%">|</textPath>
-      <animate id="seg4_blink" attributeName="opacity"
-               values="1;0;1" keyTimes="0;0.5;1" dur="1s"
-               begin="seg4del.end" repeatCount="1" calcMode="discrete"/>
+      <animate id="seg4_blink" attributeName="opacity" values="1;0;1"
+               dur="1s" begin="seg4del.end" repeatCount="1" calcMode="discrete"/>
       <set attributeName="visibility" to="visible" begin="seg4del.end"/>
     </text>
     <set attributeName="visibility" to="visible" begin="seg3del.end"/>
-    <set attributeName="visibility` to="hidden` begin="seg4del.end+1s`/>
+    <set attributeName="visibility" to="hidden" begin="seg4del.end+1s"/>
   </g>
 
   <!-- Invisible loop trigger -->
