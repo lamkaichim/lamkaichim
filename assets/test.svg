@@ -136,3 +136,13 @@
       <animate attributeName="opacity" values="1;0;1" dur="1s"
                begin="seg4del.end" repeatCount="1" calcMode="discrete"/>
       <set attributeName="visibility" to="visible" begin="seg4del.end"/>
+    </text>
+    <set attributeName="visibility" to="visible" begin="seg3del.end"/>
+    <set attributeName="visibility" to="hidden" begin="seg4del.end+1s"/>
+  </g>
+
+  <!-- Invisible loop trigger -->
+  <animate id="loop" href="#p1" attributeName="d"
+           begin="seg4del.end+0.1s" dur="0.1s" fill="freeze"/>
+
+</svg>
