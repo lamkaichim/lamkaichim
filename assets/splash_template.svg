@@ -114,13 +114,12 @@
   </g>
 
   <!-- Invisible loop trigger -->
+    <!-- Invisible loop trigger -->
   <animate id="loop" href="#p1" attributeName="d"
            begin="seg4del.end+0.1s" dur="0.1s" fill="freeze"/>
 
-  <!-- Reset Segment 1 on loop -->
-  <set href="#seg1" attributeName="visibility" to="visible" begin="loop.end+0.1s"/>
-  <set href="#text1" attributeName="visibility" to="visible" begin="loop.end+0.1s"/>
-  <set href="#p1" attributeName="d" to="M0,50 H0" begin="loop.end+0.1s"/>
-  <set href="#cursor1" attributeName="visibility" to="hidden" begin="loop.end+0.1s"/>
+  <!-- Reset for next loop: hide Segment 1 until redraw -->
+  <set href="#seg1" attributeName="visibility" to="hidden" begin="loop.end+0.1s"/>
 
+  <!-- Segment 1 draw will show it again -->
 </svg>
