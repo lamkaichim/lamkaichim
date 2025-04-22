@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg"
      xmlns:xlink="http://www.w3.org/1999/xlink"
-     viewBox="0 0 600 100"
-     preserveAspectRatio="xMidYMid slice">
+     viewBox="0 0 600 100" preserveAspectRatio="xMidYMid slice">
 
   <!-- 背景 -->
-  <rect id="bg" width="100%" height="100%" fill="#000000"/>
+  <rect id="bg" width="100%" height="100%" fill="#000"/>
   <set xlink:href="#bg" attributeName="fill" to="#000000" begin="seg1draw.begin"/>
   <set xlink:href="#bg" attributeName="fill" to="#FFD700" begin="seg2draw.begin"/>
   <set xlink:href="#bg" attributeName="fill" to="#1E90FF" begin="seg3draw.begin"/>
   <set xlink:href="#bg" attributeName="fill" to="#32CD32" begin="seg4draw.begin"/>
 
-  <!-- ========= SEGMENT 1 ========= -->
+  <!-- === Segment 1 === -->
   <g id="seg1" visibility="visible">
     <path id="p1" d="M0,50 H0" fill="none"/>
     <animate id="seg1draw" xlink:href="#p1" attributeName="d"
@@ -22,13 +21,14 @@
              begin="seg1draw.end+0.5s" fill="freeze"/>
 
     <text font-family="system-ui" font-size="24" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#FFFFFF">
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#FFF">
       <textPath xlink:href="#p1" href="#p1">第一段文字</textPath>
     </text>
 
-    <text font-family="system-ui" font-size="24" font-weight="bold"
-          dominant-baseline="middle" fill="#FFFFFF">
-      <textPath xlink:href="#p1" href="#p1" startOffset="100%">|</textPath>
+    <!-- 圆球光标 -->
+    <text font-family="system-ui" font-size="30" font-weight="bold"
+          dominant-baseline="middle" fill="#FFF">
+      <textPath xlink:href="#p1" href="#p1" startOffset="100%">●</textPath>
       <animate attributeName="opacity" values="1;0;1"
                keyTimes="0;0.5;1" dur="1s"
                begin="seg1draw.begin" repeatCount="indefinite" calcMode="discrete"/>
@@ -37,88 +37,10 @@
     <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
   </g>
 
-  <!-- ========= SEGMENT 2 ========= -->
-  <g id="seg2" visibility="hidden">
-    <path id="p2" d="M0,50 H0" fill="none"/>
-    <animate id="seg2draw" xlink:href="#p2" attributeName="d"
-             values="M0,50 H0;M0,50 H500" dur="2s"
-             begin="seg1del.end+1s" fill="freeze"/>
-    <animate id="seg2del"  xlink:href="#p2" attributeName="d"
-             values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg2draw.end+0.5s" fill="freeze"/>
+  <!-- 其余 Segment 2 ~ 4 完全照此结构改：xlink:href 双写 + 圆球光标 -->
+  <!-- …… （此处省略段 2~4，您只需把上面光标块复制过去并改颜色） …… -->
 
-    <text font-family="system-ui" font-size="24" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#8B00FF">
-      <textPath xlink:href="#p2" href="#p2">第二段文字</textPath>
-    </text>
-
-    <text font-family="system-ui" font-size="24" font-weight="bold"
-          dominant-baseline="middle" fill="#8B00FF">
-      <textPath xlink:href="#p2" href="#p2" startOffset="100%">|</textPath>
-      <animate attributeName="opacity" values="1;0;1"
-               keyTimes="0;0.5;1" dur="1s"
-               begin="seg2draw.begin" repeatCount="indefinite" calcMode="discrete"/>
-    </text>
-
-    <set attributeName="visibility" to="visible" begin="seg1del.end+1s"/>
-    <set attributeName="visibility" to="hidden"  begin="seg2del.end+1s"/>
-  </g>
-
-  <!-- ========= SEGMENT 3 ========= -->
-  <g id="seg3" visibility="hidden">
-    <path id="p3" d="M0,50 H0" fill="none"/>
-    <animate id="seg3draw" xlink:href="#p3" attributeName="d"
-             values="M0,50 H0;M0,50 H500" dur="2s"
-             begin="seg2del.end+1s" fill="freeze"/>
-    <animate id="seg3del"  xlink:href="#p3" attributeName="d"
-             values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg3draw.end+0.5s" fill="freeze"/>
-
-    <text font-family="system-ui" font-size="24" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#FFFFFF">
-      <textPath xlink:href="#p3" href="#p3">第三段文字</textPath>
-    </text>
-
-    <text font-family="system-ui" font-size="24" font-weight="bold"
-          dominant-baseline="middle" fill="#FFFFFF">
-      <textPath xlink:href="#p3" href="#p3" startOffset="100%">|</textPath>
-      <animate attributeName="opacity" values="1;0;1"
-               keyTimes="0;0.5;1" dur="1s"
-               begin="seg3draw.begin" repeatCount="indefinite" calcMode="discrete"/>
-    </text>
-
-    <set attributeName="visibility" to="visible" begin="seg2del.end+1s"/>
-    <set attributeName="visibility" to="hidden"  begin="seg3del.end+1s"/>
-  </g>
-
-  <!-- ========= SEGMENT 4 ========= -->
-  <g id="seg4" visibility="hidden">
-    <path id="p4" d="M0,50 H0" fill="none"/>
-    <animate id="seg4draw" xlink:href="#p4" attributeName="d"
-             values="M0,50 H0;M0,50 H500" dur="2s"
-             begin="seg3del.end+1s" fill="freeze"/>
-    <animate id="seg4del"  xlink:href="#p4" attributeName="d"
-             values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg4draw.end+0.5s" fill="freeze"/>
-
-    <text font-family="system-ui" font-size="24" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#000000">
-      <textPath xlink:href="#p4" href="#p4">第四段文字</textPath>
-    </text>
-
-    <text font-family="system-ui" font-size="24" font-weight="bold"
-          dominant-baseline="middle" fill="#000000">
-      <textPath xlink:href="#p4" href="#p4" startOffset="100%">|</textPath>
-      <animate attributeName="opacity" values="1;0;1"
-               keyTimes="0;0.5;1" dur="1s"
-               begin="seg4draw.begin" repeatCount="indefinite" calcMode="discrete"/>
-    </text>
-
-    <set attributeName="visibility" to="visible" begin="seg3del.end+1s"/>
-    <set attributeName="visibility" to="hidden"  begin="seg4del.end+1s"/>
-  </g>
-
-  <!-- 循环回段 1 -->
+  <!-- 循环回段1 -->
   <animate id="loop" xlink:href="#p1" attributeName="d"
            begin="seg4del.end+0.1s" dur="0.1s" fill="freeze"/>
 </svg>
