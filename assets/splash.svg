@@ -6,9 +6,9 @@
   <!-- Background: discrete color per segment -->
   <rect id="bg" width="100%" height="100%" fill="{{COLOR_BG}}"/>
   <set href="#bg" attributeName="fill" to="{{COLOR_BG}}" begin="seg1draw.begin" />
-  <set href="#bg" attributeName="fill" to="#6d7317" begin="seg2draw.begin" />
-  <set href="#bg" attributeName="fill" to="#602133" begin="seg3draw.begin" />
-  <set href="#bg" attributeName="fill" to="#547858" begin="seg4draw.begin" />
+  <set href="#bg" attributeName="fill" to="#110f11" begin="seg2draw.begin" />
+  <set href="#bg" attributeName="fill" to="#3c3e40" begin="seg3draw.begin" />
+  <set href="#bg" attributeName="fill" to="#0a3f5c" begin="seg4draw.begin" />
 
   <!-- Segment 1 -->
   <g id="seg1" visibility="visible">
@@ -23,14 +23,14 @@
              begin="seg1draw.end" fill="freeze"/>
     <!-- text with discrete fill -->
     <text id="text1" font-family="system-ui" font-size="32"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#92e7be">
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#9bf7c5">
       <textPath href="#p1">第一段文字</textPath>
       <!-- set text color when this segment starts -->
-      <set attributeName="fill" to="#92e7be" begin="seg1draw.begin" />
+      <set attributeName="fill" to="#9bf7c5" begin="seg1draw.begin" />
     </text>
     <!-- cursor -->
     <text visibility="hidden" font-family="system-ui" font-size="32"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#92e7be">
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#9bf7c5">
       <textPath href="#p1" startOffset="100%">|</textPath>
       <animate attributeName="opacity" values="1;0;1" dur="1s"
                begin="seg1del.end" repeatCount="1" calcMode="discrete"/>
@@ -49,12 +49,12 @@
              values="M0,50 H500;M0,50 H0" dur="1s"
              begin="seg2draw.end" fill="freeze"/>
     <text id="text2" font-family="system-ui" font-size="32"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#c7ebeb">
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#f6c3cc">
       <textPath href="#p2">第二段文字</textPath>
-      <set attributeName="fill" to="#c7ebeb" begin="seg2draw.begin" />
+      <set attributeName="fill" to="#f6c3cc" begin="seg2draw.begin" />
     </text>
     <text visibility="hidden" font-family="system-ui" font-size="32"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#c7ebeb">
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#f6c3cc">
       <textPath href="#p2" startOffset="100%">|</textPath>
       <animate attributeName="opacity" values="1;0;1" dur="1s"
                begin="seg2del.end" repeatCount="1" calcMode="discrete"/>
@@ -74,12 +74,12 @@
              values="M0,50 H500;M0,50 H0" dur="1s"
              begin="seg3draw.end" fill="freeze"/>
     <text id="text3" font-family="system-ui" font-size="32"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#f7d6cc">
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#d0f2c5">
       <textPath href="#p3">第三段文字</textPath>
-      <set attributeName="fill" to="#f7d6cc" begin="seg3draw.begin" />
+      <set attributeName="fill" to="#d0f2c5" begin="seg3draw.begin" />
     </text>
     <text visibility="hidden" font-family="system-ui" font-size="32"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#f7d6cc">
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#d0f2c5">
       <textPath href="#p3" startOffset="100%">|</textPath>
       <animate attributeName="opacity" values="1;0;1" dur="1s"
                begin="seg3del.end" repeatCount="1" calcMode="discrete"/>
@@ -99,12 +99,12 @@
              values="M0,50 H500;M0,50 H0" dur="1s"
              begin="seg4draw.end" fill="freeze"/>
     <text id="text4" font-family="system-ui" font-size="32"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#d4a38e">
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#9aadfe">
       <textPath href="#p4">第四段文字</textPath>
-      <set attributeName="fill" to="#d4a38e" begin="seg4draw.begin" />
+      <set attributeName="fill" to="#9aadfe" begin="seg4draw.begin" />
     </text>
     <text visibility="hidden" font-family="system-ui" font-size="32"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#d4a38e">
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#9aadfe">
       <textPath href="#p4" startOffset="100%">|</textPath>
       <animate id="seg4_blink" attributeName="opacity" values="1;0;1"
                dur="1s" begin="seg4del.end" repeatCount="1" calcMode="discrete"/>
