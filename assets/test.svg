@@ -3,7 +3,7 @@
      viewBox="0 0 600 100"
      preserveAspectRatio="xMidYMid slice">
 
-  <!-- 背景矩形 -->
+  <!-- 背景颜色在各段开始时离散跳变 -->
   <rect id="bg" width="100%" height="100%" fill="#000000"/>
   <set href="#bg" attributeName="fill" to="#000000" begin="seg1draw.begin"/>
   <set href="#bg" attributeName="fill" to="#FFD700" begin="seg2draw.begin"/>
@@ -12,23 +12,29 @@
 
   <!-- ───────────── Segment 1 ───────────── -->
   <g id="seg1" visibility="visible">
+    <!-- 同一条路径用于文字 & 光标：长度 0→500→0 -->
     <path id="p1" d="M0,50 H0" fill="none"/>
+    <!-- 打字 2 s -->
     <animate id="seg1draw" href="#p1" attributeName="d"
              values="M0,50 H0;M0,50 H500" dur="2s"
              begin="0s;loop.end+0.1s" fill="freeze"/>
+    <!-- 删除 1 s（延迟 0.5 s 停留）-->
     <animate id="seg1del"  href="#p1" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
              begin="seg1draw.end+0.5s" fill="freeze"/>
 
+    <!-- 文本 -->
     <text font-family="-apple-system,'Helvetica Neue',system-ui,sans-serif"
           font-weight="bold" font-size="24"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#FFFFFF">
       <textPath href="#p1">第一段文字</textPath>
     </text>
 
+    <!-- 光标：始终附着路径末端 & 一直闪烁 -->
     <text font-family="-apple-system,'Helvetica Neue',system-ui,sans-serif"
           font-weight="bold" font-size="24"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#FFFFFF">
+          dominant-baseline="middle" fill="#FFFFFF">
+      <!-- 不设置 x/y，由路径决定位置 -->
       <textPath href="#p1" startOffset="100%">|</textPath>
       <animate attributeName="opacity" values="1;0;1"
                keyTimes="0;0.5;1" dur="1s"
@@ -36,8 +42,8 @@
                calcMode="discrete"/>
     </text>
 
-    <set attributeName="visibility" to="hidden"
-         begin="seg1del.end+1s"/>
+    <!-- 段结束隐藏 -->
+    <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
   </g>
 
   <!-- ───────────── Segment 2 ───────────── -->
@@ -46,7 +52,7 @@
     <animate id="seg2draw" href="#p2" attributeName="d"
              values="M0,50 H0;M0,50 H500" dur="2s"
              begin="seg1del.end+1s" fill="freeze"/>
-    <animate id="seg2del"  href="#p2" attributeName="d"
+    <animate id="seg2del" href="#p2" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
              begin="seg2draw.end+0.5s" fill="freeze"/>
 
@@ -55,10 +61,9 @@
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#8B00FF">
       <textPath href="#p2">第二段文字</textPath>
     </text>
-
     <text font-family="-apple-system,'Helvetica Neue',system-ui,sans-serif"
           font-weight="bold" font-size="24"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#8B00FF">
+          dominant-baseline="middle" fill="#8B00FF">
       <textPath href="#p2" startOffset="100%">|</textPath>
       <animate attributeName="opacity" values="1;0;1"
                keyTimes="0;0.5;1" dur="1s"
@@ -76,7 +81,7 @@
     <animate id="seg3draw" href="#p3" attributeName="d"
              values="M0,50 H0;M0,50 H500" dur="2s"
              begin="seg2del.end+1s" fill="freeze"/>
-    <animate id="seg3del"  href="#p3" attributeName="d"
+    <animate id="seg3del" href="#p3" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
              begin="seg3draw.end+0.5s" fill="freeze"/>
 
@@ -85,10 +90,9 @@
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#FFFFFF">
       <textPath href="#p3">第三段文字</textPath>
     </text>
-
     <text font-family="-apple-system,'Helvetica Neue',system-ui,sans-serif"
           font-weight="bold" font-size="24"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#FFFFFF">
+          dominant-baseline="middle" fill="#FFFFFF">
       <textPath href="#p3" startOffset="100%">|</textPath>
       <animate attributeName="opacity" values="1;0;1"
                keyTimes="0;0.5;1" dur="1s"
@@ -106,7 +110,7 @@
     <animate id="seg4draw" href="#p4" attributeName="d"
              values="M0,50 H0;M0,50 H500" dur="2s"
              begin="seg3del.end+1s" fill="freeze"/>
-    <animate id="seg4del"  href="#p4" attributeName="d"
+    <animate id="seg4del" href="#p4" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
              begin="seg4draw.end+0.5s" fill="freeze"/>
 
@@ -115,10 +119,9 @@
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#000000">
       <textPath href="#p4">第四段文字</textPath>
     </text>
-
     <text font-family="-apple-system,'Helvetica Neue',system-ui,sans-serif"
           font-weight="bold" font-size="24"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#000000">
+          dominant-baseline="middle" fill="#000000">
       <textPath href="#p4" startOffset="100%">|</textPath>
       <animate attributeName="opacity" values="1;0;1"
                keyTimes="0;0.5;1" dur="1s"
@@ -130,7 +133,7 @@
     <set attributeName="visibility" to="hidden"  begin="seg4del.end+1s"/>
   </g>
 
-  <!-- 循环触发 -->
+  <!-- 触发下一轮循环 -->
   <animate id="loop" href="#p1" attributeName="d"
            begin="seg4del.end+0.1s" dur="0.1s" fill="freeze"/>
 </svg>
