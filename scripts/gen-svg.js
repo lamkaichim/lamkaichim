@@ -14,11 +14,14 @@ const outPath = path.join(__dirname, '../assets/splash.svg');
 // 读取模板并替换占位符
 let svg = fs.readFileSync(tplPath, 'utf8');
 const colors = {
-  COLOR_BG: `#${randomHex()}`,
-  COLOR_TEXT1: `#${randomHex()}`,
-  COLOR_TEXT2: `#${randomHex()}`,
-  COLOR_TEXT3: `#${randomHex()}`,
-  COLOR_TEXT4: `#${randomHex()}`
+   COLOR_BG:   `#${randomHex()}`,
+   COLOR_BG2:  `#${randomHex()}`,
+   COLOR_BG3:  `#${randomHex()}`,
+   COLOR_BG4:  `#${randomHex()}`,
+   COLOR_TEXT1:`#${randomHex()}`,
+   COLOR_TEXT2:`#${randomHex()}`,
+   COLOR_TEXT3:`#${randomHex()}`,
+   COLOR_TEXT4:`#${randomHex()}`
 };
 for (const [key, val] of Object.entries(colors)) {
   svg = svg.replace(new RegExp(`{{${key}}}`, 'g'), val);
