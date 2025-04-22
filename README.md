@@ -1,4 +1,5 @@
-![ChatGPT 啟動動畫](./assets/splash.svg)
+[在新标签页查看动画 🚀](https://lamkaichim.github.io/lamkaichim/)
+
 
 [<img src="https://github.com/lamkaichim/lamkaichim/blob/main/banner.gif" alt="banner" title="banner"/>](https://www.linkedin.com/in/lamkaichim/)
 
