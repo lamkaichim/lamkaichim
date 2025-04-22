@@ -1,39 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg"
      viewBox="0 0 300 60"
      preserveAspectRatio="xMidYMid slice">
-  <!-- 随机背景色 -->
+
+  <!-- 背景及随机色动画 -->
   <rect width="100%" height="100%" fill="#000">
     <animate attributeName="fill"
-             values="#000;#f00;#0f0;#00f;#000"
-             keyTimes="0;0.25;0.5;0.75;1"
-             dur="8s" repeatCount="indefinite" calcMode="discrete"/>
+             values="#000;#1E90FF;#32CD32;#FFD700;#FF69B4;#000"
+             keyTimes="0;0.2;0.4;0.6;0.8;1"
+             dur="20s" repeatCount="indefinite"
+             calcMode="discrete"/>
   </rect>
 
-  <!-- 单行打字机动画示例 -->
+  <!-- 段1 -->
   <g id="seg1" display="inline">
     <path id="p1" d="M10,30 H10" fill="none"/>
-    <animate xlink:href="#p1" attributeName="d"
+    <animate href="#p1" attributeName="d"
              values="M10,30 H10; M10,30 H200; M10,30 H200; M10,30 H10"
              keyTimes="0;0.5;0.75;1"
-             dur="4s" begin="0s; seg5end.end+0.5s"
-             fill="freeze"/>
-    <text font-family="monospace" font-size="20" fill="#fff">
+             dur="4s" begin="0s" fill="freeze"/>
+    <text font-family="monospace" font-size="20" fill="#FFF">
       <textPath href="#p1">第一段文字</textPath>
     </text>
-    <text font-family="monospace" font-size="20" fill="#fff">
+    <text font-family="monospace" font-size="20" fill="#FFF">
       <textPath href="#p1" startOffset="100%">|</textPath>
       <animate attributeName="opacity"
-               values="1;0"
-               dur="1s"
-               begin="0s; seg5end.end+0.5s"
-               repeatCount="indefinite"
-               calcMode="discrete"/>
+               values="1;0;1" keyTimes="0;0.5;1"
+               dur="1s" begin="0s"
+               repeatCount="indefinite" calcMode="discrete"/>
     </text>
+    <!-- 隐藏本段，显示下一段 -->
+    <set attributeName="display" to="none" begin="p1.end+1s"/>
   </g>
 
-  <!-- ... 按上述方式添加更多 <g id="segN"> ... -->
-  <!-- 在最后一段删除动画后，添加一个无形的 animate 用于循环触发 -->
-  <animate id="seg5end" xlink:href="#p5" attributeName="d"
-           values="M10,30 H200; M10,30 H10"
-           begin="seg5del.end" dur="0.1s" fill="freeze"/>
+  <!-- 段2 -->
+  <g id="seg2" display="none">
+    <path id="p2" d="M10,30 H10" fill="none"/>
+    <animate href="#p2" attributeName="d"
+             values="M10,30 H10; M10,30 H200; M10,30 H200; M10,30 H10"
+             keyTimes="0;0.5;0.75;1"
+             dur="4s" begin="p1.end+1s" fill="freeze"/>
+    <text font-family="monospace" font-size="20" fill="#1E90FF">
+      <textPath href="#p2">第二段文字</textPath>
+    </text>
+    <text font-family="monospace" font-size="20" fill="#1E90FF">
+      <textPath href="#p2" startOffset="100%">|</textPath>
+      <animate attributeName="opacity"
+               values="1;0;1" keyTimes="0;0.5;1"
+               dur="1s" begin="p1.end+1s"
+               repeatCount="indefinite" calcMode="discrete"/>
+    </text>
+    <set attributeName="display" to="none" begin="p2.end+1s"/>
+    <set attributeName="display" to="inline" begin="p1.end+1s"/>
+  </g>
+
+  <!-- 段3 -->
+  <g id="seg3" display="none">
+    <path id="p3" d="M10,30 H10" fill="none"/>
+    <animate href="#p3" attributeName="d"
+             values="M10,30 H10; M10,30 H200; M10,30 H200; M10,30 H10"
+             keyTimes="0;0.5;0.75;1"
+             dur="4s" begin="p2.end+1s" fill="freeze"/>
+    <text font-family="monospace" font-size="20" fill="#32CD32">
+      <textPath href="#p3">第三段文字</textPath>
+    </text>
+    <text font-family="monospace" font-size="20" fill="#32CD32">
+      <textPath href="#p3" startOffset="100%">|</textPath>
+      <animate attributeName="opacity"
+               values="1;0;1" keyTimes="0;0.5;1"
+               dur="1s" begin="p2.end+1s"
+               repeatCount="indefinite" calcMode="discrete"/>
+    </text>
+    <set attributeName="display" to="none" begin="p3.end+1s"/>
+    <set attributeName="display" to="inline" begin="p2.end+1s"/>
+  </g>
+
+  <!-- 段4 -->
+  <g id="seg4" display="none">
+    <path id="p4" d="M10,30 H10" fill="none"/>
+    <animate href="#p4" attributeName="d"
+             values="M10,30 H10; M10,30 H200; M10,30 H200; M10,30 H10"
+             keyTimes="0;0.5;0.75;1"
+             dur="4s" begin="p3.end+1s" fill="freeze"/>
+    <text font-family="monospace" font-size="20" fill="#FFD700">
+      <textPath href="#p4">第四段文字</textPath>
+    </text>
+    <text font-family="monospace" font-size="20" fill="#FFD700">
+      <textPath href="#p4" startOffset="100%">|</textPath>
+      <animate attributeName="opacity"
+               values="1;0;1" keyTimes="0;0.5;1"
+               dur="1s" begin="p3.end+1s"
+               repeatCount="indefinite" calcMode="discrete"/>
+    </text>
+    <set attributeName="display" to="none" begin="p4.end+1s"/>
+    <set attributeName="display" to="inline" begin="p3.end+1s"/>
+  </g>
+
+  <!-- 段5 (循环触发回段1) -->
+  <g id="seg5" display="none">
+    <path id="p5" d="M10,30 H10" fill="none"/>
+    <animate href="#p5" attributeName="d"
+             values="M10,30 H10; M10,30 H200; M10,30 H200; M10,30 H10"
+             keyTimes="0;0.5;0.75;1"
+             dur="4s" begin="p4.end+1s" fill="freeze"/>
+    <text font-family="monospace" font-size="20" fill="#FF69B4">
+      <textPath href="#p5">第五段文字</textPath>
+    </text>
+    <text font-family="monospace" font-size="20" fill="#FF69B4">
+      <textPath href="#p5" startOffset="100%">|</textPath>
+      <animate attributeName="opacity"
+               values="1;0;1" keyTimes="0;0.5;1"
+               dur="1s" begin="p4.end+1s"
+               repeatCount="indefinite" calcMode="discrete"/>
+    </text>
+    <!-- 循环回 seg1 -->
+    <set attributeName="display" to="none" begin="p5.end+1s"/>
+    <set attributeName="display" to="inline" begin="p5.end+1s"/>
+  </g>
 </svg>
