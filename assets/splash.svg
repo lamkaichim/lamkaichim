@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <style>
+    /* 渐变背景动画 */
+    @keyframes gradientShift {
+      0%   { stop-color: #ff6b6b; }
+      33%  { stop-color: #5f27cd; }
+      66%  { stop-color: #01a3a4; }
+      100% { stop-color: #ff6b6b; }
+    }
+    /* 文字淡入放大 */
+    @keyframes fadeZoom {
+      from { opacity: 0; transform: scale(0.8); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    rect { animation: gradientShift 8s ease infinite; }
+    text {
+      fill: #fff;
+      font-size: 64px;
+      font-family: sans-serif;
+      animation: fadeZoom 1.5s ease forwards;
+      animation-delay: 0.5s;
+    }
+  </style>
+
+  <!-- 全屏矩形背景 -->
+  <defs>
+    <radialGradient id="grad">
+      <stop offset="0%" stop-color="#ff6b6b"/>
+      <stop offset="100%" stop-color="#01a3a4"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#grad)"/>
+
+  <!-- 自定义介绍文字 -->
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+    Hi, I’m Stephen!
+  </text>
+</svg>
