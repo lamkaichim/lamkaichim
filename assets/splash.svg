@@ -2,17 +2,28 @@
 <svg viewBox="0 0 800 800"
      xmlns="http://www.w3.org/2000/svg">
   <style>
-    /* 背景旋转 */
-    .bg-group {
-      transform-origin: 400px 400px;
-      animation: spin 10s linear infinite;
+    /* 渐变 Stop 颜色动画 */
+    @keyframes grad1 {
+      0%   { stop-color: #ff6b6b; }
+      50%  { stop-color: #5f27cd; }
+      100% { stop-color: #ff6b6b; }
     }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+    @keyframes grad2 {
+      0%   { stop-color: #5f27cd; }
+      50%  { stop-color: #01a3a4; }
+      100% { stop-color: #5f27cd; }
     }
+    @keyframes grad3 {
+      0%   { stop-color: #01a3a4; }
+      50%  { stop-color: #ff6b6b; }
+      100% { stop-color: #01a3a4; }
+    }
+    stop:nth-child(1) { animation: grad1 8s ease infinite; }
+    stop:nth-child(2) { animation: grad2 8s ease infinite; animation-delay: 2.7s; }
+    stop:nth-child(3) { animation: grad3 8s ease infinite; animation-delay: 5.3s; }
 
     /* Logo 路径绘制 */
-    .logo-path {
+    .logo {
       fill: none;
       stroke: #fff;
       stroke-width: 12;
@@ -25,7 +36,7 @@
       to { stroke-dashoffset: 0; }
     }
 
-    /* 文字淡入＋放大 */
+    /* 文字弹入 */
     .text {
       fill: #fff;
       font-family: sans-serif;
@@ -44,34 +55,25 @@
     }
   </style>
 
-  <!-- 1. 渐变定义 -->
+  <!-- 定义径向渐变 -->
   <defs>
-    <radialGradient id="grad"
-                    cx="50%" cy="50%" r="75%">
-      <stop offset="0%" stop-color="#ff6b6b"/>
-      <stop offset="50%" stop-color="#5f27cd"/>
-      <stop offset="100%" stop-color="#01a3a4"/>
+    <radialGradient id="grad" cx="50%" cy="50%" r="75%">
+      <stop offset="0%"/>
+      <stop offset="50%"/>
+      <stop offset="100%"/>
     </radialGradient>
   </defs>
 
-  <!-- 2. 旋转背景 -->
-  <g class="bg-group">
-    <rect x="0" y="0" width="800" height="800"
-          fill="url(#grad)" />
-  </g>
+  <!-- 渐变背景 -->
+  <rect width="800" height="800" fill="url(#grad)" />
 
-  <!-- 3. ChatGPT Logo 路径（占位示例：六边形） -->
-  <path class="logo-path"
-        d="M400,300 
-           l70,40 
-           v80 
-           l-70,40 
-           l-70,-40 
-           v-80 
-           Z" />
+  <!-- Logo 路径（示例六边形，替换为官方 Logo path） -->
+  <path class="logo"
+        d="M400,300 l70,40 v80 l-70,40 l-70,-40 v-80 Z"/>
 
-  <!-- 4. 文字 -->
+  <!-- 自我介绍文字 -->
   <text class="text" x="400" y="600" text-anchor="middle">
-    ABC
+    Hi, I’m Stephen!
   </text>
 </svg>
+
