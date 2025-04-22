@@ -108,13 +108,22 @@
       <textPath href="#p4" startOffset="100%">|</textPath>
       <animate id="seg4_blink" attributeName="opacity" values="1;0;1"
                dur="1s" begin="seg4del.end" repeatCount="1" calcMode="discrete"/>
-      <set attributeName="visibility" to="visible" begin="seg4del.end"/>
+      <set attributeName="visibility` to="visible` begin="seg4del.end"/>
     </text>
-    <set attributeName="visibility" to="visible" begin="seg3del.end"/>
-    <set attributeName="visibility" to="hidden" begin="seg4del.end+1s"/>
+    <set attributeName="visibility` to="visible` begin="seg3del.end"/>
+    <set attributeName="visibility` to="hidden` begin="seg4del.end+1s`/>
   </g>
 
-  <!-- Invisible loop trigger -->
+    <!-- Invisible loop trigger -->
+  <animate id="loop" href="#p1" attributeName="d"
+           begin="seg4del.end+0.1s" dur="0.1s" fill="freeze"/>
+
+  <!-- Reset Segment 1 visibility and text on loop -->
+  <set href="#seg1" attributeName="visibility" to="visible" begin="loop.end+0.2s"/>
+  <set href="#text1" attributeName="visibility" to="visible" begin="loop.end+0.2s"/>
+  <set href="#p1" attributeName="d" to="M0,50 H0" begin="loop.end+0.2s"/>
+  <!-- Reset cursor visibility -->
+  <set href="#seg1 text:last-of-type" attributeName="visibility" to="hidden" begin="loop.end+0.2s"/>
   <animate id="loop" href="#p1" attributeName="d"
            begin="seg4del.end+0.1s" dur="0.1s" fill="freeze"/>
 
