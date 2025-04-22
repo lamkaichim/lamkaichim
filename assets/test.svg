@@ -1,64 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg"
+     width="600" height="100"
      viewBox="0 0 600 100"
      preserveAspectRatio="xMidYMid slice">
 
   <!-- 背景 -->
   <rect width="100%" height="100%" fill="#3c3e40"/>
 
-  <!-- 单行文字：Demo Text （9 字符，每字符宽度假设 20px）-->
-  <text id="demoText"
-        x="300" y="50"
-        font-family="monospace"
-        font-size="32"
-        font-weight="bold"
-        text-anchor="middle"
-        dominant-baseline="middle"
-        fill="#ffffff">
-    <!-- 文字总宽度 9*20=180px，居中起始 X=300-90=210 -->
-    <tspan id="c1" x="210" opacity="0">D</tspan>
-    <tspan id="c2" x="230" opacity="0">e</tspan>
-    <tspan id="c3" x="250" opacity="0">m</tspan>
-    <tspan id="c4" x="270" opacity="0">o</tspan>
-    <tspan id="c5" x="290" opacity="0"> </tspan>
-    <tspan id="c6" x="310" opacity="0">T</tspan>
-    <tspan id="c7" x="330" opacity="0">e</tspan>
-    <tspan id="c8" x="350" opacity="0">x</tspan>
-    <tspan id="c9" x="370" opacity="0">t</tspan>
+  <!-- HTML/CSS 嵌入 typewriter -->
+  <foreignObject x="0" y="0" width="600" height="100">
+    <div xmlns="http://www.w3.org/1999/xhtml"
+         style="width:600px;height:100px;
+                display:flex;justify-content:center;
+                align-items:center;overflow:hidden;
+                position:relative;">
+      <div class="typewriter">Demo Text</div>
+    </div>
+  </foreignObject>
 
-    <!-- 弹入动画：每 0.2s 依次出现 -->
-    <animate xlink:href="#c1" attributeName="opacity" to="1"
-             begin="0s" dur="0.01s" fill="freeze"/>
-    <animate xlink:href="#c2" attributeName="opacity" to="1"
-             begin="0.2s" dur="0.01s" fill="freeze"/>
-    <animate xlink:href="#c3" attributeName="opacity" to="1"
-             begin="0.4s" dur="0.01s" fill="freeze"/>
-    <animate xlink:href="#c4" attributeName="opacity" to="1"
-             begin="0.6s" dur="0.01s" fill="freeze"/>
-    <animate xlink:href="#c5" attributeName="opacity" to="1"
-             begin="0.8s" dur="0.01s" fill="freeze"/>
-    <animate xlink:href="#c6" attributeName="opacity" to="1"
-             begin="1.0s" dur="0.01s" fill="freeze"/>
-    <animate xlink:href="#c7" attributeName="opacity" to="1"
-             begin="1.2s" dur="0.01s" fill="freeze"/>
-    <animate xlink:href="#c8" attributeName="opacity" to="1"
-             begin="1.4s" dur="0.01s" fill="freeze"/>
-    <animate xlink:href="#c9" attributeName="opacity" to="1"
-             begin="1.6s" dur="0.01s" fill="freeze"/>
-
-    <!-- 保持 1s 后重置：全透明 -->
-    <animate xlink:href="#demoText" attributeName="opacity"
-             from="1" to="0" begin="3s" dur="0.01s" fill="freeze"/>
-    <!-- 循环 -->
-    <animate attributeName="opacity" to="1"
-             begin="3.01s" dur="0" repeatCount="indefinite"/>
-  </text>
-
-  <!-- 圆球光标：r=16，始终可见 -->
-  <circle id="caret" cy="50" r="16" fill="#ffffff" opacity="1">
-    <!-- 跟随末字符：210+8*20+10=380px -->
-    <set attributeName="cx" to="380" begin="1.6s" fill="freeze"/>
-    <!-- 循环重置 -->
-    <set attributeName="cx" to="210" begin="3s" fill="freeze"/>
-  </circle>
+  <!-- CSS -->
+  <style type="text/css"><![CDATA[
+    .typewriter {
+      font-family: monospace;
+      font-size: 32px;
+      font-weight: bold;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      position: relative;
+      padding-right: 1em;               /* 为圆球腾出空间 */
+      animation: typing 2s steps(9) forwards; /* 9 字符 */
+    }
+    .typewriter::after {
+      content: "";
+      position: absolute;
+      top: 50%; right: 0;
+      transform: translate(50%,-50%);
+      width: 1em; height: 1em;          /* 与字体大小匹配 */
+      background-color: #ffffff;
+      border-radius: 100%;              /* 完全圆形 */ :contentReference[oaicite:0]{index=0}
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to   { width: 9ch; }              /* 9 个字符 */ :contentReference[oaicite:1]{index=1}
+    }
+  ]]></style>
 </svg>
