@@ -5,39 +5,31 @@
 
   <!-- Background & color transitions -->
   <rect width="100%" height="100%" fill="#000000">
-    <!-- Change to gold before seg2 -->
     <set attributeName="fill" to="#FFD700" begin="seg1_blink.end"/>
-    <!-- Change to dodgerblue before seg3 -->
     <set attributeName="fill" to="#1E90FF" begin="seg2_blink.end"/>
-    <!-- Change to purple before seg4 -->
     <set attributeName="fill" to="#8B00FF" begin="seg3_blink.end"/>
-    <!-- Back to black before looping -->
     <set attributeName="fill" to="#000000" begin="seg4_blink.end"/>
   </rect>
 
   <!-- Segment 1 -->
   <g id="seg1" visibility="visible">
     <path id="p1" d="M0,50 H0" fill="none"/>
-    <!-- Draw -->
     <animate id="seg1draw" href="#p1" attributeName="d"
              values="M0,50 H0; M0,50 H500"
              dur="2s"
              begin="0s; loop.end+1s"
              fill="freeze"/>
-    <!-- Delete -->
     <animate id="seg1del" href="#p1" attributeName="d"
              values="M0,50 H500; M0,50 H0"
              dur="1s"
              begin="seg1draw.end+1s"
              fill="freeze"/>
-    <!-- Text -->
-    <text font-family="system-ui" font-size="32" fill="#FFFFFF"
+    <text font-family="system-ui" font-size="20" fill="#FFFFFF"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle">
       <textPath href="#p1">第一段文字</textPath>
     </text>
-    <!-- Cursor blink -->
     <text visibility="hidden"
-          font-family="system-ui" font-size="32" fill="#FFFFFF"
+          font-family="system-ui" font-size="20" fill="#FFFFFF"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle">
       <textPath href="#p1" startOffset="100%">|</textPath>
       <animate id="seg1_blink" attributeName="opacity"
@@ -62,12 +54,12 @@
              dur="1s"
              begin="seg2draw.end+1s"
              fill="freeze"/>
-    <text font-family="system-ui" font-size="32" fill="#8B00FF"
+    <text font-family="system-ui" font-size="20" fill="#8B00FF"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle">
       <textPath href="#p2">第二段文字</textPath>
     </text>
     <text visibility="hidden"
-          font-family="system-ui" font-size="32" fill="#8B00FF"
+          font-family="system-ui" font-size="20" fill="#8B00FF"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle">
       <textPath href="#p2" startOffset="100%">|</textPath>
       <animate id="seg2_blink" attributeName="opacity"
@@ -93,12 +85,12 @@
              dur="1s"
              begin="seg3draw.end+1s"
              fill="freeze"/>
-    <text font-family="system-ui" font-size="32" fill="#FFFFFF"
+    <text font-family="system-ui" font-size="20" fill="#FFFFFF"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle">
       <textPath href="#p3">第三段文字</textPath>
     </text>
     <text visibility="hidden"
-          font-family="system-ui" font-size="32" fill="#FFFFFF"
+          font-family="system-ui" font-size="20" fill="#FFFFFF"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle">
       <textPath href="#p3" startOffset="100%">|</textPath>
       <animate id="seg3_blink" attributeName="opacity"
@@ -124,12 +116,12 @@
              dur="1s"
              begin="seg4draw.end+1s"
              fill="freeze"/>
-    <text font-family="system-ui" font-size="32" fill="#8B00FF"
+    <text font-family="system-ui" font-size="20" fill="#8B00FF"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle">
       <textPath href="#p4">第四段文字</textPath>
     </text>
     <text visibility="hidden"
-          font-family="system-ui" font-size="32" fill="#8B00FF"
+          font-family="system-ui" font-size="20" fill="#8B00FF"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle">
       <textPath href="#p4" startOffset="100%">|</textPath>
       <animate id="seg4_blink" attributeName="opacity"
