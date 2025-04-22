@@ -1,39 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+<svg viewBox="0 0 800 800"
+     xmlns="http://www.w3.org/2000/svg">
   <style>
-    /* 渐变背景动画 */
-    @keyframes gradientShift {
-      0%   { stop-color: #ff6b6b; }
-      33%  { stop-color: #5f27cd; }
-      66%  { stop-color: #01a3a4; }
-      100% { stop-color: #ff6b6b; }
+    /* 背景旋转 */
+    .bg-group {
+      transform-origin: 400px 400px;
+      animation: spin 10s linear infinite;
     }
-    /* 文字淡入放大 */
-    @keyframes fadeZoom {
-      from { opacity: 0; transform: scale(0.8); }
-      to   { opacity: 1; transform: scale(1); }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
-    rect { animation: gradientShift 8s ease infinite; }
-    text {
-      fill: #fff;
-      font-size: 64px;
-      font-family: sans-serif;
-      animation: fadeZoom 1.5s ease forwards;
+
+    /* Logo 路径绘制 */
+    .logo-path {
+      fill: none;
+      stroke: #fff;
+      stroke-width: 12;
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: draw 2s ease-out forwards;
       animation-delay: 0.5s;
+    }
+    @keyframes draw {
+      to { stroke-dashoffset: 0; }
+    }
+
+    /* 文字淡入＋放大 */
+    .text {
+      fill: #fff;
+      font-family: sans-serif;
+      font-size: 64px;
+      opacity: 0;
+      transform: scale(0.8);
+      transform-origin: 400px 600px;
+      animation: fadeZoom 1.5s ease forwards;
+      animation-delay: 2.6s;
+    }
+    @keyframes fadeZoom {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
   </style>
 
-  <!-- 全屏矩形背景 -->
+  <!-- 1. 渐变定义 -->
   <defs>
-    <radialGradient id="grad">
+    <radialGradient id="grad"
+                    cx="50%" cy="50%" r="75%">
       <stop offset="0%" stop-color="#ff6b6b"/>
+      <stop offset="50%" stop-color="#5f27cd"/>
       <stop offset="100%" stop-color="#01a3a4"/>
     </radialGradient>
   </defs>
-  <rect width="800" height="800" fill="url(#grad)"/>
 
-  <!-- 自定义介绍文字 -->
-  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
-    Hi, I’m Stephen!
+  <!-- 2. 旋转背景 -->
+  <g class="bg-group">
+    <rect x="0" y="0" width="800" height="800"
+          fill="url(#grad)" />
+  </g>
+
+  <!-- 3. ChatGPT Logo 路径（占位示例：六边形） -->
+  <path class="logo-path"
+        d="M400,300 
+           l70,40 
+           v80 
+           l-70,40 
+           l-70,-40 
+           v-80 
+           Z" />
+
+  <!-- 4. 文字 -->
+  <text class="text" x="400" y="600" text-anchor="middle">
+    ChatGPT
   </text>
 </svg>
