@@ -3,31 +3,38 @@
      viewBox="0 0 600 100"
      preserveAspectRatio="xMidYMid slice">
 
-  <!-- Background & color transitions -->
+  <!-- Background & color transitions synchronized with text draw -->
   <rect width="100%" height="100%" fill="#000000">
-    <set attributeName="fill" to="#FFD700" begin="seg1_blink.end"/>
-    <set attributeName="fill" to="#1E90FF" begin="seg2_blink.end"/>
-    <set attributeName="fill" to="#8B00FF" begin="seg3_blink.end"/>
-    <set attributeName="fill" to="#000000" begin="seg4_blink.end"/>
+    <!-- Change to gold as Segment 2 text starts -->
+    <set attributeName="fill" to="#FFD700" begin="seg1draw.begin"/>
+    <!-- Change to dodgerblue as Segment 3 text starts -->
+    <set attributeName="fill" to="#1E90FF" begin="seg2draw.begin"/>
+    <!-- Change to purple as Segment 4 text starts -->
+    <set attributeName="fill" to="#8B00FF" begin="seg3draw.begin"/>
+    <!-- Back to black as Segment 1 text restarts -->
+    <set attributeName="fill" to="#000000" begin="seg4draw.begin"/>
   </rect>
 
   <!-- Segment 1 -->
   <g id="seg1" visibility="visible">
     <path id="p1" d="M0,50 H0" fill="none"/>
+    <!-- Draw -->
     <animate id="seg1draw" href="#p1" attributeName="d"
              values="M0,50 H0; M0,50 H500"
              dur="2s"
-             begin="0s; loop.end+1s"
-             fill="freeze"/>
+             begin="0s" fill="freeze"/>
+    <!-- Delete -->
     <animate id="seg1del" href="#p1" attributeName="d"
              values="M0,50 H500; M0,50 H0"
              dur="1s"
              begin="seg1draw.end+1s"
              fill="freeze"/>
+    <!-- Text -->
     <text font-family="system-ui" font-size="20" fill="#FFFFFF"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle">
       <textPath href="#p1">第一段文字</textPath>
     </text>
+    <!-- Cursor blink -->
     <text visibility="hidden"
           font-family="system-ui" font-size="20" fill="#FFFFFF"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle">
