@@ -45,4 +45,92 @@
     <path id="p2" d="M0,50 H0" fill="none"/>
     <animate id="seg2draw" href="#p2" attributeName="d"
              values="M0,50 H0;M0,50 H500" dur="2s"
-             begin="
+             begin="seg1del.end+1s" fill="freeze"/>
+    <animate id="seg2del"  href="#p2" attributeName="d"
+             values="M0,50 H500;M0,50 H0" dur="1s"
+             begin="seg2draw.end+0.5s" fill="freeze"/>
+
+    <text font-family="-apple-system,'Helvetica Neue',system-ui,sans-serif"
+          font-weight="bold" font-size="24"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#8B00FF">
+      <textPath href="#p2">第二段文字</textPath>
+    </text>
+
+    <text font-family="-apple-system,'Helvetica Neue',system-ui,sans-serif"
+          font-weight="bold" font-size="24"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#8B00FF">
+      <textPath href="#p2" startOffset="100%">|</textPath>
+      <animate attributeName="opacity" values="1;0;1"
+               keyTimes="0;0.5;1" dur="1s"
+               begin="seg2draw.begin" repeatCount="indefinite"
+               calcMode="discrete"/>
+    </text>
+
+    <set attributeName="visibility" to="visible" begin="seg1del.end+1s"/>
+    <set attributeName="visibility" to="hidden"  begin="seg2del.end+1s"/>
+  </g>
+
+  <!-- ───────────── Segment 3 ───────────── -->
+  <g id="seg3" visibility="hidden">
+    <path id="p3" d="M0,50 H0" fill="none"/>
+    <animate id="seg3draw" href="#p3" attributeName="d"
+             values="M0,50 H0;M0,50 H500" dur="2s"
+             begin="seg2del.end+1s" fill="freeze"/>
+    <animate id="seg3del"  href="#p3" attributeName="d"
+             values="M0,50 H500;M0,50 H0" dur="1s"
+             begin="seg3draw.end+0.5s" fill="freeze"/>
+
+    <text font-family="-apple-system,'Helvetica Neue',system-ui,sans-serif"
+          font-weight="bold" font-size="24"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#FFFFFF">
+      <textPath href="#p3">第三段文字</textPath>
+    </text>
+
+    <text font-family="-apple-system,'Helvetica Neue',system-ui,sans-serif"
+          font-weight="bold" font-size="24"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#FFFFFF">
+      <textPath href="#p3" startOffset="100%">|</textPath>
+      <animate attributeName="opacity" values="1;0;1"
+               keyTimes="0;0.5;1" dur="1s"
+               begin="seg3draw.begin" repeatCount="indefinite"
+               calcMode="discrete"/>
+    </text>
+
+    <set attributeName="visibility" to="visible" begin="seg2del.end+1s"/>
+    <set attributeName="visibility" to="hidden"  begin="seg3del.end+1s"/>
+  </g>
+
+  <!-- ───────────── Segment 4 ───────────── -->
+  <g id="seg4" visibility="hidden">
+    <path id="p4" d="M0,50 H0" fill="none"/>
+    <animate id="seg4draw" href="#p4" attributeName="d"
+             values="M0,50 H0;M0,50 H500" dur="2s"
+             begin="seg3del.end+1s" fill="freeze"/>
+    <animate id="seg4del"  href="#p4" attributeName="d"
+             values="M0,50 H500;M0,50 H0" dur="1s"
+             begin="seg4draw.end+0.5s" fill="freeze"/>
+
+    <text font-family="-apple-system,'Helvetica Neue',system-ui,sans-serif"
+          font-weight="bold" font-size="24"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#000000">
+      <textPath href="#p4">第四段文字</textPath>
+    </text>
+
+    <text font-family="-apple-system,'Helvetica Neue',system-ui,sans-serif"
+          font-weight="bold" font-size="24"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#000000">
+      <textPath href="#p4" startOffset="100%">|</textPath>
+      <animate attributeName="opacity" values="1;0;1"
+               keyTimes="0;0.5;1" dur="1s"
+               begin="seg4draw.begin" repeatCount="indefinite"
+               calcMode="discrete"/>
+    </text>
+
+    <set attributeName="visibility" to="visible" begin="seg3del.end+1s"/>
+    <set attributeName="visibility" to="hidden"  begin="seg4del.end+1s"/>
+  </g>
+
+  <!-- 循环触发 -->
+  <animate id="loop" href="#p1" attributeName="d"
+           begin="seg4del.end+0.1s" dur="0.1s" fill="freeze"/>
+</svg>
