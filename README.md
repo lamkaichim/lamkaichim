@@ -1,5 +1,8 @@
 ![Login Splash](./assets/splash.svg)
 
+![随机色彩](https://img.shields.io/badge/Color-%23${随机HEX}-brightgreen)
+
+
 ![visitors](https://vbr.nathanchung.dev/badge?page_id=lamkaichim&color=white&logo=github&style=plastic&text=VISITORS)
 
 ## :book: About Me
