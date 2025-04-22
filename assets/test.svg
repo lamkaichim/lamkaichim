@@ -1,39 +1,136 @@
-<!-- ========== SEGMENT 1 (居中展开) ========== -->
-<g id="seg1" visibility="visible">
-  <!-- 路径：起点中心 (300,50) -->
-  <path id="p1" d="M300,50 H300" fill="none"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 600 100"
+     preserveAspectRatio="xMidYMid slice">
 
-  <!-- 打字：中心→左右同时伸展 -->
-  <animate id="seg1draw" href="#p1" attributeName="d"
-           values="M300,50 H300; M0,50 H600" dur="2s"
-           begin="0s;loop.end+0.1s" fill="freeze"/>
+  <!-- 背景色按段切换 -->
+  <rect id="bg" width="100%" height="100%" fill="#FFD700"/>
+  <set href="#bg" attributeName="fill" to="#FFD700" begin="seg1draw.begin"/>
+  <set href="#bg" attributeName="fill" to="#000000" begin="seg2draw.begin"/>
+  <set href="#bg" attributeName="fill" to="#1E90FF" begin="seg3draw.begin"/>
+  <set href="#bg" attributeName="fill" to="#32CD32" begin="seg4draw.begin"/>
 
-  <!-- 删除：左右同时收回到中心 -->
-  <animate id="seg1del"  href="#p1" attributeName="d"
-           values="M0,50 H600; M300,50 H300" dur="1s"
-           begin="seg1draw.end+0.5s" fill="freeze"/>
+  <!-- ========== Segment 1 (金黄底 / 白字) ========== -->
+  <g id="seg1" visibility="visible">
+    <path id="p1" d="M300,50 H300" fill="none"/>
+    <animate id="seg1draw" href="#p1" attributeName="d"
+             values="M300,50 H300;M0,50 H600" dur="2s"
+             begin="0s;loop.end+0.1s" fill="freeze"/>
+    <animate id="seg1del"  href="#p1" attributeName="d"
+             values="M0,50 H600;M300,50 H300" dur="1s"
+             begin="seg1draw.end+0.5s" fill="freeze"/>
 
-  <!-- 居中白字 -->
-  <text font-family="system-ui" font-size="30" font-weight="bold"
-        text-anchor="middle" x="300" y="50" dominant-baseline="middle" fill="#FFFFFF">
-    <textPath href="#p1">第一段文字</textPath>
-  </text>
+    <text font-family="system-ui" font-size="30" font-weight="bold"
+          text-anchor="middle" x="300" y="50" dominant-baseline="middle" fill="#FFFFFF">
+      <textPath href="#p1">第一段文字</textPath>
+    </text>
 
-  <!-- 圆球光标：半径 15，与 30px 字高匹配 -->
-  <circle cy="50" r="15" fill="#FFFFFF" opacity="1">
-    <!-- 光标始终跟最末字符：300→600 (2s) 停 0.5s  600→300 (1s) -->
-    <animate attributeName="cx"
-             values="300;600;600;300"
-             keyTimes="0;0.571;0.714;1"
-             dur="3.5s" begin="0s;loop.end+0.1s"
-             repeatCount="indefinite" fill="freeze"/>
-    <!-- 闪烁 -->
-    <animate attributeName="opacity"
-             values="1;0;1" keyTimes="0;0.5;1"
-             dur="1s" begin="0s;loop.end+0.1s"
-             repeatCount="indefinite" calcMode="discrete"/>
-  </circle>
+    <!-- 圆球光标 -->
+    <circle cy="50" r="15" fill="#FFFFFF" opacity="1">
+      <animate attributeName="cx"
+               values="300;600;600;300" keyTimes="0;0.571;0.714;1"
+               dur="3.5s" begin="0s;loop.end+0.1s"
+               repeatCount="indefinite" fill="freeze"/>
+      <animate attributeName="opacity"
+               values="1;0;1" keyTimes="0;0.5;1"
+               dur="1s" begin="0s;loop.end+0.1s"
+               repeatCount="indefinite" calcMode="discrete"/>
+    </circle>
 
-  <!-- 段结束隐藏父组 -->
-  <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
-</g>
+    <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
+  </g>
+
+  <!-- ========== Segment 2 (黑底 / 紫字) ========== -->
+  <g id="seg2" visibility="hidden">
+    <path id="p2" d="M300,50 H300" fill="none"/>
+    <animate id="seg2draw" href="#p2" attributeName="d"
+             values="M300,50 H300;M0,50 H600" dur="2s"
+             begin="seg1del.end+1s" fill="freeze"/>
+    <animate id="seg2del"  href="#p2" attributeName="d"
+             values="M0,50 H600;M300,50 H300" dur="1s"
+             begin="seg2draw.end+0.5s" fill="freeze"/>
+
+    <text font-family="system-ui" font-size="30" font-weight="bold"
+          text-anchor="middle" x="300" y="50" dominant-baseline="middle" fill="#8B00FF">
+      <textPath href="#p2">第二段文字</textPath>
+    </text>
+
+    <circle cy="50" r="15" fill="#8B00FF" opacity="1">
+      <animate attributeName="cx"
+               values="300;600;600;300" keyTimes="0;0.571;0.714;1"
+               dur="3.5s" begin="seg2draw.begin"
+               repeatCount="indefinite" fill="freeze"/>
+      <animate attributeName="opacity"
+               values="1;0;1" keyTimes="0;0.5;1"
+               dur="1s" begin="seg2draw.begin"
+               repeatCount="indefinite" calcMode="discrete"/>
+    </circle>
+
+    <set attributeName="visibility" to="visible" begin="seg1del.end+1s"/>
+    <set attributeName="visibility" to="hidden"  begin="seg2del.end+1s"/>
+  </g>
+
+  <!-- ========== Segment 3 (蓝底 / 白字) ========== -->
+  <g id="seg3" visibility="hidden">
+    <path id="p3" d="M300,50 H300" fill="none"/>
+    <animate id="seg3draw" href="#p3" attributeName="d"
+             values="M300,50 H300;M0,50 H600" dur="2s"
+             begin="seg2del.end+1s" fill="freeze"/>
+    <animate id="seg3del"  href="#p3" attributeName="d"
+             values="M0,50 H600;M300,50 H300" dur="1s"
+             begin="seg3draw.end+0.5s" fill="freeze"/>
+
+    <text font-family="system-ui" font-size="30" font-weight="bold"
+          text-anchor="middle" x="300" y="50" dominant-baseline="middle" fill="#FFFFFF">
+      <textPath href="#p3">第三段文字</textPath>
+    </text>
+
+    <circle cy="50" r="15" fill="#FFFFFF" opacity="1">
+      <animate attributeName="cx"
+               values="300;600;600;300" keyTimes="0;0.571;0.714;1"
+               dur="3.5s" begin="seg3draw.begin"
+               repeatCount="indefinite" fill="freeze"/>
+      <animate attributeName="opacity"
+               values="1;0;1" keyTimes="0;0.5;1"
+               dur="1s" begin="seg3draw.begin"
+               repeatCount="indefinite" calcMode="discrete"/>
+    </circle>
+
+    <set attributeName="visibility" to="visible" begin="seg2del.end+1s"/>
+    <set attributeName="visibility" to="hidden"  begin="seg3del.end+1s"/>
+  </g>
+
+  <!-- ========== Segment 4 (绿底 / 黑字) ========== -->
+  <g id="seg4" visibility="hidden">
+    <path id="p4" d="M300,50 H300" fill="none"/>
+    <animate id="seg4draw" href="#p4" attributeName="d"
+             values="M300,50 H300;M0,50 H600" dur="2s"
+             begin="seg3del.end+1s" fill="freeze"/>
+    <animate id="seg4del"  href="#p4" attributeName="d"
+             values="M0,50 H600;M300,50 H300" dur="1s"
+             begin="seg4draw.end+0.5s" fill="freeze"/>
+
+    <text font-family="system-ui" font-size="30" font-weight="bold"
+          text-anchor="middle" x="300" y="50" dominant-baseline="middle" fill="#000000">
+      <textPath href="#p4">第四段文字</textPath>
+    </text>
+
+    <circle cy="50" r="15" fill="#000000" opacity="1">
+      <animate attributeName="cx"
+               values="300;600;600;300" keyTimes="0;0.571;0.714;1"
+               dur="3.5s" begin="seg4draw.begin"
+               repeatCount="indefinite" fill="freeze"/>
+      <animate attributeName="opacity"
+               values="1;0;1" keyTimes="0;0.5;1"
+               dur="1s" begin="seg4draw.begin"
+               repeatCount="indefinite" calcMode="discrete"/>
+    </circle>
+
+    <set attributeName="visibility" to="visible" begin="seg3del.end+1s"/>
+    <set attributeName="visibility" to="hidden"  begin="seg4del.end+1s"/>
+  </g>
+
+  <!-- 循环触发下一轮 -->
+  <animate id="loop" href="#p1" attributeName="d"
+           begin="seg4del.end+0.1s" dur="0.1s" fill="freeze"/>
+</svg>
