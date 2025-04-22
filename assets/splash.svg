@@ -1,120 +1,120 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" preserveAspectRatio="xMidYMid slice">
-  <!-- 背景矩形及其颜色动画 -->
-  <rect width="100%" height="100%" fill="#000000">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 300 60"
+     preserveAspectRatio="xMidYMid slice">
+
+  <!-- 背景及随机色动画 -->
+  <rect width="100%" height="100%" fill="#000">
     <animate attributeName="fill"
-             values="#000000; #1E90FF; #32CD32; #FFD700; #FF69B4; #000000"
-             keyTimes="0; 0.2; 0.4; 0.6; 0.8; 1"
-             dur="22.5s"
-             repeatCount="indefinite"
+             values="#000;#1E90FF;#32CD32;#FFD700;#FF69B4;#000"
+             keyTimes="0;0.2;0.4;0.6;0.8;1"
+             dur="20s" repeatCount="indefinite"
              calcMode="discrete"/>
   </rect>
 
-  <!-- 第一段文字组：显示“第一段文字”，白色文字，黑色背景 -->
-  <g id="seg1">
-    <!-- 路径从0逐渐延伸到特定长度（显示文本），再收回0（删除文本） -->
-    <path id="path1" d="M5,50 H5" fill="none" stroke="none">
-      <animate id="type1" attributeName="d" from="M5,50 H5" to="M5,50 H105"
-               begin="0s; del5.end+0.5s" dur="2s" fill="freeze"/>
-      <animate id="del1" attributeName="d" from="M5,50 H105" to="M5,50 H5"
-               begin="type1.end+1s" dur="1s" fill="freeze"/>
-    </path>
-    <!-- 文本沿着上述路径呈现 -->
-    <text font-size="20" fill="#FFFFFF">
-      <textPath xlink:href="#path1" startOffset="0%">第一段文字</textPath>
+  <!-- 段1 -->
+  <g id="seg1" display="inline">
+    <path id="p1" d="M10,30 H10" fill="none"/>
+    <animate href="#p1" attributeName="d"
+             values="M10,30 H10; M10,30 H200; M10,30 H200; M10,30 H10"
+             keyTimes="0;0.5;0.75;1"
+             dur="4s" begin="0s" fill="freeze"/>
+    <text font-family="monospace" font-size="20" fill="#FFF">
+      <textPath href="#p1">第一段文字</textPath>
     </text>
-    <!-- 光标，附着在路径末端，闪烁动画 -->
-    <text font-size="20" fill="#FFFFFF">
-      <textPath xlink:href="#path1" startOffset="100%">|</textPath>
-      <animate attributeName="opacity" values="1;0" keyTimes="0;1"
-               dur="1s" begin="0s; del5.end+0.5s"
+    <text font-family="monospace" font-size="20" fill="#FFF">
+      <textPath href="#p1" startOffset="100%">|</textPath>
+      <animate attributeName="opacity"
+               values="1;0;1" keyTimes="0;0.5;1"
+               dur="1s" begin="0s"
                repeatCount="indefinite" calcMode="discrete"/>
     </text>
-    <!-- 在本段开始时显示本组，在下一段开始时隐藏本组 -->
-    <set attributeName="display" to="none" begin="type2.begin"/>
-    <set attributeName="display" to="inline" begin="type1.begin"/>
+    <!-- 隐藏本段，显示下一段 -->
+    <set attributeName="display" to="none" begin="p1.end+1s"/>
   </g>
 
-  <!-- 第二段文字组：显示“第二段文字”，白色文字，蓝色背景 -->
+  <!-- 段2 -->
   <g id="seg2" display="none">
-    <path id="path2" d="M5,50 H5" fill="none" stroke="none">
-      <animate id="type2" attributeName="d" from="M5,50 H5" to="M5,50 H105"
-               begin="del1.end+0.5s" dur="2s" fill="freeze"/>
-      <animate id="del2" attributeName="d" from="M5,50 H105" to="M5,50 H5"
-               begin="type2.end+1s" dur="1s" fill="freeze"/>
-    </path>
-    <text font-size="20" fill="#FFFFFF">
-      <textPath xlink:href="#path2" startOffset="0%">第二段文字</textPath>
+    <path id="p2" d="M10,30 H10" fill="none"/>
+    <animate href="#p2" attributeName="d"
+             values="M10,30 H10; M10,30 H200; M10,30 H200; M10,30 H10"
+             keyTimes="0;0.5;0.75;1"
+             dur="4s" begin="p1.end+1s" fill="freeze"/>
+    <text font-family="monospace" font-size="20" fill="#1E90FF">
+      <textPath href="#p2">第二段文字</textPath>
     </text>
-    <text font-size="20" fill="#FFFFFF">
-      <textPath xlink:href="#path2" startOffset="100%">|</textPath>
-      <animate attributeName="opacity" values="1;0" keyTimes="0;1"
-               dur="1s" begin="type2.begin"
+    <text font-family="monospace" font-size="20" fill="#1E90FF">
+      <textPath href="#p2" startOffset="100%">|</textPath>
+      <animate attributeName="opacity"
+               values="1;0;1" keyTimes="0;0.5;1"
+               dur="1s" begin="p1.end+1s"
                repeatCount="indefinite" calcMode="discrete"/>
     </text>
-    <set attributeName="display" to="none" begin="type3.begin"/>
-    <set attributeName="display" to="inline" begin="type2.begin"/>
+    <set attributeName="display" to="none" begin="p2.end+1s"/>
+    <set attributeName="display" to="inline" begin="p1.end+1s"/>
   </g>
 
-  <!-- 第三段文字组：显示“第三段文字”，黑色文字，绿色背景 -->
+  <!-- 段3 -->
   <g id="seg3" display="none">
-    <path id="path3" d="M5,50 H5" fill="none" stroke="none">
-      <animate id="type3" attributeName="d" from="M5,50 H5" to="M5,50 H105"
-               begin="del2.end+0.5s" dur="2s" fill="freeze"/>
-      <animate id="del3" attributeName="d" from="M5,50 H105" to="M5,50 H5"
-               begin="type3.end+1s" dur="1s" fill="freeze"/>
-    </path>
-    <text font-size="20" fill="#000000">
-      <textPath xlink:href="#path3" startOffset="0%">第三段文字</textPath>
+    <path id="p3" d="M10,30 H10" fill="none"/>
+    <animate href="#p3" attributeName="d"
+             values="M10,30 H10; M10,30 H200; M10,30 H200; M10,30 H10"
+             keyTimes="0;0.5;0.75;1"
+             dur="4s" begin="p2.end+1s" fill="freeze"/>
+    <text font-family="monospace" font-size="20" fill="#32CD32">
+      <textPath href="#p3">第三段文字</textPath>
     </text>
-    <text font-size="20" fill="#000000">
-      <textPath xlink:href="#path3" startOffset="100%">|</textPath>
-      <animate attributeName="opacity" values="1;0" keyTimes="0;1"
-               dur="1s" begin="type3.begin"
+    <text font-family="monospace" font-size="20" fill="#32CD32">
+      <textPath href="#p3" startOffset="100%">|</textPath>
+      <animate attributeName="opacity"
+               values="1;0;1" keyTimes="0;0.5;1"
+               dur="1s" begin="p2.end+1s"
                repeatCount="indefinite" calcMode="discrete"/>
     </text>
-    <set attributeName="display" to="none" begin="type4.begin"/>
-    <set attributeName="display" to="inline" begin="type3.begin"/>
+    <set attributeName="display" to="none" begin="p3.end+1s"/>
+    <set attributeName="display" to="inline" begin="p2.end+1s"/>
   </g>
 
-  <!-- 第四段文字组：显示“第四段文字”，黑色文字，黄色背景 -->
+  <!-- 段4 -->
   <g id="seg4" display="none">
-    <path id="path4" d="M5,50 H5" fill="none" stroke="none">
-      <animate id="type4" attributeName="d" from="M5,50 H5" to="M5,50 H105"
-               begin="del3.end+0.5s" dur="2s" fill="freeze"/>
-      <animate id="del4" attributeName="d" from="M5,50 H105" to="M5,50 H5"
-               begin="type4.end+1s" dur="1s" fill="freeze"/>
-    </path>
-    <text font-size="20" fill="#000000">
-      <textPath xlink:href="#path4" startOffset="0%">第四段文字</textPath>
+    <path id="p4" d="M10,30 H10" fill="none"/>
+    <animate href="#p4" attributeName="d"
+             values="M10,30 H10; M10,30 H200; M10,30 H200; M10,30 H10"
+             keyTimes="0;0.5;0.75;1"
+             dur="4s" begin="p3.end+1s" fill="freeze"/>
+    <text font-family="monospace" font-size="20" fill="#FFD700">
+      <textPath href="#p4">第四段文字</textPath>
     </text>
-    <text font-size="20" fill="#000000">
-      <textPath xlink:href="#path4" startOffset="100%">|</textPath>
-      <animate attributeName="opacity" values="1;0" keyTimes="0;1"
-               dur="1s" begin="type4.begin"
+    <text font-family="monospace" font-size="20" fill="#FFD700">
+      <textPath href="#p4" startOffset="100%">|</textPath>
+      <animate attributeName="opacity"
+               values="1;0;1" keyTimes="0;0.5;1"
+               dur="1s" begin="p3.end+1s"
                repeatCount="indefinite" calcMode="discrete"/>
     </text>
-    <set attributeName="display" to="none" begin="type5.begin"/>
-    <set attributeName="display" to="inline" begin="type4.begin"/>
+    <set attributeName="display" to="none" begin="p4.end+1s"/>
+    <set attributeName="display" to="inline" begin="p3.end+1s"/>
   </g>
 
-  <!-- 第五段文字组：显示“第五段文字”，黑色文字，粉色背景 -->
+  <!-- 段5 (循环触发回段1) -->
   <g id="seg5" display="none">
-    <path id="path5" d="M5,50 H5" fill="none" stroke="none">
-      <animate id="type5" attributeName="d" from="M5,50 H5" to="M5,50 H105"
-               begin="del4.end+0.5s" dur="2s" fill="freeze"/>
-      <animate id="del5" attributeName="d" from="M5,50 H105" to="M5,50 H5"
-               begin="type5.end+1s" dur="1s" fill="freeze"/>
-    </path>
-    <text font-size="20" fill="#000000">
-      <textPath xlink:href="#path5" startOffset="0%">第五段文字</textPath>
+    <path id="p5" d="M10,30 H10" fill="none"/>
+    <animate href="#p5" attributeName="d"
+             values="M10,30 H10; M10,30 H200; M10,30 H200; M10,30 H10"
+             keyTimes="0;0.5;0.75;1"
+             dur="4s" begin="p4.end+1s" fill="freeze"/>
+    <text font-family="monospace" font-size="20" fill="#FF69B4">
+      <textPath href="#p5">第五段文字</textPath>
     </text>
-    <text font-size="20" fill="#000000">
-      <textPath xlink:href="#path5" startOffset="100%">|</textPath>
-      <animate attributeName="opacity" values="1;0" keyTimes="0;1"
-               dur="1s" begin="type5.begin"
+    <text font-family="monospace" font-size="20" fill="#FF69B4">
+      <textPath href="#p5" startOffset="100%">|</textPath>
+      <animate attributeName="opacity"
+               values="1;0;1" keyTimes="0;0.5;1"
+               dur="1s" begin="p4.end+1s"
                repeatCount="indefinite" calcMode="discrete"/>
     </text>
-    <set attributeName="display" to="none" begin="type1.begin"/>
-    <set attributeName="display" to="inline" begin="type5.begin"/>
+    <!-- 循环回 seg1 -->
+    <set attributeName="display" to="none" begin="p5.end+1s"/>
+    <set attributeName="display" to="inline" begin="p5.end+1s"/>
   </g>
 </svg>
