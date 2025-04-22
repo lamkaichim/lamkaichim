@@ -1,4 +1,6 @@
-![个人动画示例](./assets/splash.svg)
+## 欢迎来到我的主页
+
+![Login Splash](./assets/splash.svg)
 
 
 
