@@ -1,0 +1,28 @@
+name: Update SVG Color
+on:
+  schedule:
+    - cron: '*/5 * * * *'   # 每 5 分钟运行一次
+  push:
+    paths:
+      - 'assets/splash_template.svg'
+      - 'scripts/gen-svg.js'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+      - name: Generate random SVG
+        run: node scripts/gen-svg.js
+      - name: Commit & push changes
+        run: |
+          git config user.name 'github-actions'
+          git config user.email 'actions@github.com'
+          git add assets/splash.svg
+          git commit -m 'chore: update splash color' || echo "No changes"
+          git push
