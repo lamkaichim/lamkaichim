@@ -1,88 +1,130 @@
-<svg width="800" height="200" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
-  <!-- 背景矩形，用于动态背景色过渡 -->
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 600 100"
+     preserveAspectRatio="xMidYMid slice">
+  
+  <!-- 背景矩形 & 颜色跳变 -->
   <rect width="100%" height="100%" fill="#000000">
-    <!-- 通过 <set> 元素在各段切换时更新背景颜色 -->
-    <set attributeName="fill" to="#FFD700" begin="seg1_blink.end" />  <!-- 段1结束时切换到段2背景（黄） -->
-    <set attributeName="fill" to="#1E90FF" begin="seg2_blink.end" />  <!-- 段2结束时切换到段3背景（蓝） -->
-    <set attributeName="fill" to="#000000" begin="seg3_blink.end" />  <!-- 段3结束时切换回段1背景（黑） -->
+    <!-- 段切换时更新背景色 -->
+    <set attributeName="fill" to="#FFD700"        begin="seg1_blink.end" /> <!-- seg2 开始前 -->
+    <set attributeName="fill" to="#1E90FF"        begin="seg2_blink.end" /> <!-- seg3 开始前 -->
+    <set attributeName="fill" to="#000000"        begin="seg3_blink.end" /> <!-- 循环回 seg1 -->
   </rect>
-  <!-- 段1 组： 黑背景 + 白色文字 -->
-  <g id="seg1_group" visibility="visible" fill="#FFFFFF"
-     font-family="-apple-system, 'Helvetica Neue', system-ui, sans-serif"
-     font-weight="bold" font-size="32">
-    <!-- 定义一条水平路径（中心线），用于承载文本 -->
-    <path id="path1" d="M 0 100 L 800 100" fill="none" stroke="none" />
-    <!-- 文本元素，锚点居中，使文本最终居于画布中央 -->
-    <text text-anchor="middle" dominant-baseline="middle">
-      <!-- 沿路径的文字。startOffset 初始设为 50%，文本将以中心对齐路径 -->
-      <textPath href="#path1" startOffset="50%">
-        Hello, SVG!  <!-- 段1文本内容 -->
-        <!-- 打字动画：从路径末端（100%）移动到居中位置（50%），逐字显现 -->
-        <animate id="seg1_reveal" attributeName="startOffset" from="100%" to="50%"
-                 dur="2s" begin="0s; seg3_blink.end" fill="freeze" />
-        <!-- 停留 0.5 秒后开始删除动画 -->
-        <animate id="seg1_delete" attributeName="startOffset" from="50%" to="100%"
-                 dur="1.5s" begin="seg1_reveal.end+0.5s" fill="freeze" />
-      </textPath>
+
+  <!-- ===== 段1：黑底→白字 ===== -->
+  <g id="seg1" visibility="visible">
+    <!-- 打字路径 -->
+    <path id="p1" d="M0,50 H0" fill="none"/>
+    <!-- 绘制文字路径（打字） -->
+    <animate href="#p1" attributeName="d"
+             values="M0,50 H0;   M0,50 H500"
+             keyTimes="0;1"
+             dur="2s"
+             begin="0s; seg3_blink.end+1s"
+             fill="freeze" /> <!-- 2s内逐字显现 -->&#8203;:contentReference[oaicite:4]{index=4}
+    <!-- 删除文字路径 -->
+    <animate href="#p1" attributeName="d"
+             values="M0,50 H500; M0,50 H0"
+             keyTimes="0;1"
+             dur="1s"
+             begin="p1.animVal+3s"  <!-- 间隔2s显现+1s停留后开始删除 -->
+             fill="freeze" /> <!-- 1s内逐字删除 -->&#8203;:contentReference[oaicite:5]{index=5}
+
+    <!-- 文本内容 -->
+    <text font-family="-apple-system,'Helvetica Neue',system-ui,sans-serif"
+          font-weight="bold" font-size="32" fill="#FFFFFF"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle">
+      <textPath href="#p1">第一段文字</textPath>
     </text>
-    <!-- 光标（竖线）元素，初始不可见，删除阶段后出现并闪烁 -->
-    <text id="seg1_cursor" text-anchor="middle" dominant-baseline="middle" visibility="hidden">|
-      <!-- 光标闪烁动画：透明度在1秒内 1→0→1，实现1秒一闪烁 -->
-      <animate id="seg1_blink" attributeName="opacity" values="1;0;1"
-               dur="1s" begin="seg1_delete.end" fill="freeze" />
-      <!-- 光标在删除结束时出现（可见） -->
-      <set attributeName="visibility" to="visible" begin="seg1_delete.end" />
+
+    <!-- 光标 -->
+    <text font-family="-apple-system,'Helvetica Neue',system-ui,sans-serif"
+          font-weight="bold" font-size="32" fill="#FFFFFF"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
+          visibility="hidden">
+      <textPath href="#p1" startOffset="100%">|</textPath>
+      <!-- 闪烁动画 -->
+      <animate id="seg1_blink" attributeName="opacity"
+               values="1;0;1" keyTimes="0;0.5;1"
+               dur="1s"
+               begin="p1.animVal+3s" fill="freeze"
+               repeatCount="1" calcMode="discrete" />
+      <!-- 光标在删除后出现 -->
+      <set attributeName="visibility" to="visible"
+           begin="p1.animVal+3s" />
     </text>
-    <!-- 段1结束时隐藏本组（切换到下一段） -->
-    <set attributeName="visibility" to="hidden" begin="seg1_blink.end" />
-    <!-- 上一段结束时显示本组（用于循环切换回段1） -->
-    <set attributeName="visibility" to="visible" begin="seg3_blink.end" />
+
+    <!-- 隐藏本段，等待下一段 -->
+    <set attributeName="visibility" to="hidden"
+         begin="seg1_blink.end" />
   </g>
-  <!-- 段2 组： 黄背景 + 紫色文字，初始隐藏 -->
-  <g id="seg2_group" visibility="hidden" fill="#8B00FF"
-     font-family="-apple-system, 'Helvetica Neue', system-ui, sans-serif"
-     font-weight="bold" font-size="32">
-    <path id="path2" d="M 0 100 L 800 100" fill="none" stroke="none" />
-    <text text-anchor="middle" dominant-baseline="middle">
-      <textPath href="#path2" startOffset="50%">
-        SMIL Animation  <!-- 段2文本内容 -->
-        <animate id="seg2_reveal" attributeName="startOffset" from="100%" to="50%"
-                 dur="2s" begin="seg1_blink.end" fill="freeze" />
-        <animate id="seg2_delete" attributeName="startOffset" from="50%" to="100%"
-                 dur="1.5s" begin="seg2_reveal.end+0.5s" fill="freeze" />
-      </textPath>
+
+  <!-- ===== 段2：黄底→紫字 ===== -->
+  <g id="seg2" visibility="hidden">
+    <path id="p2" d="M0,50 H0" fill="none"/>
+    <animate href="#p2" attributeName="d"
+             values="M0,50 H0;   M0,50 H500" keyTimes="0;1"
+             dur="2s"
+             begin="seg1_blink.end"
+             fill="freeze" />
+    <animate href="#p2" attributeName="d"
+             values="M0,50 H500; M0,50 H0" keyTimes="0;1"
+             dur="1s"
+             begin="p2.animVal+3s"
+             fill="freeze" />
+    <text font-family="-apple-system,'Helvetica Neue',system-ui,sans-serif"
+          font-weight="bold" font-size="32" fill="#8B00FF"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle">
+      <textPath href="#p2">第二段文字</textPath>
     </text>
-    <text id="seg2_cursor" text-anchor="middle" dominant-baseline="middle" visibility="hidden">|
-      <animate id="seg2_blink" attributeName="opacity" values="1;0;1"
-               dur="1s" begin="seg2_delete.end" fill="freeze" />
-      <set attributeName="visibility" to="visible" begin="seg2_delete.end" />
+    <text font-family="-apple-system,'Helvetica Neue',system-ui,sans-serif"
+          font-weight="bold" font-size="32" fill="#8B00FF"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
+          visibility="hidden">
+      <textPath href="#p2" startOffset="100%">|</textPath>
+      <animate id="seg2_blink" attributeName="opacity"
+               values="1;0;1" keyTimes="0;0.5;1"
+               dur="1s"
+               begin="p2.animVal+3s" fill="freeze" repeatCount="1" calcMode="discrete" />
+      <set attributeName="visibility" to="visible"
+           begin="p2.animVal+3s" />
     </text>
     <set attributeName="visibility" to="hidden" begin="seg2_blink.end" />
-    <!-- 上一段结束时显示本组 -->
     <set attributeName="visibility" to="visible" begin="seg1_blink.end" />
   </g>
-  <!-- 段3 组： 蓝背景 + 白色文字，初始隐藏 -->
-  <g id="seg3_group" visibility="hidden" fill="#FFFFFF"
-     font-family="-apple-system, 'Helvetica Neue', system-ui, sans-serif"
-     font-weight="bold" font-size="32">
-    <path id="path3" d="M 0 100 L 800 100" fill="none" stroke="none" />
-    <text text-anchor="middle" dominant-baseline="middle">
-      <textPath href="#path3" startOffset="50%">
-        Typewriter Effect  <!-- 段3文本内容 -->
-        <animate id="seg3_reveal" attributeName="startOffset" from="100%" to="50%"
-                 dur="2s" begin="seg2_blink.end" fill="freeze" />
-        <animate id="seg3_delete" attributeName="startOffset" from="50%" to="100%"
-                 dur="1.5s" begin="seg3_reveal.end+0.5s" fill="freeze" />
-      </textPath>
+
+  <!-- ===== 段3：蓝底→白字 ===== -->
+  <g id="seg3" visibility="hidden">
+    <path id="p3" d="M0,50 H0" fill="none"/>
+    <animate href="#p3" attributeName="d"
+             values="M0,50 H0;   M0,50 H500" keyTimes="0;1"
+             dur="2s"
+             begin="seg2_blink.end"
+             fill="freeze" />
+    <animate href="#p3" attributeName="d"
+             values="M0,50 H500; M0,50 H0" keyTimes="0;1"
+             dur="1s"
+             begin="p3.animVal+3s"
+             fill="freeze" />
+    <text font-family="-apple-system,'Helvetica Neue',system-ui,sans-serif"
+          font-weight="bold" font-size="32" fill="#FFFFFF"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle">
+      <textPath href="#p3">第三段文字</textPath>
     </text>
-    <text id="seg3_cursor" text-anchor="middle" dominant-baseline="middle" visibility="hidden">|
-      <animate id="seg3_blink" attributeName="opacity" values="1;0;1"
-               dur="1s" begin="seg3_delete.end" fill="freeze" />
-      <set attributeName="visibility" to="visible" begin="seg3_delete.end" />
+    <text font-family="-apple-system,'Helvetica Neue',system-ui,sans-serif"
+          font-weight="bold" font-size="32" fill="#FFFFFF"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
+          visibility="hidden">
+      <textPath href="#p3" startOffset="100%">|</textPath>
+      <animate id="seg3_blink" attributeName="opacity"
+               values="1;0;1" keyTimes="0;0.5;1"
+               dur="1s"
+               begin="p3.animVal+3s" fill="freeze" repeatCount="1" calcMode="discrete" />
+      <set attributeName="visibility" to="visible"
+           begin="p3.animVal+3s" />
     </text>
     <set attributeName="visibility" to="hidden" begin="seg3_blink.end" />
-    <!-- 上一段结束时显示本组 -->
     <set attributeName="visibility" to="visible" begin="seg2_blink.end" />
   </g>
-  <!-- 可以按此结构增删段落，并调整颜色/动画时间，每段落 <g> 独立，背景 <set> 按顺序添加对应条目 -->
+
 </svg>
