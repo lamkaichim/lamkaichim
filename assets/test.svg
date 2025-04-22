@@ -1,50 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg"
-     width="600" height="100"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
      viewBox="0 0 600 100"
      preserveAspectRatio="xMidYMid slice">
 
-  <!-- 1. 背景 -->
-  <rect width="100%" height="100%" fill="#3c3e40"/>
+  <!-- 背景矩形及离散色切换（在 delete 开始时触发） -->
+  <rect id="bg" width="100%" height="100%" fill="{{COLOR_BG}}"/>
+  <set href="#bg" attributeName="fill" to="{{COLOR_BG}}"  begin="seg1del.begin"/>
+  <set href="#bg" attributeName="fill" to="#4e3874"      begin="seg2del.begin"/>
+  <set href="#bg" attributeName="fill" to="#016109"      begin="seg3del.begin"/>
+  <set href="#bg" attributeName="fill" to="#7e3a6a"      begin="seg4del.begin"/>
 
-  <!-- 2. 嵌入 HTML/CSS 实现 typewriter+delete 动画 -->
-  <foreignObject x="0" y="0" width="600" height="100">
-    <div xmlns="http://www.w3.org/1999/xhtml"
-         style="width:100%;height:100%;display:flex;
-                justify-content:center;align-items:center;
-                overflow:hidden;">
-      <div class="typewriter">
-        Demo Text
-      </div>
-    </div>
-  </foreignObject>
+  <!-- ********** Segment 1 ********** -->
+  <g id="seg1" visibility="visible">
+    <path id="p1" d="M0,50 H0" fill="none"/>
+    <animate id="seg1draw" href="#p1" attributeName="d"
+         values="M0,50 H0;M0,50 H500" dur="2s"
+         begin="0s;loop.end+0.1s" fill="freeze"/>
+    <animate id="seg1del"  href="#p1" attributeName="d"
+         values="M0,50 H500;M0,50 H0" dur="1s"
+         begin="seg1draw.end" fill="freeze"/>
+    <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
+    <set href="#seg1" attributeName="visibility" to="visible" begin="loop.begin"/>
 
-  <!-- 3. 样式 -->
-  <style type="text/css"><![CDATA[
-    .typewriter {
-      font-family: monospace;
-      font-size: 32px;
-      font-weight: bold;
-      color: #ffffff;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 4px solid #ffffff;      /* 常显光标 */
-      box-sizing: content-box;              /* 确保 width 只影响文字本身 */
-      width: 0;                             /* 初始无字符 */
-      /* 6s 循环：2s 打字 → 1s 停留 → 2s 删除 → 1s 停留 */
-      animation:
-        typing 6s steps(9,end) infinite;    /* “9”=字符数 */
-    }
-    @keyframes typing {
-      /* 0–2s：逐字打出 */
-      0%   { width: 0ch; }
-      33%  { width: 9ch; }
-      /* 2–3s：保持全宽 */
-      50%  { width: 9ch; }
-      /* 3–5s：逐字删除 */
-      83%  { width: 0ch; }
-      /* 5–6s：保持空 */
-      100% { width: 0ch; }
-    }
-  ]]></style>
+    <!-- 逐字打字机效果：将“第一段文字”拆为tspan -->
+    <text font-family="system-ui" font-size="32" font-weight="bold"
+          text-anchor="middle" x="300" y="50" dominant-baseline="middle">
+      <!-- 分割后的字符，每个 tspan 初始 opacity=0 -->
+      <tspan id="s1c1" fill="#eb98fd" opacity="0">第</tspan>
+      <tspan id="s1c2" fill="#eb98fd" opacity="0">一</tspan>
+      <tspan id="s1c3" fill="#eb98fd" opacity="0">段</tspan>
+      <tspan id="s1c4" fill="#eb98fd" opacity="0">文</tspan>
+      <tspan id="s1c5" fill="#eb98fd" opacity="0">字</tspan>
+      <tspan id="s1c6" fill="#eb98fd" opacity="0">。</tspan>
+      <!-- 每个字符的显隐动画，间隔(2s÷6)=0.333s 打出，(1s停留)，(1s÷6)≈0.167s 删除 -->
+      <!-- 打字 -->
+      <animate xlink:href="#s1c1" attributeName="opacity" from="0" to="1"
+               begin="seg1draw.begin" dur="0.333s" fill="freeze"/>
+      <animate xlink:href="#s1c2" attributeName="opacity" from="0" to="1"
+               begin="seg1draw.begin+0.333s" dur="0.333s" fill="freeze"/>
+      <animate xlink:href="#s1c3" attributeName="opacity" from="0" to="1"
+               begin="seg1draw.begin+0.666s" dur="0.333s" fill="freeze"/>
+      <animate xlink:href="#s1c4" attributeName="opacity" from="0" to="1"
+               begin="seg1draw.begin+0.999s" dur="0.333s" fill="freeze"/>
+      <animate xlink:href="#s1c5" attributeName="opacity" from="0" to="1"
+               begin="seg1draw.begin+1.332s" dur="0.333s" fill="freeze"/>
+      <animate xlink:href="#s1c6" attributeName="opacity" from="0" to="1"
+               begin="seg1draw.begin+1.665s" dur="0.335s" fill="freeze"/>
+      <!-- 停留至 3s -->
+      <!-- 删除 -->
+      <animate xlink:href="#s1c6" attributeName="opacity" from="1" to="0"
+               begin="seg1del.begin+0s" dur="0.167s" fill="freeze"/>
+      <animate xlink:href="#s1c5" attributeName="opacity" from="1" to="0"
+               begin="seg1del.begin+0.167s" dur="0.167s" fill="freeze"/>
+      <animate xlink:href="#s1c4" attributeName="opacity" from="1" to="0"
+               begin="seg1del.begin+0.334s" dur="0.167s" fill="freeze"/>
+      <animate xlink:href="#s1c3" attributeName="opacity" from="1" to="0"
+               begin="seg1del.begin+0.501s" dur="0.167s" fill="freeze"/>
+      <animate xlink:href="#s1c2" attributeName="opacity" from="1" to="0"
+               begin="seg1del.begin+0.668s" dur="0.167s" fill="freeze"/>
+      <animate xlink:href="#s1c1" attributeName="opacity" from="1" to="0"
+               begin="seg1del.begin+0.835s" dur="0.165s" fill="freeze"/>
+    </text>
+
+    <!-- 固定光标 -->
+    <text font-family="system-ui" font-size="32" font-weight="bold"
+          text-anchor="middle" x="300" y="50" dominant-baseline="middle"
+          fill="#eb98fd" opacity="0" id="c1">
+      <textPath href="#p1" startOffset="100%">●</textPath>
+      <animate attributeName="opacity" to="1" begin="seg1del.begin" dur="0s" fill="freeze"/>
+      <set attributeName="opacity" to="0" begin="seg1del.end+1s"/>
+    </text>
+  </g>
+
+  <!-- ********** Segment 2 同理 ********** -->
+  <!-- 您只需复制上面 Segment 1 的 <text> 与 <textPath> 部分，
+       替换 ID（如 s1c1→s2c1）、文本内容、fill 颜色及 begin 时间即可 -->
+  <!-- … -->
+
+  <!-- 循环触发 -->
+  <animate id="loop" href="#p1" attributeName="d"
+           begin="seg4del.end+0.1s" dur="0.1s" fill="freeze"/>
 </svg>
