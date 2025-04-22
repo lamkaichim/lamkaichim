@@ -1,111 +1,88 @@
-<svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 0 300 60"
-     preserveAspectRatio="xMidYMid slice">
-  <!-- 随机背景色 -->
-  <rect width="100%" height="100%" fill="#000">
-    <animate attributeName="fill"
-             values="#000;#f00;#0f0;#00f;#000"
-             keyTimes="0;0.25;0.5;0.75;1"
-             dur="8s" repeatCount="indefinite" calcMode="discrete"/>
+<svg width="800" height="200" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景矩形，用于动态背景色过渡 -->
+  <rect width="100%" height="100%" fill="#000000">
+    <!-- 通过 <set> 元素在各段切换时更新背景颜色 -->
+    <set attributeName="fill" to="#FFD700" begin="seg1_blink.end" />  <!-- 段1结束时切换到段2背景（黄） -->
+    <set attributeName="fill" to="#1E90FF" begin="seg2_blink.end" />  <!-- 段2结束时切换到段3背景（蓝） -->
+    <set attributeName="fill" to="#000000" begin="seg3_blink.end" />  <!-- 段3结束时切换回段1背景（黑） -->
   </rect>
-
-  <!-- 第一段打字机动画 -->
-  <g id="seg1" display="inline">
-    <path id="p1" d="M10,30 H10" fill="none"/>
-    <animate id="seg1draw" href="#p1" attributeName="d"
-             values="M10,30 H10; M10,30 H200; M10,30 H200; M10,30 H10"
-             keyTimes="0;0.5;0.75;1"
-             dur="4s" begin="0s; loop.start+0.5s"
-             fill="freeze"/>
-    <text font-family="monospace" font-size="20" fill="#fff">
-      <textPath href="#p1">第一段文字</textPath>
+  <!-- 段1 组： 黑背景 + 白色文字 -->
+  <g id="seg1_group" visibility="visible" fill="#FFFFFF"
+     font-family="-apple-system, 'Helvetica Neue', system-ui, sans-serif"
+     font-weight="bold" font-size="32">
+    <!-- 定义一条水平路径（中心线），用于承载文本 -->
+    <path id="path1" d="M 0 100 L 800 100" fill="none" stroke="none" />
+    <!-- 文本元素，锚点居中，使文本最终居于画布中央 -->
+    <text text-anchor="middle" dominant-baseline="middle">
+      <!-- 沿路径的文字。startOffset 初始设为 50%，文本将以中心对齐路径 -->
+      <textPath href="#path1" startOffset="50%">
+        Hello, SVG!  <!-- 段1文本内容 -->
+        <!-- 打字动画：从路径末端（100%）移动到居中位置（50%），逐字显现 -->
+        <animate id="seg1_reveal" attributeName="startOffset" from="100%" to="50%"
+                 dur="2s" begin="0s; seg3_blink.end" fill="freeze" />
+        <!-- 停留 0.5 秒后开始删除动画 -->
+        <animate id="seg1_delete" attributeName="startOffset" from="50%" to="100%"
+                 dur="1.5s" begin="seg1_reveal.end+0.5s" fill="freeze" />
+      </textPath>
     </text>
-    <text font-family="monospace" font-size="20" fill="#fff">
-      <textPath href="#p1" startOffset="100%">|</textPath>
-      <animate attributeName="opacity"
-               values="1;0"
-               dur="1s"
-               begin="0s; loop.start+0.5s"
-               repeatCount="indefinite"
-               calcMode="discrete"/>
+    <!-- 光标（竖线）元素，初始不可见，删除阶段后出现并闪烁 -->
+    <text id="seg1_cursor" text-anchor="middle" dominant-baseline="middle" visibility="hidden">|
+      <!-- 光标闪烁动画：透明度在1秒内 1→0→1，实现1秒一闪烁 -->
+      <animate id="seg1_blink" attributeName="opacity" values="1;0;1"
+               dur="1s" begin="seg1_delete.end" fill="freeze" />
+      <!-- 光标在删除结束时出现（可见） -->
+      <set attributeName="visibility" to="visible" begin="seg1_delete.end" />
     </text>
+    <!-- 段1结束时隐藏本组（切换到下一段） -->
+    <set attributeName="visibility" to="hidden" begin="seg1_blink.end" />
+    <!-- 上一段结束时显示本组（用于循环切换回段1） -->
+    <set attributeName="visibility" to="visible" begin="seg3_blink.end" />
   </g>
-
-  <!-- 第二段打字机动画 -->
-  <g id="seg2" display="inline">
-    <path id="p2" d="M10,30 H10" fill="none"/>
-    <animate id="seg2draw" href="#p2" attributeName="d"
-             values="M10,30 H10; M10,30 H200; M10,30 H200; M10,30 H10"
-             keyTimes="0;0.5;0.75;1"
-             dur="4s" begin="seg1draw.end+0.5s"
-             fill="freeze"/>
-    <text font-family="monospace" font-size="20" fill="#fff">
-      <textPath href="#p2">第二段文字</textPath>
+  <!-- 段2 组： 黄背景 + 紫色文字，初始隐藏 -->
+  <g id="seg2_group" visibility="hidden" fill="#8B00FF"
+     font-family="-apple-system, 'Helvetica Neue', system-ui, sans-serif"
+     font-weight="bold" font-size="32">
+    <path id="path2" d="M 0 100 L 800 100" fill="none" stroke="none" />
+    <text text-anchor="middle" dominant-baseline="middle">
+      <textPath href="#path2" startOffset="50%">
+        SMIL Animation  <!-- 段2文本内容 -->
+        <animate id="seg2_reveal" attributeName="startOffset" from="100%" to="50%"
+                 dur="2s" begin="seg1_blink.end" fill="freeze" />
+        <animate id="seg2_delete" attributeName="startOffset" from="50%" to="100%"
+                 dur="1.5s" begin="seg2_reveal.end+0.5s" fill="freeze" />
+      </textPath>
     </text>
-    <text font-family="monospace" font-size="20" fill="#fff">
-      <textPath href="#p2" startOffset="100%">|</textPath>
-      <animate attributeName="opacity"
-               values="1;0"
-               dur="1s"
-               begin="seg2draw.end+0.5s"
-               repeatCount="indefinite"
-               calcMode="discrete"/>
+    <text id="seg2_cursor" text-anchor="middle" dominant-baseline="middle" visibility="hidden">|
+      <animate id="seg2_blink" attributeName="opacity" values="1;0;1"
+               dur="1s" begin="seg2_delete.end" fill="freeze" />
+      <set attributeName="visibility" to="visible" begin="seg2_delete.end" />
     </text>
+    <set attributeName="visibility" to="hidden" begin="seg2_blink.end" />
+    <!-- 上一段结束时显示本组 -->
+    <set attributeName="visibility" to="visible" begin="seg1_blink.end" />
   </g>
-
-  <!-- 第三段打字机动画 -->
-  <g id="seg3" display="inline">
-    <path id="p3" d="M10,30 H10" fill="none"/>
-    <animate id="seg3draw" href="#p3" attributeName="d"
-             values="M10,30 H10; M10,30 H200; M10,30 H200; M10,30 H10"
-             keyTimes="0;0.5;0.75;1"
-             dur="4s" begin="seg2draw.end+0.5s"
-             fill="freeze"/>
-    <text font-family="monospace" font-size="20" fill="#fff">
-      <textPath href="#p3">第三段文字</textPath>
+  <!-- 段3 组： 蓝背景 + 白色文字，初始隐藏 -->
+  <g id="seg3_group" visibility="hidden" fill="#FFFFFF"
+     font-family="-apple-system, 'Helvetica Neue', system-ui, sans-serif"
+     font-weight="bold" font-size="32">
+    <path id="path3" d="M 0 100 L 800 100" fill="none" stroke="none" />
+    <text text-anchor="middle" dominant-baseline="middle">
+      <textPath href="#path3" startOffset="50%">
+        Typewriter Effect  <!-- 段3文本内容 -->
+        <animate id="seg3_reveal" attributeName="startOffset" from="100%" to="50%"
+                 dur="2s" begin="seg2_blink.end" fill="freeze" />
+        <animate id="seg3_delete" attributeName="startOffset" from="50%" to="100%"
+                 dur="1.5s" begin="seg3_reveal.end+0.5s" fill="freeze" />
+      </textPath>
     </text>
-    <text font-family="monospace" font-size="20" fill="#fff">
-      <textPath href="#p3" startOffset="100%">|</textPath>
-      <animate attributeName="opacity"
-               values="1;0"
-               dur="1s"
-               begin="seg3draw.end+0.5s"
-               repeatCount="indefinite"
-               calcMode="discrete"/>
+    <text id="seg3_cursor" text-anchor="middle" dominant-baseline="middle" visibility="hidden">|
+      <animate id="seg3_blink" attributeName="opacity" values="1;0;1"
+               dur="1s" begin="seg3_delete.end" fill="freeze" />
+      <set attributeName="visibility" to="visible" begin="seg3_delete.end" />
     </text>
+    <set attributeName="visibility" to="hidden" begin="seg3_blink.end" />
+    <!-- 上一段结束时显示本组 -->
+    <set attributeName="visibility" to="visible" begin="seg2_blink.end" />
   </g>
-
-  <!-- 第四段打字机动画 -->
-  <g id="seg4" display="inline">
-    <path id="p4" d="M10,30 H10" fill="none"/>
-    <animate id="seg4draw" href="#p4" attributeName="d"
-             values="M10,30 H10; M10,30 H200; M10,30 H200; M10,30 H10"
-             keyTimes="0;0.5;0.75;1"
-             dur="4s" begin="seg3draw.end+0.5s"
-             fill="freeze"/>
-    <text font-family="monospace" font-size="20" fill="#fff">
-      <textPath href="#p4">第四段文字</textPath>
-    </text>
-    <text font-family="monospace" font-size="20" fill="#fff">
-      <textPath href="#p4" startOffset="100%">|</textPath>
-      <animate attributeName="opacity"
-               values="1;0"
-               dur="1s"
-               begin="seg4draw.end+0.5s"
-               repeatCount="indefinite"
-               calcMode="discrete"/>
-    </text>
-    <!-- 删除动画，倒序回到起始 -->
-    <animate id="seg4del" href="#p4" attributeName="d"
-             values="M10,30 H200; M10,30 H10"
-             begin="seg4draw.end+0.5s"
-             dur="0.1s"
-             fill="freeze"/>
-  </g>
-
-  <!-- 循环触发的无形动画，用于重启第一段 -->
-  <animate id="loop" href="#p1" attributeName="d"
-           begin="seg4del.end+0.5s"
-           dur="0.1s"
-           fill="freeze"/>
+  <!-- 可以按此结构增删段落，并调整颜色/动画时间，每段落 <g> 独立，背景 <set> 按顺序添加对应条目 -->
 </svg>
