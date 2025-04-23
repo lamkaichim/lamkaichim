@@ -46,21 +46,21 @@
   <!-- Segment 1 -->
   <g id="seg1" visibility="visible">
     <path id="p1" d="M0,50 H0" fill="none"/>
-    <!-- draw -->
+    <!-- draw: 2s -->
     <animate id="seg1draw" href="#p1" attributeName="d"
              values="M0,50 H0;M0,50 H500" dur="2s"
              begin="0s;loop.end+0.1s" fill="freeze"/>
-    <!-- delete -->
+    <!-- delete: begin after 0.5s hold, dur 1s -->
     <animate id="seg1del" href="#p1" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg1draw.end" fill="freeze"/>
+             begin="seg1draw.end+0.5s" fill="freeze"/>
     <!-- visibility toggles -->
     <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
     <set href="#seg1" attributeName="visibility" to="visible" begin="loop.begin"/>
 
     <!-- text1 (fade-in to its own color) -->
     <text id="text1" font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#b6a5f7">
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="transparent">
       <textPath href="#p1">第一段文字</textPath>
       <animate attributeName="fill"
                begin="seg1del.begin"
@@ -76,18 +76,20 @@
   <!-- Segment 2 -->
   <g id="seg2" visibility="hidden">
     <path id="p2" d="M0,50 H0" fill="none"/>
+    <!-- draw: 2s -->
     <animate id="seg2draw" href="#p2" attributeName="d"
              values="M0,50 H0;M0,50 H500" dur="2s"
-             begin="seg1del.end" fill="freeze"/>
+             begin="seg1del.end+0s" fill="freeze"/>
+    <!-- delete: hold 0.5s then delete 1s -->
     <animate id="seg2del" href="#p2" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg2draw.end" fill="freeze"/>
+             begin="seg2draw.end+0.5s" fill="freeze"/>
     <set attributeName="visibility" to="visible" begin="seg1del.end"/>
     <set attributeName="visibility" to="hidden" begin="seg2del.end+1s"/>
 
-    <!-- text2 (fade-in to its own color) -->
+    <!-- text2 -->
     <text id="text2" font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#f3f6cb">
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="transparent">
       <textPath href="#p2">第二段文字</textPath>
       <animate attributeName="fill"
                begin="seg2del.begin"
@@ -103,18 +105,20 @@
   <!-- Segment 3 -->
   <g id="seg3" visibility="hidden">
     <path id="p3" d="M0,50 H0" fill="none"/>
+    <!-- draw: 2s -->
     <animate id="seg3draw" href="#p3" attributeName="d"
              values="M0,50 H0;M0,50 H500" dur="2s"
-             begin="seg2del.end" fill="freeze"/>
+             begin="seg2del.end+0s" fill="freeze"/>
+    <!-- delete hold+delete -->
     <animate id="seg3del" href="#p3" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg3draw.end" fill="freeze"/>
+             begin="seg3draw.end+0.5s" fill="freeze"/>
     <set attributeName="visibility" to="visible" begin="seg2del.end"/>
     <set attributeName="visibility" to="hidden" begin="seg3del.end+1s"/>
 
-    <!-- text3 (fade-in to its own color) -->
+    <!-- text3 -->
     <text id="text3" font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#8591bc">
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="transparent">
       <textPath href="#p3">第三段文字</textPath>
       <animate attributeName="fill"
                begin="seg3del.begin"
@@ -130,18 +134,20 @@
   <!-- Segment 4 -->
   <g id="seg4" visibility="hidden">
     <path id="p4" d="M0,50 H0" fill="none"/>
+    <!-- draw: 2s -->
     <animate id="seg4draw" href="#p4" attributeName="d"
              values="M0,50 H0;M0,50 H500" dur="2s"
-             begin="seg3del.end" fill="freeze"/>
+             begin="seg3del.end+0s" fill="freeze"/>
+    <!-- delete hold+delete -->
     <animate id="seg4del" href="#p4" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg4draw.end" fill="freeze"/>
+             begin="seg4draw.end+0.5s" fill="freeze"/>
     <set attributeName="visibility" to="visible" begin="seg3del.end"/>
     <set attributeName="visibility" to="hidden" begin="seg4del.end+1s"/>
 
-    <!-- text4 (fade-in to its own color) -->
+    <!-- text4 -->
     <text id="text4" font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#98d5b3">
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="transparent">
       <textPath href="#p4">第四段文字</textPath>
       <animate attributeName="fill"
                begin="seg4del.begin"
@@ -157,17 +163,9 @@
   <!-- Invisible loop trigger -->
   <animate id="loop" href="#p1" attributeName="d"
            begin="seg4del.end+0.1s" dur="0.1s" fill="freeze"/>
-<set href="#text1" attributeName="fill"
-     to="#b6a5f7"
-     begin="loop.begin" />
-<set href="#text2" attributeName="fill"
-     to="#f3f6cb"
-     begin="loop.begin" />
-<set href="#text3" attributeName="fill"
-     to="#8591bc"
-     begin="loop.begin" />
-<set href="#text4" attributeName="fill"
-     to="#98d5b3"
-     begin="loop.begin" />
+  <set href="#text1" attributeName="fill" to="#b6a5f7" begin="loop.begin"/>
+  <set href="#text2" attributeName="fill" to="#f3f6cb" begin="loop.begin"/>
+  <set href="#text3" attributeName="fill" to="#8591bc" begin="loop.begin"/>
+  <set href="#text4" attributeName="fill" to="#98d5b3" begin="loop.begin"/>
 
 </svg>
