@@ -6,14 +6,14 @@
   <!-- Placeholder style block; gen-svg.js will replace this entire block -->
   <style>
     :root {
-      --COLOR_BG:     #1e484e;
-      --COLOR_BG2:    #0d243d;
-      --COLOR_BG3:    #3a6879;
-      --COLOR_BG4:    #1f1119;
-      --COLOR_TEXT1:  #bfd2fc;
-      --COLOR_TEXT2:  #c2f1a6;
-      --COLOR_TEXT3:  #d5acb2;
-      --COLOR_TEXT4:  #ef9d9f;
+      --COLOR_BG:     #03196e;
+      --COLOR_BG2:    #793676;
+      --COLOR_BG3:    #5d007a;
+      --COLOR_BG4:    #564b13;
+      --COLOR_TEXT1:  #e889d7;
+      --COLOR_TEXT2:  #84f68e;
+      --COLOR_TEXT3:  #ae92c6;
+      --COLOR_TEXT4:  #c8e8c1;
     }
   </style>
 
@@ -167,4 +167,14 @@
                dur="1s"
                values="var(--COLOR_TEXT4);var(--COLOR_TEXT1)"
                keyTimes="0;1"
-               calcMode="s
+               calcMode="spline"
+               keySplines="0.42 0 1 1"
+               fill="remove"/>
+    </text>
+  </g>
+
+  <!-- Invisible loop trigger -->
+  <animate id="loop" href="#p1" attributeName="d"
+           begin="seg4del.end+0.6s" dur="0.1s" fill="freeze"/>
+
+</svg>
