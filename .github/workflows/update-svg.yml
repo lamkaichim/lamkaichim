@@ -5,7 +5,7 @@ on:
   push:
     paths:
       - 'assets/splash_template.svg'
-      - 'scripts/gen-svg.js'
+      - 'gen-svg.js'
 
 jobs:
   build:
@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: '16'
       - name: Generate random SVG
-        run: node scripts/gen-svg.js
+        run: node gen-svg.js
       - name: Commit & push changes
         run: |
           git config user.name 'github-actions'
