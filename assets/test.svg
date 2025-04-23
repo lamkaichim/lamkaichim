@@ -1,107 +1,157 @@
-<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-    <!-- 背景矩形 -->
-    <rect id="bg" x="0" y="0" width="800" height="600" fill="#FF4D4D" />
-    
-    <!-- 段落1 路径及文字 -->
-    <path id="seg1" d="M100,150 h600" stroke="#333333" stroke-width="8" fill="none">
-      <animate id="seg1draw" attributeName="stroke-dashoffset" from="600" to="0" dur="2s" fill="freeze" begin="0s; loop.end" />
-      <animate id="seg1del" attributeName="stroke-dashoffset" from="0" to="600" dur="1s" fill="freeze" begin="seg1draw.end+1s" />
-    </path>
-    <text id="text1" x="100" y="130" font-size="32" fill="#FFFFFF">第一段</text>
-    
-    <!-- 段落2 路径及文字 -->
-    <path id="seg2" d="M100,250 h600" stroke="#333333" stroke-width="8" fill="none">
-      <animate id="seg2draw" attributeName="stroke-dashoffset" from="600" to="0" dur="2s" fill="freeze" begin="seg1del.end" />
-      <animate id="seg2del" attributeName="stroke-dashoffset" from="0" to="600" dur="1s" fill="freeze" begin="seg2draw.end+1s" />
-    </path>
-    <text id="text2" x="100" y="230" font-size="32" fill="#FF4D4D">第二段</text>
-    
-    <!-- 段落3 路径及文字 -->
-    <path id="seg3" d="M100,350 h600" stroke="#333333" stroke-width="8" fill="none">
-      <animate id="seg3draw" attributeName="stroke-dashoffset" from="600" to="0" dur="2s" fill="freeze" begin="seg2del.end" />
-      <animate id="seg3del" attributeName="stroke-dashoffset" from="0" to="600" dur="1s" fill="freeze" begin="seg3draw.end+1s" />
-    </path>
-    <text id="text3" x="100" y="330" font-size="32" fill="#FF4D4D">第三段</text>
-    
-    <!-- 段落4 路径及文字 -->
-    <path id="seg4" d="M100,450 h600" stroke="#333333" stroke-width="8" fill="none">
-      <animate id="seg4draw" attributeName="stroke-dashoffset" from="600" to="0" dur="2s" fill="freeze" begin="seg3del.end" />
-      <animate id="seg4del" attributeName="stroke-dashoffset" from="0" to="600" dur="1s" fill="freeze" begin="seg4draw.end+1s" />
-    </path>
-    <text id="text4" x="100" y="430" font-size="32" fill="#FF4D4D">第四段</text>
-    
-    <!-- 循环触发器元素 -->
-    <rect id="loopTrigger" x="0" y="0" width="0" height="0" fill="none" visibility="hidden">
-      <animate id="loop" attributeName="width" from="0" to="0" begin="seg4del.end" dur="1s" />
-    </rect>
-    
-    <!-- 背景颜色渐变动画 -->
-    <animate attributeName="fill" xlink:href="#bg" begin="seg1del.begin" dur="1s" fill="freeze"
-             calcMode="spline" keySplines="0.42 0 1 1" keyTimes="0;1"
-             from="#FF4D4D" to="#4DFF4D" />
-    <animate attributeName="fill" xlink:href="#bg" begin="seg2del.begin" dur="1s" fill="freeze"
-             calcMode="spline" keySplines="0.42 0 1 1" keyTimes="0;1"
-             from="#4DFF4D" to="#4D4DFF" />
-    <animate attributeName="fill" xlink:href="#bg" begin="seg3del.begin" dur="1s" fill="freeze"
-             calcMode="spline" keySplines="0.42 0 1 1" keyTimes="0;1"
-             from="#4D4DFF" to="#FFD54D" />
-    <animate attributeName="fill" xlink:href="#bg" begin="loop.begin" dur="1s" fill="freeze"
-             calcMode="spline" keySplines="0.42 0 1 1" keyTimes="0;1"
-             from="#FFD54D" to="#FF4D4D" />
-    
-    <!-- 段落1 文字颜色渐变动画 -->
-    <animate attributeName="fill" xlink:href="#text1" begin="seg1del.begin" dur="1s" fill="freeze"
-             calcMode="spline" keySplines="0.42 0 1 1" keyTimes="0;1"
-             from="#FFFFFF" to="#4DFF4D" />
-    <animate attributeName="fill" xlink:href="#text1" begin="seg2del.begin" dur="1s" fill="freeze"
-             calcMode="spline" keySplines="0.42 0 1 1" keyTimes="0;1"
-             from="#4DFF4D" to="#4D4DFF" />
-    <animate attributeName="fill" xlink:href="#text1" begin="seg3del.begin" dur="1s" fill="freeze"
-             calcMode="spline" keySplines="0.42 0 1 1" keyTimes="0;1"
-             from="#4D4DFF" to="#FFD54D" />
-    <animate attributeName="fill" xlink:href="#text1" begin="loop.begin" dur="1s" fill="freeze"
-             calcMode="spline" keySplines="0.42 0 1 1" keyTimes="0;1"
-             from="#FFD54D" to="#FFFFFF" />
-    
-    <!-- 段落2 文字颜色渐变动画 -->
-    <animate attributeName="fill" xlink:href="#text2" begin="seg1del.begin" dur="1s" fill="freeze"
-             calcMode="spline" keySplines="0.42 0 1 1" keyTimes="0;1"
-             from="#FF4D4D" to="#000000" />
-    <animate attributeName="fill" xlink:href="#text2" begin="seg2del.begin" dur="1s" fill="freeze"
-             calcMode="spline" keySplines="0.42 0 1 1" keyTimes="0;1"
-             from="#000000" to="#4D4DFF" />
-    <animate attributeName="fill" xlink:href="#text2" begin="seg3del.begin" dur="1s" fill="freeze"
-             calcMode="spline" keySplines="0.42 0 1 1" keyTimes="0;1"
-             from="#4D4DFF" to="#FFD54D" />
-    <animate attributeName="fill" xlink:href="#text2" begin="loop.begin" dur="1s" fill="freeze"
-             calcMode="spline" keySplines="0.42 0 1 1" keyTimes="0;1"
-             from="#FFD54D" to="#FF4D4D" />
-    
-    <!-- 段落3 文字颜色渐变动画 -->
-    <animate attributeName="fill" xlink:href="#text3" begin="seg1del.begin" dur="1s" fill="freeze"
-             calcMode="spline" keySplines="0.42 0 1 1" keyTimes="0;1"
-             from="#FF4D4D" to="#4DFF4D" />
-    <animate attributeName="fill" xlink:href="#text3" begin="seg2del.begin" dur="1s" fill="freeze"
-             calcMode="spline" keySplines="0.42 0 1 1" keyTimes="0;1"
-             from="#4DFF4D" to="#FFFFFF" />
-    <animate attributeName="fill" xlink:href="#text3" begin="seg3del.begin" dur="1s" fill="freeze"
-             calcMode="spline" keySplines="0.42 0 1 1" keyTimes="0;1"
-             from="#FFFFFF" to="#FFD54D" />
-    <animate attributeName="fill" xlink:href="#text3" begin="loop.begin" dur="1s" fill="freeze"
-             calcMode="spline" keySplines="0.42 0 1 1" keyTimes="0;1"
-             from="#FFD54D" to="#FF4D4D" />
-    
-    <!-- 段落4 文字颜色渐变动画 -->
-    <animate attributeName="fill" xlink:href="#text4" begin="seg1del.begin" dur="1s" fill="freeze"
-             calcMode="spline" keySplines="0.42 0 1 1" keyTimes="0;1"
-             from="#FF4D4D" to="#4DFF4D" />
-    <animate attributeName="fill" xlink:href="#text4" begin="seg2del.begin" dur="1s" fill="freeze"
-             calcMode="spline" keySplines="0.42 0 1 1" keyTimes="0;1"
-             from="#4DFF4D" to="#4D4DFF" />
-    <animate attributeName="fill" xlink:href="#text4" begin="seg3del.begin" dur="1s" fill="freeze"
-             calcMode="spline" keySplines="0.42 0 1 1" keyTimes="0;1"
-             from="#4D4DFF" to="#000000" />
-    <animate attributeName="fill" xlink:href="#text4" begin="loop.begin" dur="1s" fill="freeze"
-             calcMode="spline" keySplines="0.42 0 1 1" keyTimes="0;1"
-             from="#000000" to="#FF4D4D" />
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 600 100"
+     preserveAspectRatio="xMidYMid slice">
+
+  <!-- 背景矩形 -->
+  <rect id="bg" width="100%" height="100%" fill="#6e5859"/>
+
+  <!-- 背景色缓入渐变：段落 1–4 -->
+  <animate href="#bg" attributeName="fill"
+           begin="seg1del.begin" dur="1s"
+           values="#6e5859;#5d4d29"
+           keyTimes="0;1"
+           calcMode="spline" keySplines="0.42 0 1 1"
+           fill="freeze"/> <!-- ease-in 缓入 :contentReference[oaicite:3]{index=3} -->
+  <animate href="#bg" attributeName="fill"
+           begin="seg2del.begin" dur="1s"
+           values="#5d4d29;#4a346c"
+           keyTimes="0;1"
+           calcMode="spline" keySplines="0.42 0 1 1"
+           fill="freeze"/>
+  <animate href="#bg" attributeName="fill"
+           begin="seg3del.begin" dur="1s"
+           values="#4a346c;#143e03"
+           keyTimes="0;1"
+           calcMode="spline" keySplines="0.42 0 1 1"
+           fill="freeze"/>
+  <animate href="#bg" attributeName="fill"
+           begin="seg4del.begin" dur="1s"
+           values="#143e03;#6e5859"
+           keyTimes="0;1"
+           calcMode="spline" keySplines="0.42 0 1 1"
+           fill="freeze"/>
+
+  <!-- Segment 1 -->
+  <g id="seg1" visibility="visible">
+    <path id="p1" d="M0,50 H0" fill="none"/>
+    <animate id="seg1draw" href="#p1" attributeName="d"
+             values="M0,50 H0;M0,50 H500" dur="2s"
+             begin="0s;loop.end+0.1s" fill="freeze"/> <!-- draw :contentReference[oaicite:4]{index=4} -->
+    <animate id="seg1del" href="#p1" attributeName="d"
+             values="M0,50 H500;M0,50 H0" dur="1s"
+             begin="seg1draw.end" fill="freeze"/> <!-- delete :contentReference[oaicite:5]{index=5} -->
+    <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
+    <set href="#seg1" attributeName="visibility" to="visible" begin="loop.begin"/>
+
+    <!-- 文字1: ease-in 颜色渐变 -->
+    <text id="text1" font-family="system-ui" font-size="32" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
+          fill="#d99ca8">
+      <textPath href="#p1">第一段文字</textPath>
+      <animate attributeName="fill"
+               begin="seg1del.begin" dur="1s"
+               values="#d99ca8;#bb8da2"
+               keyTimes="0;1"
+               calcMode="spline" keySplines="0.42 0 1 1"
+               fill="freeze"/> <!-- 文字色缓入 :contentReference[oaicite:6]{index=6} -->
+    </text>
+  </g>
+
+  <!-- Segment 2 -->
+  <g id="seg2" visibility="hidden">
+    <path id="p2" d="M0,50 H0" fill="none"/>
+    <animate id="seg2draw" href="#p2" attributeName="d"
+             values="M0,50 H0;M0,50 H500" dur="2s"
+             begin="seg1del.end" fill="freeze"/>
+    <animate id="seg2del" href="#p2" attributeName="d"
+             values="M0,50 H500;M0,50 H0" dur="1s"
+             begin="seg2draw.end" fill="freeze"/>
+    <set attributeName="visibility" to="visible" begin="seg1del.end"/>
+    <set attributeName="visibility" to="hidden" begin="seg2del.end+1s"/>
+
+    <!-- 文字2: ease-in 颜色渐变 -->
+    <text id="text2" font-family="system-ui" font-size="32" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
+          fill="#bb8da2">
+      <textPath href="#p2">第二段文字</textPath>
+      <animate attributeName="fill"
+               begin="seg2del.begin" dur="1s"
+               values="#bb8da2;#ad96db"
+               keyTimes="0;1"
+               calcMode="spline" keySplines="0.42 0 1 1"
+               fill="freeze"/>
+    </text>
+  </g>
+
+  <!-- Segment 3 -->
+  <g id="seg3" visibility="hidden">
+    <path id="p3" d="M0,50 H0" fill="none"/>
+    <animate id="seg3draw" href="#p3" attributeName="d"
+             values="M0,50 H0;M0,50 H500" dur="2s"
+             begin="seg2del.end" fill="freeze"/>
+    <animate id="seg3del" href="#p3" attributeName="d"
+             values="M0,50 H500;M0,50 H0" dur="1s"
+             begin="seg3draw.end" fill="freeze"/>
+    <set attributeName="visibility" to="visible" begin="seg2del.end"/>
+    <set attributeName="visibility" to="hidden" begin="seg3del.end+1s"/>
+
+    <!-- 文字3: ease-in 颜色渐变 -->
+    <text id="text3" font-family="system-ui" font-size="32" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
+          fill="#ad96db">
+      <textPath href="#p3">第三段文字</textPath>
+      <animate attributeName="fill"
+               begin="seg3del.begin" dur="1s"
+               values="#ad96db;#b0f4d7"
+               keyTimes="0;1"
+               calcMode="spline" keySplines="0.42 0 1 1"
+               fill="freeze"/>
+    </text>
+  </g>
+
+  <!-- Segment 4 -->
+  <g id="seg4" visibility="hidden">
+    <path id="p4" d="M0,50 H0" fill="none"/>
+    <animate id="seg4draw" href="#p4" attributeName="d"
+             values="M0,50 H0;M0,50 H500" dur="2s"
+             begin="seg3del.end" fill="freeze"/>
+    <animate id="seg4del" href="#p4" attributeName="d"
+             values="M0,50 H500;M0,50 H0" dur="1s"
+             begin="seg4draw.end" fill="freeze"/>
+    <set attributeName="visibility" to="visible" begin="seg3del.end"/>
+    <set attributeName="visibility" to="hidden" begin="seg4del.end+1s"/>
+
+    <!-- 文字4: ease-in 颜色渐变 -->
+    <text id="text4" font-family="system-ui" font-size="32" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
+          fill="#b0f4d7">
+      <textPath href="#p4">第四段文字</textPath>
+      <animate attributeName="fill"
+               begin="seg4del.begin" dur="1s"
+               values="#b0f4d7;#d99ca8"
+               keyTimes="0;1"
+               calcMode="spline" keySplines="0.42 0 1 1"
+               fill="freeze"/>
+    </text>
+  </g>
+
+  <!-- 循环触发器 -->
+  <animate id="loop" href="#p1" attributeName="d"
+           begin="seg4del.end+0.1s" dur="0.1s" fill="freeze"/>
+
+  <!-- 循环重启时缓入回到初始颜色 -->
+  <animate href="#bg" attributeName="fill"
+           begin="loop.begin" dur="1s"
+           values="#143e03;#6e5859"
+           keyTimes="0;1"
+           calcMode="spline" keySplines="0.42 0 1 1"
+           fill="freeze"/>
+  <animate href="#text1" attributeName="fill"
+           begin="loop.begin" dur="1s"
+           values="#bb8da2;#d99ca8"
+           keyTimes="0;1"
+           calcMode="spline" keySplines="0.42 0 1 1"
+           fill="freeze"/>
+
 </svg>
