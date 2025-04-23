@@ -1,7 +1,6 @@
 const fs   = require('fs');
 const path = require('path');
 
-// Random color generators
 function randomDarkHex() {
   const r = Math.floor(Math.random() * 128);
   const g = Math.floor(Math.random() * 128);
@@ -15,14 +14,11 @@ function randomLightHex() {
   return `#${[r, g, b].map(x => x.toString(16).padStart(2, '0')).join('')}`;
 }
 
-// Paths
 const tplPath = path.join(__dirname, '../assets/splash_template.svg');
 const outPath = path.join(__dirname, '../assets/splash.svg');
-
-// Load template
 let svg = fs.readFileSync(tplPath, 'utf8');
 
-// Generate color variables
+// Generate random CSS variable values
 const colors = {
   COLOR_BG:    randomDarkHex(),
   COLOR_BG2:   randomDarkHex(),
@@ -49,20 +45,19 @@ svg = svg.replace(
   }`
 );
 
-// Define segments based on test.svg content
+// Segments matching test.svg
 const segments = [
-  { id: 1, text: 'I am Stephen Lam' },
-  { id: 2, text: 'Hi How are you' },
-  { id: 3, text: "Let's talk" },
-  { id: 4, text: "I can't wait" }
+  { id:1, text:'I am Stephen Lam' },
+  { id:2, text:'Hi How are you'   },
+  { id:3, text:"Let's talk"      },
+  { id:4, text:"I can't wait"    }
 ];
 
-// Render a single segment with full SMIL animation
 function renderSegment({ id, text }) {
   const fillVar   = `var(--COLOR_TEXT${id})`;
   const nextVar   = `var(--COLOR_TEXT${(id % 4) + 1})`;
-  const visStart  = id === 1 ? 'visible' : 'hidden';
-  const drawBegin = id === 1 ? '0s;loop.end+0.1s' : `seg${id - 1}del.end`;
+  const visStart  = id===1 ? 'visible' : 'hidden';
+  const drawBegin = id===1 ? '0s;loop.end+0.1s' : `seg${id-1}del.end`;
 
   return `
   <g id="seg${id}" visibility="${visStart}">
@@ -92,11 +87,10 @@ function renderSegment({ id, text }) {
   </g>`;
 }
 
-// Generate all segments and inject into template
-const allSegments = segments.map(renderSegment).join('\n');
-svg = svg.replace('<!-- SEGMENTS -->', allSegments);
+// Inject segments
+const allSegs = segments.map(renderSegment).join('\n');
+svg = svg.replace('<!-- SEGMENTS -->', allSegs);
 
-// Write output
+// Output final SVG
 fs.writeFileSync(outPath, svg, 'utf8');
 console.log('Generated splash.svg matching test.svg');
-
