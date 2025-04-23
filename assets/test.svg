@@ -1,44 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg"
-     width="600" height="100"
      viewBox="0 0 600 100"
      preserveAspectRatio="xMidYMid slice">
 
-  <!-- 背景色 -->
-  <rect width="100%" height="100%" fill="#3c3e40"/>
+  <!-- 背景色 SMIL 切换 -->
+  <rect id="bg" width="100%" height="100%" fill="#3c3e40">
+    <set href="#bg" attributeName="fill" to="#3c3e40" begin="seg1del.begin"/>
+    <set href="#bg" attributeName="fill" to="#222323" begin="seg2del.begin"/>
+    <set href="#bg" attributeName="fill" to="#727d3c" begin="seg3del.begin"/>
+    <set href="#bg" attributeName="fill" to="#7a3e5e" begin="seg4del.begin"/>
+  </rect>
 
-  <!-- 嵌入 HTML/CSS -->
+  <!-- HTML/CSS 打字机效果 -->
   <foreignObject x="0" y="0" width="600" height="100">
     <div xmlns="http://www.w3.org/1999/xhtml"
-         style="width:100%; height:100%;
-                display:flex; justify-content:center;
-                align-items:center; overflow:hidden;">
-      <div class="typewriter">第一段文字</div>
+         style="position:relative; width:100%; height:100%; overflow:hidden;">
+      <div class="typewriter seg1">第一段文字</div>
+      <div class="typewriter seg2">第二段文字</div>
+      <div class="typewriter seg3">第三段文字</div>
+      <div class="typewriter seg4">第四段文字</div>
     </div>
   </foreignObject>
 
   <!-- CSS 动画 -->
   <style type="text/css"><![CDATA[
-    .typewriter {
-      font-family: system-ui, monospace;
-      font-size: 32px;
-      font-weight: bold;
-      color: #eb98fd;                  /* 文本及光标颜色 */
-      white-space: nowrap;
-      overflow: hidden;                /* 隐藏溢出字符 */
-      border-right: 4px solid;         /* 常显光标 */
-      box-sizing: content-box;         /* 保证宽度仅影响文字 */
-      width: 0ch;                      /* 从 0 字符开始 */
-      /* 循环: 2s 打字 → 1s 停留 → 2s 删除 → 1s 停留 */
-      animation:
-        typing 6s steps(6,end) infinite;
+    :root {
+      --seg-duration: 6s;   /* 每段动画周期 */
+      --ch-length: 6ch;     /* 每段文字字符数 */
+      --cursor-width: 2px;  /* 默认光标宽度 */
     }
-    @keyframes typing {
-      0%   { width: 0ch; }
-      33%  { width: 6ch; }             /* “第一段文字” 共 6 字 */
-      50%  { width: 6ch; }
-      83%  { width: 0ch; }
-      100% { width: 0ch; }
+
+    .typewriter {
+      position: absolute; top:50%; left:50%;
+      transform: translate(-50%,-50%);
+      white-space: nowrap; overflow:hidden;
+      font: bold 32px system-ui, monospace;
+      color: currentColor;
+      border-right: var(--cursor-width) solid currentColor;  /* 默认光标 */
+      /* 初始状态：隐藏 */
+      width: 0; opacity: 0;
+    }
+
+    /* 打字机关键帧：0–33% 打字 → 33–50% 停留 → 50–83% 删除 → 83–100% 隐藏 */
+    @keyframes kw_typing {
+      0%,100%   { width: 0; opacity: 0; }
+      33.333%   { width: var(--ch-length); opacity: 1; }
+      50%       { width: var(--ch-length); opacity: 1; }
+      83.333%   { width: 0; opacity: 1; }
+    }
+
+    /* 各段文字 & 延迟 */
+    .seg1 {
+      color: #d3a694;
+      animation: kw_typing var(--seg-duration) steps(6,end) infinite;
+      animation-delay: 0s;
+    }
+    .seg2 {
+      color: #ebb6e4;
+      animation: kw_typing var(--seg-duration) steps(6,end) infinite;
+      animation-delay: calc(var(--seg-duration) * 1);
+    }
+    .seg3 {
+      color: #bf89e8;
+      animation: kw_typing var(--seg-duration) steps(6,end) infinite;
+      animation-delay: calc(var(--seg-duration) * 2);
+    }
+    .seg4 {
+      color: #96ae92;
+      animation: kw_typing var(--seg-duration) steps(6,end) infinite;
+      animation-delay: calc(var(--seg-duration) * 3);
     }
   ]]></style>
+
+  <!-- SMIL 循环触发（保留用于背景色） -->
+  <path id="p1" d="M0,50 H0" fill="none" visibility="hidden"/>
+  <animate id="seg1draw" href="#p1" attributeName="d"
+           values="M0,50 H0;M0,50 H500" dur="2s"
+           begin="0s;loop.end+0.1s" fill="freeze"/>
+  <animate id="seg1del"  href="#p1" attributeName="d"
+           values="M0,50 H500;M0,50 H0" dur="1s"
+           begin="seg1draw.end" fill="freeze"/>
+  <!-- seg2~4 draw/del 同理定义 -->
+  <animate id="loop" href="#p1" attributeName="d"
+           begin="seg4del.end+0.1s" dur="0.1s" fill="freeze"/>
+
 </svg>
