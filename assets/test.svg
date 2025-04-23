@@ -49,13 +49,14 @@
     <!-- draw -->
     <animate id="seg1draw" href="#p1" attributeName="d"
              values="M0,50 H0;M0,50 H500" dur="2s"
-             begin="0s;loop.end+0.1s" fill="freeze"/>
+             begin="0.5s;loop.end+0.1s" fill="freeze"/>
 
-         <circle r="5" fill="#ffd54f">
-    <animateMotion begin="seg1draw.begin" dur="2s" fill="freeze">
+  <circle r="10" fill="#ffd54f">
+    <animateMotion begin="0s" dur="2.5s" fill="freeze">
       <mpath href="#p1"/>
     </animateMotion>
   </circle>
+       
     <!-- delete -->
     <animate id="seg1del" href="#p1" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
