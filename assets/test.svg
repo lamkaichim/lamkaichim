@@ -3,14 +3,19 @@
      viewBox="0 0 600 100"
      preserveAspectRatio="xMidYMid slice">
 <defs>
-  <marker id="dot" 
-          markerUnits="strokeWidth" 
-          markerWidth="20" markerHeight="20"
-          refX="0" refY="0"
+  <marker id="dot"
+          viewBox="0 0 30 30"
+          markerUnits="userSpaceOnUse"
+          markerWidth="30"
+          markerHeight="30"
+          refX="30"
+          refY="15"
           orient="auto">
-    <circle cx="0" cy="0" r="5" fill="#ffd54f" />
+    <!-- 在 viewBox(0,0)-(30,30) 内心点是 (15,15) -->
+    <circle cx="15" cy="15" r="10" fill="#ffd54f" />
   </marker>
 </defs>
+
   <!-- Background rectangle with smooth color transitions -->
   <rect id="bg" width="100%" height="100%" fill="#210d1b">
     <!-- 1→2 --> 
@@ -53,8 +58,9 @@
 
   <!-- Segment 1 -->
   <g id="seg1" visibility="visible">
-    <path id="p1" d="M0,50 H0" fill="none"       stroke="none"
-      marker-end="url(#dot)" />/>
+    <path id="p1" d="M0,50 H0" fill="none"       
+      stroke="none"
+      marker-end="url(#dot)" />
     <!-- draw -->
     <animate id="seg1draw" href="#p1" attributeName="d"
              values="M0,50 H0;M0,50 H500" dur="2s"
