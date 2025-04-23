@@ -42,32 +42,10 @@
              keySplines="0.42 0 1 1"
              fill="freeze" />
   </rect>
-<defs>
-  <marker id="dot"
-          viewBox="0 0 30 30"
-          markerUnits="userSpaceOnUse"
-          markerWidth="30" markerHeight="30"
-          refX="15" refY="15"
-          orient="auto">
-    <circle cx="15" cy="15" r="10" fill="#210d1b">
-      <!-- 同步背景 1→2 的颜色渐变 -->
-      <animate attributeName="fill"
-               begin="seg1del.begin"
-               dur="1s"
-               values="#210d1b;#144b01"
-               keyTimes="0;1"
-               calcMode="spline"
-               keySplines="0.42 0 1 1"
-               fill="freeze"/>
-      <!-- 同理可为 seg2del, seg3del, seg4del 增加对应动画 -->
-    </circle>
-  </marker>
-</defs>
+
   <!-- Segment 1 -->
   <g id="seg1" visibility="visible">
-    <path id="p1" d="M0,50 H0" fill="none"       
-      stroke="none"
-      marker-end="url(#dot)" />
+    <path id="p1" d="M0,50 H0" fill="none"  />
     <!-- draw -->
     <animate id="seg1draw" href="#p1" attributeName="d"
              values="M0,50 H0;M0,50 H500" dur="2s"
