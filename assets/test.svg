@@ -3,163 +3,124 @@
      viewBox="0 0 600 100"
      preserveAspectRatio="xMidYMid slice">
 
-  <!-- Background: ease-in fade-in on delete begin -->
-  <rect id="bg" width="100%" height="100%" fill="#6e5859"/>
-  <animate href="#bg" attributeName="fill"
-           begin="seg1del.begin" dur="1s"
-           values="#6e5859;#5d4d29"
-           keyTimes="0;1" calcMode="spline" keySplines="0.42 0 1 1"
-           fill="freeze"/>
-  <animate href="#bg" attributeName="fill"
-           begin="seg2del.begin" dur="1s"
-           values="#5d4d29;#4a346c"
-           keyTimes="0;1" calcMode="spline" keySplines="0.42 0 1 1"
-           fill="freeze"/>
-  <animate href="#bg" attributeName="fill"
-           begin="seg3del.begin" dur="1s"
-           values="#4a346c;#143e03"
-           keyTimes="0;1" calcMode="spline" keySplines="0.42 0 1 1"
-           fill="freeze"/>
-  <animate href="#bg" attributeName="fill"
-           begin="seg4del.begin" dur="1s"
-           values="#143e03;#6e5859"
-           keyTimes="0;1" calcMode="spline" keySplines="0.42 0 1 1"
-           fill="freeze"/>
+  <!-- Define your four segment colors -->
+  <defs>
+    <style type="text/css"><![CDATA[
+      .bg1 { --c: #6e5859; }    /* initial/background color */
+      .bg2 { --c: #5d4d29; }
+      .bg3 { --c: #4a6f2a; }
+      .bg4 { --c: #2a5d6f; }
+      .bg5 { --c: #6f2a4a; }
+    ]]></style>
+  </defs>
+
+  <!-- Background rect -->
+  <rect id="bg" width="100%" height="100%" fill="var(--c)" class="bg1">
+    <!-- Transition to Segment 2 color when Segment 1 delete begins -->
+    <animate attributeName="fill"
+             begin="seg1del.begin"
+             dur="1s"
+             values="var(--c);#5d4d29"
+             keyTimes="0;1"
+             calcMode="spline"
+             keySplines="0.42 0 1 1"
+             fill="freeze" />
+    <!-- Transition to Segment 3 color when Segment 2 delete begins -->
+    <animate attributeName="fill"
+             begin="seg2del.begin"
+             dur="1s"
+             values="#5d4d29;#4a6f2a"
+             keyTimes="0;1"
+             calcMode="spline"
+             keySplines="0.42 0 1 1"
+             fill="freeze" />
+    <!-- Transition to Segment 4 color when Segment 3 delete begins -->
+    <animate attributeName="fill"
+             begin="seg3del.begin"
+             dur="1s"
+             values="#4a6f2a;#2a5d6f"
+             keyTimes="0;1"
+             calcMode="spline"
+             keySplines="0.42 0 1 1"
+             fill="freeze" />
+    <!-- Transition back to initial color when Segment 4 delete begins -->
+    <animate attributeName="fill"
+             begin="seg4del.begin"
+             dur="1s"
+             values="#2a5d6f;#6e5859"
+             keyTimes="0;1"
+             calcMode="spline"
+             keySplines="0.42 0 1 1"
+             fill="freeze" />
+  </rect>
 
   <!-- Segment 1 -->
   <g id="seg1" visibility="visible">
     <path id="p1" d="M0,50 H0" fill="none"/>
     <animate id="seg1draw" href="#p1" attributeName="d"
-             values="M0,50 H0;M0,50 H500" dur="2s"
-             begin="0s;loop.end+0.1s" fill="freeze"/>
+             begin="0s" dur="1s"
+             values="M0,50 H0;M0,50 H150"
+             fill="freeze" />
     <animate id="seg1del" href="#p1" attributeName="d"
-             values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg1draw.end" fill="freeze"/>
-    <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
-    <set href="#seg1" attributeName="visibility" to="visible" begin="loop.begin"/>
-
-    <!-- text1: ease-in transition -->
-    <text id="text1"
-          font-family="system-ui"
-          font-size="32"
-          font-weight="bold"
-          text-anchor="middle"
-          x="50%" y="50"
-          dominant-baseline="middle"
-          fill="#d99ca8">
-      <textPath href="#p1">第一段文字</textPath>
-      <animate attributeName="fill"
-               begin="seg1del.begin" dur="1s"
-               values="#d99ca8;#bb8da2"
-               keyTimes="0;1" calcMode="spline" keySplines="0.42 0 1 1"
-               fill="freeze"/>
-    </text>
+             begin="seg1draw.end+1s" dur="1s"
+             values="M0,50 H150;M150,50 H150"
+             fill="freeze" />
   </g>
 
   <!-- Segment 2 -->
   <g id="seg2" visibility="hidden">
-    <path id="p2" d="M0,50 H0" fill="none"/>
+    <path id="p2" d="M150,50 H150" fill="none"/>
     <animate id="seg2draw" href="#p2" attributeName="d"
-             values="M0,50 H0;M0,50 H500" dur="2s"
-             begin="seg1del.end" fill="freeze"/>
+             begin="seg1del.end" dur="1s"
+             values="M150,50 H150;M150,50 H300"
+             fill="freeze" />
     <animate id="seg2del" href="#p2" attributeName="d"
-             values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg2draw.end" fill="freeze"/>
-    <set attributeName="visibility" to="visible" begin="seg1del.end"/>
-    <set attributeName="visibility" to="hidden" begin="seg2del.end+1s"/>
-
-    <!-- text2: ease-in transition -->
-    <text id="text2"
-          font-family="system-ui"
-          font-size="32"
-          font-weight="bold"
-          text-anchor="middle"
-          x="50%" y="50"
-          dominant-baseline="middle"
-          fill="#bb8da2">
-      <textPath href="#p2">第二段文字</textPath>
-      <animate attributeName="fill"
-               begin="seg2del.begin" dur="1s"
-               values="#bb8da2;#ad96db"
-               keyTimes="0;1" calcMode="spline" keySplines="0.42 0 1 1"
-               fill="freeze"/>
-    </text>
+             begin="seg2draw.end+1s" dur="1s"
+             values="M150,50 H300;M300,50 H300"
+             fill="freeze" />
   </g>
 
   <!-- Segment 3 -->
   <g id="seg3" visibility="hidden">
-    <path id="p3" d="M0,50 H0" fill="none"/>
+    <path id="p3" d="M300,50 H300" fill="none"/>
     <animate id="seg3draw" href="#p3" attributeName="d"
-             values="M0,50 H0;M0,50 H500" dur="2s"
-             begin="seg2del.end" fill="freeze"/>
+             begin="seg2del.end" dur="1s"
+             values="M300,50 H300;M300,50 H450"
+             fill="freeze" />
     <animate id="seg3del" href="#p3" attributeName="d"
-             values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg3draw.end" fill="freeze"/>
-    <set attributeName="visibility" to="visible" begin="seg2del.end"/>
-    <set attributeName="visibility" to="hidden" begin="seg3del.end+1s"/>
-
-    <!-- text3: ease-in transition -->
-    <text id="text3"
-          font-family="system-ui"
-          font-size="32"
-          font-weight="bold"
-          text-anchor="middle"
-          x="50%" y="50"
-          dominant-baseline="middle"
-          fill="#ad96db">
-      <textPath href="#p3">第三段文字</textPath>
-      <animate attributeName="fill"
-               begin="seg3del.begin" dur="1s"
-               values="#ad96db;#b0f4d7"
-               keyTimes="0;1" calcMode="spline" keySplines="0.42 0 1 1"
-               fill="freeze"/>
-    </text>
+             begin="seg3draw.end+1s" dur="1s"
+             values="M300,50 H450;M450,50 H450"
+             fill="freeze" />
   </g>
 
   <!-- Segment 4 -->
   <g id="seg4" visibility="hidden">
-    <path id="p4" d="M0,50 H0" fill="none"/>
+    <path id="p4" d="M450,50 H450" fill="none"/>
     <animate id="seg4draw" href="#p4" attributeName="d"
-             values="M0,50 H0;M0,50 H500" dur="2s"
-             begin="seg3del.end" fill="freeze"/>
+             begin="seg3del.end" dur="1s"
+             values="M450,50 H450;M450,50 H600"
+             fill="freeze" />
     <animate id="seg4del" href="#p4" attributeName="d"
-             values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg4draw.end" fill="freeze"/>
-    <set attributeName="visibility" to="visible" begin="seg3del.end"/>
-    <set attributeName="visibility" to="hidden" begin="seg4del.end+1s"/>
-
-    <!-- text4: ease-in transition -->
-    <text id="text4"
-          font-family="system-ui"
-          font-size="32"
-          font-weight="bold"
-          text-anchor="middle"
-          x="50%" y="50"
-          dominant-baseline="middle"
-          fill="#b0f4d7">
-      <textPath href="#p4">第四段文字</textPath>
-      <animate attributeName="fill"
-               begin="seg4del.begin" dur="1s"
-               values="#b0f4d7;#d99ca8"
-               keyTimes="0;1" calcMode="spline" keySplines="0.42 0 1 1"
-               fill="freeze"/>
-    </text>
+             begin="seg4draw.end+1s" dur="1s"
+             values="M450,50 H600;M600,50 H600"
+             fill="freeze" />
   </g>
 
-  <!-- Invisible loop trigger -->
-  <animate id="loop" href="#p1" attributeName="d"
-           begin="seg4del.end+0.1s" dur="0.1s" fill="freeze"/>
-
-  <!-- Loop start: ease-in back to initial colors -->
-  <animate href="#bg" attributeName="fill"
-           begin="loop.begin" dur="1s"
-           values="#143e03;#6e5859"
-           keyTimes="0;1" calcMode="spline" keySplines="0.42 0 1 1"
-           fill="freeze"/>
-  <animate href="#text1" attributeName="fill"
-           begin="loop.begin" dur="1s"
-           values="#bb8da2;#d99ca8"
-           keyTimes="0;1" calcMode="spline" keySplines="0.42 0 1 1"
-           fill="freeze"/>
-
+  <!-- Loop everything indefinitely -->
+  <animate href="#seg1" attributeName="visibility"
+           values="visible;hidden;hidden;hidden"
+           keyTimes="0;0.25;0.5;0.75;1"
+           dur="8s" repeatCount="indefinite" />
+  <animate href="#seg2" attributeName="visibility"
+           values="hidden;visible;hidden;hidden"
+           keyTimes="0;0.25;0.5;0.75;1"
+           dur="8s" repeatCount="indefinite" />
+  <animate href="#seg3" attributeName="visibility"
+           values="hidden;hidden;visible;hidden"
+           keyTimes="0;0.25;0.5;0.75;1"
+           dur="8s" repeatCount="indefinite" />
+  <animate href="#seg4" attributeName="visibility"
+           values="hidden;hidden;hidden;visible"
+           keyTimes="0;0.25;0.5;0.75;1"
+           dur="8s" repeatCount="indefinite" />
 </svg>
