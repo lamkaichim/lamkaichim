@@ -3,153 +3,68 @@
      viewBox="0 0 600 100"
      preserveAspectRatio="xMidYMid slice">
 
+  <!-- CSS variables for colors -->
+  <style>
+    :root {
+    --COLOR_BG:     #191d07;
+    --COLOR_BG2:    #410f37;
+    --COLOR_BG3:    #47360e;
+    --COLOR_BG4:    #23231a;
+    --COLOR_TEXT1:  #9fe0c6;
+    --COLOR_TEXT2:  #a88c96;
+    --COLOR_TEXT3:  #99e8e2;
+    --COLOR_TEXT4:  #bd93ac;
+  }};
+      --COLOR_BG2:    {{COLOR_BG2}};
+      --COLOR_BG3:    {{COLOR_BG3}};
+      --COLOR_BG4:    {{COLOR_BG4}};
+      --COLOR_TEXT1:  {{COLOR_TEXT1}};
+      --COLOR_TEXT2:  {{COLOR_TEXT2}};
+      --COLOR_TEXT3:  {{COLOR_TEXT3}};
+      --COLOR_TEXT4:  {{COLOR_TEXT4}};
+    }
+  </style>
+
   <!-- Background rectangle with smooth color transitions -->
-  <rect id="bg" width="100%" height="100%" fill="#210d1b">
-    <!-- 1→2 -->
+  <rect id="bg" width="100%" height="100%" fill="var(--COLOR_BG)">
     <animate attributeName="fill"
              begin="seg1del.begin"
              dur="1s"
-             values="#210d1b;#144b01"
+             values="var(--COLOR_BG);var(--COLOR_BG2)"
              keyTimes="0;1"
              calcMode="spline"
              keySplines="0.42 0 1 1"
              fill="freeze" />
-    <!-- 2→3 -->
     <animate attributeName="fill"
              begin="seg2del.begin"
              dur="1s"
-             values="#144b01;#056233"
+             values="var(--COLOR_BG2);var(--COLOR_BG3)"
              keyTimes="0;1"
              calcMode="spline"
              keySplines="0.42 0 1 1"
              fill="freeze" />
-    <!-- 3→4 -->
     <animate attributeName="fill"
              begin="seg3del.begin"
              dur="1s"
-             values="#056233;#765b72"
+             values="var(--COLOR_BG3);var(--COLOR_BG4)"
              keyTimes="0;1"
              calcMode="spline"
              keySplines="0.42 0 1 1"
              fill="freeze" />
-    <!-- 4→1 -->
     <animate attributeName="fill"
              begin="seg4del.begin"
              dur="1s"
-             values="#765b72;#210d1b"
+             values="var(--COLOR_BG4);var(--COLOR_BG)"
              keyTimes="0;1"
              calcMode="spline"
              keySplines="0.42 0 1 1"
              fill="freeze" />
   </rect>
 
+  <!-- SEGMENTS placeholder -->
+  <!-- will be replaced by gen-svg.js -->
+
   <!-- Invisible loop trigger -->
   <animate id="loop" href="#p1" attributeName="d"
            begin="seg4del.end+0.6s" dur="0.1s" fill="freeze"/>
-
-  
-  <g id="seg1" visibility="visible">
-    <path id="p1" d="M0,50 H0" fill="none"/>
-    <animate id="seg1draw" href="#p1" attributeName="d"
-             values="M0,50 H0;M0,50 H500" dur="2s"
-             begin="0s;loop.end+0.1s" fill="freeze"/>
-    <animate id="seg1del" href="#p1" attributeName="d"
-             values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg1draw.end+0.5s" fill="freeze"/>
-    <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
-    <set href="#seg1" attributeName="visibility" to="visible" begin="loop.begin"/>
-
-    <text id="text1" font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
-          fill="var(--COLOR_TEXT1)">
-      <textPath href="#p1">I am Stephen Lam</textPath>
-      <animate attributeName="fill"
-               begin="seg1del.begin"
-               dur="1s"
-               values="var(--COLOR_TEXT1);var(--COLOR_TEXT2)"
-               keyTimes="0;1"
-               calcMode="spline"
-               keySplines="0.42 0 1 1"
-               fill="remove" />
-    </text>
-  </g>
-
-  <g id="seg2" visibility="hidden">
-    <path id="p2" d="M0,50 H0" fill="none"/>
-    <animate id="seg2draw" href="#p2" attributeName="d"
-             values="M0,50 H0;M0,50 H500" dur="2s"
-             begin="seg1del.end" fill="freeze"/>
-    <animate id="seg2del" href="#p2" attributeName="d"
-             values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg2draw.end+0.5s" fill="freeze"/>
-    <set attributeName="visibility" to="hidden" begin="seg2del.end+1s"/>
-    <set href="#seg2" attributeName="visibility" to="visible" begin="loop.begin"/>
-
-    <text id="text2" font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
-          fill="var(--COLOR_TEXT2)">
-      <textPath href="#p2">Hi How are you</textPath>
-      <animate attributeName="fill"
-               begin="seg2del.begin"
-               dur="1s"
-               values="var(--COLOR_TEXT2);var(--COLOR_TEXT3)"
-               keyTimes="0;1"
-               calcMode="spline"
-               keySplines="0.42 0 1 1"
-               fill="remove" />
-    </text>
-  </g>
-
-  <g id="seg3" visibility="hidden">
-    <path id="p3" d="M0,50 H0" fill="none"/>
-    <animate id="seg3draw" href="#p3" attributeName="d"
-             values="M0,50 H0;M0,50 H500" dur="2s"
-             begin="seg2del.end" fill="freeze"/>
-    <animate id="seg3del" href="#p3" attributeName="d"
-             values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg3draw.end+0.5s" fill="freeze"/>
-    <set attributeName="visibility" to="hidden" begin="seg3del.end+1s"/>
-    <set href="#seg3" attributeName="visibility" to="visible" begin="loop.begin"/>
-
-    <text id="text3" font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
-          fill="var(--COLOR_TEXT3)">
-      <textPath href="#p3">Let's talk</textPath>
-      <animate attributeName="fill"
-               begin="seg3del.begin"
-               dur="1s"
-               values="var(--COLOR_TEXT3);var(--COLOR_TEXT4)"
-               keyTimes="0;1"
-               calcMode="spline"
-               keySplines="0.42 0 1 1"
-               fill="remove" />
-    </text>
-  </g>
-
-  <g id="seg4" visibility="hidden">
-    <path id="p4" d="M0,50 H0" fill="none"/>
-    <animate id="seg4draw" href="#p4" attributeName="d"
-             values="M0,50 H0;M0,50 H500" dur="2s"
-             begin="seg3del.end" fill="freeze"/>
-    <animate id="seg4del" href="#p4" attributeName="d"
-             values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg4draw.end+0.5s" fill="freeze"/>
-    <set attributeName="visibility" to="hidden" begin="seg4del.end+1s"/>
-    <set href="#seg4" attributeName="visibility" to="visible" begin="loop.begin"/>
-
-    <text id="text4" font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
-          fill="var(--COLOR_TEXT4)">
-      <textPath href="#p4">I can't wait</textPath>
-      <animate attributeName="fill"
-               begin="seg4del.begin"
-               dur="1s"
-               values="var(--COLOR_TEXT4);var(--COLOR_TEXT1)"
-               keyTimes="0;1"
-               calcMode="spline"
-               keySplines="0.42 0 1 1"
-               fill="remove" />
-    </text>
-  </g>
-
 </svg>
