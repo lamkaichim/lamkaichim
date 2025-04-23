@@ -1,5 +1,4 @@
-![Login Splash](./assets/splash.svg)
-
+![Banner Splash](./assets/splash.svg)
 
 ![visitors](https://vbr.nathanchung.dev/badge?page_id=lamkaichim&color=white&logo=github&style=plastic&text=VISITORS)
 
