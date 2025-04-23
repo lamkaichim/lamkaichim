@@ -81,7 +81,7 @@
              begin="seg1del.end" fill="freeze"/>
     <animate id="seg2del" href="#p2" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg2draw.end" fill="freeze"/>
+             begin="seg2draw.end+0.5s" fill="freeze"/>
     <set attributeName="visibility" to="visible" begin="seg1del.end"/>
     <set attributeName="visibility" to="hidden" begin="seg2del.end+1s"/>
 
@@ -108,7 +108,7 @@
              begin="seg2del.end" fill="freeze"/>
     <animate id="seg3del" href="#p3" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg3draw.end" fill="freeze"/>
+             begin="seg3draw.end+0.5s" fill="freeze"/>
     <set attributeName="visibility" to="visible" begin="seg2del.end"/>
     <set attributeName="visibility" to="hidden" begin="seg3del.end+1s"/>
 
@@ -135,7 +135,7 @@
              begin="seg3del.end" fill="freeze"/>
     <animate id="seg4del" href="#p4" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg4draw.end" fill="freeze"/>
+             begin="seg4draw.end+0.5s" fill="freeze"/>
     <set attributeName="visibility" to="visible" begin="seg3del.end"/>
     <set attributeName="visibility" to="hidden" begin="seg4del.end+1s"/>
 
@@ -156,7 +156,7 @@
 
   <!-- Invisible loop trigger -->
   <animate id="loop" href="#p1" attributeName="d"
-           begin="seg4del.end+0.1s" dur="0.1s" fill="freeze"/>
+           begin="seg4del.end+0.6s" dur="0.1s" fill="freeze"/>
 <set href="#text1" attributeName="fill"
      to="#b6a5f7"
      begin="loop.begin" />
