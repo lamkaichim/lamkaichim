@@ -1,70 +1,82 @@
-<?xml version="1.0" encoding="UTF-8"?>  
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 100" preserveAspectRatio="xMidYMid slice">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 600 100"
+     preserveAspectRatio="xMidYMid slice">
 
-  <!-- 1. 背景 -->
+  <!-- 背景色按段删除开始时切换 -->
   <rect id="bg" width="100%" height="100%" fill="#3c3e40">
-    <set href="#bg" attributeName="fill" to="#3c3e40" begin="seg1del.begin"/>
-    <set href="#bg" attributeName="fill" to="#222323" begin="seg2del.begin"/>
-    <set href="#bg" attributeName="fill" to="#727d3c" begin="seg3del.begin"/>
-    <set href="#bg" attributeName="fill" to="#7a3e5e" begin="seg4del.begin"/>
+    <set href="#bg" attributeName="fill" to="#3c3e40" begin="seg1del.end+1.5s"/>
+    <set href="#bg" attributeName="fill" to="#222323" begin="seg2del.end+1.5s"/>
+    <set href="#bg" attributeName="fill" to="#727d3c" begin="seg3del.end+1.5s"/>
+    <set href="#bg" attributeName="fill" to="#7a3e5e" begin="seg4del.end+1.5s"/>
   </rect>
 
-  <!-- 2. HTML/CSS 打字机 -->
+  <!-- HTML/CSS 打字机容器 -->
   <foreignObject x="0" y="0" width="600" height="100">
-    <div xmlns="http://www.w3.org/1999/xhtml" style="position:relative;width:100%;height:100%;overflow:hidden;">
-      <div id="w1" class="typewriter seg1">第一段文字</div>
-      <div id="w2" class="typewriter seg2">第二段文字</div>
-      <div id="w3" class="typewriter seg3">第三段文字</div>
-      <div id="w4" class="typewriter seg4">第四段文字</div>
+    <div xmlns="http://www.w3.org/1999/xhtml"
+         style="position:relative; width:100%; height:100%; overflow:hidden;">
+      <div class="tw seg1">第一段文字</div>
+      <div class="tw seg2">第二段文字</div>
+      <div class="tw seg3">第三段文字</div>
+      <div class="tw seg4">第四段文字</div>
     </div>
   </foreignObject>
 
-  <!-- 3. CSS 动画 -->
+  <!-- CSS 动画 -->
   <style type="text/css"><![CDATA[
     :root {
-      --segD: 6s;   /* 单段周期 */
-      --chars: 6ch; /* 字符宽度 */
-      --cw: 2px;    /* 光标宽度 */
+      --seg: 6s;      /* 单段总时长 */
+      --c1: 6ch;      /* 第一段文字长度 */
+      --c2: 6ch;      /* 第二段（请改为实际字符数）*/
+      --c3: 6ch;
+      --c4: 6ch;
+      --cw: 2px;      /* 光标宽度 */
     }
-    .typewriter {
-      position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    .tw {
+      position:absolute; top:50%; left:50%;
+      transform:translate(-50%,-50%);
       white-space:nowrap; overflow:hidden;
       font:bold 32px system-ui,monospace;
-      color:currentColor;
       border-right:var(--cw) solid currentColor;
       width:0; opacity:0;
-      /* 只演一次，结束后保留末态（隐藏） */
       animation-fill-mode:forwards;
-      animation-iteration-count:1;
+      animation-iteration-count:infinite;
     }
-    @keyframes typing {
-      0%,100%   { width:0; opacity:0; }
-      33.333%   { width:var(--chars); opacity:1; }
-      50%       { width:var(--chars); opacity:1; }
-      83.333%   { width:0; opacity:1; }
+    @keyframes type {
+      0%    { width:0;       opacity:0; }
+      33.33%{ width:var(--chars); opacity:1; }
+      50%   { width:var(--chars); opacity:1; }
+      66.67%{ width:0;       opacity:1; }
+      100%  { width:0;       opacity:0; }
     }
-    .seg1 { color:#d3a694; animation:typing var(--segD) steps(6,end) 0s 1 forwards; }
-    .seg2 { color:#ebb6e4; animation:typing var(--segD) steps(6,end) var(--segD) 1 forwards; }
-    .seg3 { color:#bf89e8; animation:typing var(--segD) steps(6,end) calc(var(--segD)*2) 1 forwards; }
-    .seg4 { color:#96ae92; animation:typing var(--segD) steps(6,end) calc(var(--segD)*3) 1 forwards; }
+    /* 四段分别设置字符长度、颜色、延迟 */
+    .seg1 {
+      --chars: var(--c1);
+      color:#d3a694; 
+      animation: type var(--seg) steps(calc(var(--c1)),end) var(--seg)*0 infinite;
+    }
+    .seg2 {
+      --chars: var(--c2);
+      color:#ebb6e4; 
+      animation: type var(--seg) steps(calc(var(--c2)),end) var(--seg)*1 infinite;
+    }
+    .seg3 {
+      --chars: var(--c3);
+      color:#bf89e8; 
+      animation: type var(--seg) steps(calc(var(--c3)),end) var(--seg)*2 infinite;
+    }
+    .seg4 {
+      --chars: var(--c4);
+      color:#96ae92; 
+      animation: type var(--seg) steps(calc(var(--c4)),end) var(--seg)*3 infinite;
+    }
   ]]></style>
 
-  <!-- 4. SMIL 驱动循环重置 CSS 动画 -->
-  <!-- 用一个“无效”属性 data-run，从 false 切换到 true，迫使浏览器重绘并重放 CSS -->
-  <set id="r1" href="#w1" attributeName="data-run" to="true" begin="0s;loop.end+0.1s"/>
-  <set id="r2" href="#w2" attributeName="data-run" to="true" begin="seg1del.end+0.1s"/>
-  <set id="r3" href="#w3" attributeName="data-run" to="true" begin="seg2del.end+0.1s"/>
-  <set id="r4" href="#w4" attributeName="data-run" to="true" begin="seg3del.end+0.1s"/>
-
-  <!-- 5. SMIL 路径 & draw/del 逻辑（仅 seg1 展示示例； seg2~4 同理） -->
-  <path id="p1" d="M0,50 H0" fill="none" visibility="hidden"/>
-  <animate id="seg1draw" href="#p1" attributeName="d" values="M0,50 H0;M0,50 H500"
-           dur="2s" begin="0s;loop.end+0.1s" fill="freeze"/>
-  <animate id="seg1del"  href="#p1" attributeName="d" values="M0,50 H500;M0,50 H0"
-           dur="1s" begin="seg1draw.end" fill="freeze"/>
-  <!-- seg2draw/begin=seg1del.end, seg2del, ... seg3, seg4 同理 -->
-
-  <!-- 6. 循环触发 -->
-  <animate id="loop" href="#p1" attributeName="d" begin="seg4del.end+0.1s"
-           dur="0.1s" fill="freeze"/>
+  <!-- SMIL: 仅用于循环触发与背景同步 -->
+  <path id="p1" d="M0,50 H0" visibility="hidden"/>
+  <animate id="seg1del" href="#p1" attributeName="d"
+           values="M0,50 H0;M0,50 H0" /* 占位，不做真正动画 */
+           begin="0s" dur="24s" fill="freeze"/>
+  <animate id="loop" href="#p1" attributeName="d"
+           begin="seg4del.end+1.5s" dur="0.1s" fill="freeze"/>
 </svg>
