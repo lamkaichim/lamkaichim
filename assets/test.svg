@@ -3,20 +3,28 @@
      viewBox="0 0 600 100"
      preserveAspectRatio="xMidYMid slice">
 
-  <!-- Background: smooth fade-in on delete begin -->
+  <!-- Background: ease-in fade-in on delete begin -->
   <rect id="bg" width="100%" height="100%" fill="#6e5859"/>
   <animate href="#bg" attributeName="fill"
            begin="seg1del.begin" dur="1s"
-           values="#6e5859;#5d4d29" fill="freeze"/>
+           values="#6e5859;#5d4d29"
+           keyTimes="0;1" calcMode="spline" keySplines="0.42 0 1 1"
+           fill="freeze"/>
   <animate href="#bg" attributeName="fill"
            begin="seg2del.begin" dur="1s"
-           values="#5d4d29;#4a346c" fill="freeze"/>
+           values="#5d4d29;#4a346c"
+           keyTimes="0;1" calcMode="spline" keySplines="0.42 0 1 1"
+           fill="freeze"/>
   <animate href="#bg" attributeName="fill"
            begin="seg3del.begin" dur="1s"
-           values="#4a346c;#143e03" fill="freeze"/>
+           values="#4a346c;#143e03"
+           keyTimes="0;1" calcMode="spline" keySplines="0.42 0 1 1"
+           fill="freeze"/>
   <animate href="#bg" attributeName="fill"
            begin="seg4del.begin" dur="1s"
-           values="#143e03;#6e5859" fill="freeze"/>
+           values="#143e03;#6e5859"
+           keyTimes="0;1" calcMode="spline" keySplines="0.42 0 1 1"
+           fill="freeze"/>
 
   <!-- Segment 1 -->
   <g id="seg1" visibility="visible">
@@ -30,13 +38,15 @@
     <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
     <set href="#seg1" attributeName="visibility" to="visible" begin="loop.begin"/>
 
-    <!-- text color transitions to next segment -->
+    <!-- text1: ease-in transition to next color -->
     <text id="text1" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#d99ca8">
       <textPath href="#p1">第一段文字</textPath>
       <animate attributeName="fill"
                begin="seg1del.begin" dur="1s"
-               values="#d99ca8;#bb8da2" fill="freeze"/>
+               values="#d99ca8;#bb8da2"
+               keyTimes="0;1" calcMode="spline" keySplines="0.42 0 1 1"
+               fill="freeze"/>
     </text>
   </g>
 
@@ -52,12 +62,15 @@
     <set attributeName="visibility" to="visible" begin="seg1del.end"/>
     <set attributeName="visibility" to="hidden" begin="seg2del.end+1s"/>
 
+    <!-- text2: ease-in transition -->
     <text id="text2" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#bb8da2">
       <textPath href="#p2">第二段文字</textPath>
       <animate attributeName="fill"
                begin="seg2del.begin" dur="1s"
-               values="#bb8da2;#ad96db" fill="freeze"/>
+               values="#bb8da2;#ad96db"
+               keyTimes="0;1" calcMode="spline" keySplines="0.42 0 1 1"
+               fill="freeze"/>
     </text>
   </g>
 
@@ -73,12 +86,15 @@
     <set attributeName="visibility" to="visible" begin="seg2del.end"/>
     <set attributeName="visibility" to="hidden" begin="seg3del.end+1s"/>
 
+    <!-- text3: ease-in transition -->
     <text id="text3" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#ad96db">
       <textPath href="#p3">第三段文字</textPath>
       <animate attributeName="fill"
                begin="seg3del.begin" dur="1s"
-               values="#ad96db;#b0f4d7" fill="freeze"/>
+               values="#ad96db;#b0f4d7"
+               keyTimes="0;1" calcMode="spline" keySplines="0.42 0 1 1"
+               fill="freeze"/>
     </text>
   </g>
 
@@ -94,12 +110,15 @@
     <set attributeName="visibility" to="visible" begin="seg3del.end"/>
     <set attributeName="visibility" to="hidden" begin="seg4del.end+1s"/>
 
+    <!-- text4: ease-in transition -->
     <text id="text4" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#b0f4d7">
       <textPath href="#p4">第四段文字</textPath>
       <animate attributeName="fill"
                begin="seg4del.begin" dur="1s"
-               values="#b0f4d7;#d99ca8" fill="freeze"/>
+               values="#b0f4d7;#d99ca8"
+               keyTimes="0;1" calcMode="spline" keySplines="0.42 0 1 1"
+               fill="freeze"/>
     </text>
   </g>
 
