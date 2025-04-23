@@ -30,14 +30,15 @@
     <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
     <set href="#seg1" attributeName="visibility" to="visible" begin="loop.begin"/>
 
-    <!-- text with fade-out into background -->
+    <!-- text color transitions to next segment -->
     <text id="text1" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#d99ca8">
       <textPath href="#p1">第一段文字</textPath>
       <animate attributeName="fill"
                begin="seg1del.begin" dur="0.5s"
-               values="#d99ca8;#6e5859" fill="freeze"/>
+               values="#d99ca8;#bb8da2" fill="freeze"/>
     </text>
+    <!-- cursor blink -->
     <text visibility="hidden" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#d99ca8">
       <textPath href="#p1" startOffset="100%">|</textPath>
@@ -45,7 +46,6 @@
                begin="seg1del.end" repeatCount="1" calcMode="discrete"/>
       <set attributeName="visibility" to="visible" begin="seg1del.end"/>
     </text>
-    <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
   </g>
 
   <!-- Segment 2 -->
@@ -65,7 +65,7 @@
       <textPath href="#p2">第二段文字</textPath>
       <animate attributeName="fill"
                begin="seg2del.begin" dur="0.5s"
-               values="#bb8da2;#5d4d29" fill="freeze"/>
+               values="#bb8da2;#ad96db" fill="freeze"/>
     </text>
     <text visibility="hidden" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#bb8da2">
@@ -93,7 +93,7 @@
       <textPath href="#p3">第三段文字</textPath>
       <animate attributeName="fill"
                begin="seg3del.begin" dur="0.5s"
-               values="#ad96db;#4a346c" fill="freeze"/>
+               values="#ad96db;#b0f4d7" fill="freeze"/>
     </text>
     <text visibility="hidden" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#ad96db">
@@ -121,7 +121,7 @@
       <textPath href="#p4">第四段文字</textPath>
       <animate attributeName="fill"
                begin="seg4del.begin" dur="0.5s"
-               values="#b0f4d7;#143e03" fill="freeze"/>
+               values="#b0f4d7;#d99ca8" fill="freeze"/>
     </text>
     <text visibility="hidden" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#b0f4d7">
