@@ -3,9 +3,8 @@
      viewBox="0 0 600 100"
      preserveAspectRatio="xMidYMid slice">
 
-  <!-- Background: smooth fade-in on delete and reset on loop -->
+  <!-- Background: smooth fade-in on delete begin -->
   <rect id="bg" width="100%" height="100%" fill="#6e5859"/>
-  <!-- Fade to next segment color on delete -->
   <animate href="#bg" attributeName="fill"
            begin="seg1del.begin" dur="1s"
            values="#6e5859;#6e5859" fill="freeze"/>
@@ -18,10 +17,6 @@
   <animate href="#bg" attributeName="fill"
            begin="seg4del.begin" dur="1s"
            values="#4a346c;#143e03" fill="freeze"/>
-  <!-- Reset background color on loop -->
-  <animate href="#bg" attributeName="fill"
-           begin="loop.begin" dur="1s"
-           values="#143e03;#6e5859" fill="freeze"/>
 
   <!-- Segment 1 -->
   <g id="seg1" visibility="visible">
@@ -35,18 +30,13 @@
     <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
     <set href="#seg1" attributeName="visibility" to="visible" begin="loop.begin"/>
 
-    <!-- text color transitions to next segment and resets on loop -->
+    <!-- text color transitions to next segment -->
     <text id="text1" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#d99ca8">
       <textPath href="#p1">第一段文字</textPath>
-      <!-- fade to seg2 color -->
       <animate attributeName="fill"
                begin="seg1del.begin" dur="1s"
                values="#d99ca8;#bb8da2" fill="freeze"/>
-      <!-- reset to original on loop -->
-      <animate attributeName="fill"
-               begin="loop.begin" dur="1s"
-               values="#bb8da2;#d99ca8" fill="freeze"/>
     </text>
   </g>
 
@@ -65,14 +55,9 @@
     <text id="text2" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#bb8da2">
       <textPath href="#p2">第二段文字</textPath>
-      <!-- fade to seg3 color -->
       <animate attributeName="fill"
                begin="seg2del.begin" dur="1s"
                values="#bb8da2;#ad96db" fill="freeze"/>
-      <!-- reset to original on loop -->
-      <animate attributeName="fill"
-               begin="loop.begin" dur="1s"
-               values="#ad96db;#bb8da2" fill="freeze"/>
     </text>
   </g>
 
@@ -91,14 +76,9 @@
     <text id="text3" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#ad96db">
       <textPath href="#p3">第三段文字</textPath>
-      <!-- fade to seg4 color -->
       <animate attributeName="fill"
                begin="seg3del.begin" dur="1s"
                values="#ad96db;#b0f4d7" fill="freeze"/>
-      <!-- reset to original on loop -->
-      <animate attributeName="fill"
-               begin="loop.begin" dur="1s"
-               values="#b0f4d7;#ad96db" fill="freeze"/>
     </text>
   </g>
 
@@ -117,19 +97,17 @@
     <text id="text4" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#b0f4d7">
       <textPath href="#p4">第四段文字</textPath>
-      <!-- fade to seg1 color -->
       <animate attributeName="fill"
                begin="seg4del.begin" dur="1s"
                values="#b0f4d7;#d99ca8" fill="freeze"/>
-      <!-- reset to original on loop -->
-      <animate attributeName="fill"
-               begin="loop.begin" dur="1s"
-               values="#d99ca8;#b0f4d7" fill="freeze"/>
     </text>
   </g>
 
   <!-- Invisible loop trigger -->
   <animate id="loop" href="#p1" attributeName="d"
            begin="seg4del.end+0.1s" dur="0.1s" fill="freeze"/>
+  <!-- reset bg and first text color at loop start -->
+  <set href="#bg" attributeName="fill" to="#6e5859" begin="loop.begin"/>
+  <set href="#text1" attributeName="fill" to="#d99ca8" begin="loop.begin"/>
 
 </svg>
