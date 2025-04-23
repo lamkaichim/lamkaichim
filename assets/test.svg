@@ -6,7 +6,7 @@
   <!-- 背景色 -->
   <rect width="100%" height="100%" fill="#3c3e40"/>
 
-  <!-- foreignObject 嵌入 HTML/CSS 动画 -->
+  <!-- 嵌入 HTML/CSS 动画 -->
   <foreignObject x="0" y="0" width="600" height="100">
     <div xmlns="http://www.w3.org/1999/xhtml"
          style="width:600px; height:100px;
@@ -21,50 +21,52 @@
 
   <style type="text/css"><![CDATA[
     .tw {
-      position: absolute;
-      top: 50%; left: 50%;
+      position: absolute; top:50%; left:50%;
       transform: translate(-50%, -50%);
       font: bold 32px system-ui, monospace;
-      white-space: nowrap;
-      overflow: hidden;
+      white-space: nowrap; overflow: hidden;
       border-right: 0.5em solid currentColor;  /* 常亮光标 */
-      width: 0ch;
-      opacity: 0;
+      width: 0ch; opacity: 0;
       animation-fill-mode: forwards;
     }
 
-    /* 打字机关键帧：6s 一轮 */
-    @keyframes type {
-      /* 0–33%：打字到全长并停留 */
-      0%   { width: 0ch;  opacity: 1; }
-      33%  { width: var(--count)ch; opacity:1; }
-      50%  { width: var(--count)ch; opacity:1; }
-      /* 50–83%：删除回 0 */
-      83%  { width: 0ch;  opacity:1; }
-      /* 83–100%：隐藏，为下一段腾位 */
-      100% { width: 0ch;  opacity:0; }
+    /* 24s 循环关键帧：分 4 段，每段 6s */
+    @keyframes cycle {
+      /* 段1：0–6s 打字→停→删→停 */
+      0%   { width:  0ch;   opacity: 1; }
+      8.333%  { width:  var(--count)ch; opacity:1; }
+      16.666% { width:  var(--count)ch; opacity:1; }
+      25%  { width:  0ch;   opacity:1; }
+      25.001% { opacity:0; }
+
+      /* 段2：6–12s */
+      25%     { opacity:0; }
+      25.001% { opacity:1; width:0ch; }
+      33.333% { width: var(--count)ch; }
+      41.666% { width: var(--count)ch; }
+      50%     { width: 0ch; }
+      50.001% { opacity:0; }
+
+      /* 段3：12–18s */
+      50%     { opacity:0; }
+      50.001% { opacity:1; width:0ch; }
+      58.333% { width: var(--count)ch; }
+      66.666% { width: var(--count)ch; }
+      75%     { width: 0ch; }
+      75.001% { opacity:0; }
+
+      /* 段4：18–24s */
+      75%     { opacity:0; }
+      75.001% { opacity:1; width:0ch; }
+      83.333% { width: var(--count)ch; }
+      91.666% { width: var(--count)ch; }
+      100%    { width: 0ch;   opacity:0; }
     }
 
-    /* 各段配置：--count 为字符数，delay 为动画延迟 */
-    .seg1 {
-      --count: 6;                /* “第一段文字”6个字符 */
-      color: #d3a694;
-      animation: type 6s steps(var(--count), end) 0s infinite;
-    }
-    .seg2 {
-      --count: 6;                /* “第二段文字”6个字符 */
-      color: #ebb6e4;
-      animation: type 6s steps(var(--count), end) 6s infinite;
-    }
-    .seg3 {
-      --count: 6;                /* “第三段文字”6个字符 */
-      color: #bf89e8;
-      animation: type 6s steps(var(--count), end) 12s infinite;
-    }
-    .seg4 {
-      --count: 6;                /* “第四段文字”6个字符 */
-      color: #96ae92;
-      animation: type 6s steps(var(--count), end) 18s infinite;
-    }
+    /* 各段配置：--count 为字符数 */
+    .seg1 { --count:6;  color:#d3a694; animation: cycle 24s infinite; }
+    .seg2 { --count:6;  color:#ebb6e4; animation: cycle 24s infinite; }
+    .seg3 { --count:6;  color:#bf89e8; animation: cycle 24s infinite; }
+    .seg4 { --count:6;  color:#96ae92; animation: cycle 24s infinite; }
   ]]></style>
 </svg>
