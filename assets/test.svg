@@ -1,76 +1,66 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>  
 <svg xmlns="http://www.w3.org/2000/svg"
      viewBox="0 0 600 100"
      preserveAspectRatio="xMidYMid slice">
 
-  <!-- 抽取公用样式 -->
-  <style>
-    text {
-      font-family: system-ui;
-      font-size: 32px;
-      font-weight: bold;
-      text-anchor: middle;
-      dominant-baseline: middle;
+  <!-- 背景色 -->
+  <rect width="100%" height="100%" fill="#3c3e40"/>
+
+  <!-- 用 foreignObject 嵌入 HTML/CSS -->
+  <foreignObject x="0" y="0" width="600" height="100">
+    <div xmlns="http://www.w3.org/1999/xhtml"
+         style="width:600px; height:100px;
+                display:flex; justify-content:center;
+                align-items:center; overflow:hidden; position:relative;">
+      <!-- 四段文字，绝对定位叠在同一位置，通过动画延迟分别播放 -->
+      <div class="tw seg1">第一段文字</div>
+      <div class="tw seg2">第二段文字</div>
+      <div class="tw seg3">第三段文字</div>
+      <div class="tw seg4">第四段文字</div>
+    </div>
+  </foreignObject>
+
+  <!-- CSS 动画 -->
+  <style type="text/css"><![CDATA[
+    /* 基础变量 */
+    .tw {
+      position: absolute; top:50%; left:50%;
+      transform: translate(-50%, -50%);
+      font-family: system-ui, monospace;
+      font-size: 32px; font-weight: bold;
+      white-space: nowrap; overflow: visible;
+      border-right: 0.5em solid currentColor;  /* 圆形用伪元素，再去掉这里的直线 */
+      width: 0; opacity: 0;
+      /* 保持动画结束状态 */
+      animation-fill-mode: forwards;
     }
-    .seg1 text { fill: #8daae3; }
-    .seg2 text { fill: #8e94b6; }
-    .seg3 text { fill: #c18388; }
-    .seg4 text { fill: #e8b2a3; }
-  </style>
+    /* 圆形光标：利用 ::after */
+    .tw::after {
+      content: "";
+      display: inline-block;
+      vertical-align: middle;
+      width: 0.5em; height: 0.5em;
+      margin-left: 0.1em;
+      background: currentColor;
+      border-radius: 50%;
+      opacity: 1;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
 
-  <!-- 背景 -->
-  <rect id="bg" width="100%" height="100%" fill="#4f0f50"/>
+    /* 打字机动画：6s 循环  —— 2s 打入，1s 停留，2s 删除，1s 停留 */
+    @keyframes type {
+      0%   { width: 0ch; opacity: 1; }
+      33%  { width: calc(var(--chars)); opacity: 1; }
+      50%  { width: calc(var(--chars)); opacity: 1; }
+      83%  { width: 0ch; opacity: 1; }
+      100% { width: 0ch; opacity: 0; }
+    }
 
-  <!-- 第一段文字 -->
-  <g class="seg1">
-    <path id="p1" d="M0,50 H0" fill="none"/>
-    <animate href="#p1" attributeName="d"
-             values="M0,50 H0; M0,50 H500; M0,50 H0"
-             keyTimes="0;0.67;1"
-             dur="3s"
-             begin="0s"
-             repeatCount="indefinite"
-             fill="freeze"/>
-    <text><textPath href="#p1">第一段文字</textPath></text>
-  </g>
-
-  <!-- 第二段文字 -->
-  <g class="seg2">
-    <path id="p2" d="M0,50 H0" fill="none"/>
-    <animate href="#p2" attributeName="d"
-             values="M0,50 H0; M0,50 H500; M0,50 H0"
-             keyTimes="0;0.67;1"
-             dur="3s"
-             begin="3s"
-             repeatCount="indefinite"
-             fill="freeze"/>
-    <text><textPath href="#p2">第二段文字</textPath></text>
-  </g>
-
-  <!-- 第三段文字 -->
-  <g class="seg3">
-    <path id="p3" d="M0,50 H0" fill="none"/>
-    <animate href="#p3" attributeName="d"
-             values="M0,50 H0; M0,50 H500; M0,50 H0"
-             keyTimes="0;0.67;1"
-             dur="3s"
-             begin="6s"
-             repeatCount="indefinite"
-             fill="freeze"/>
-    <text><textPath href="#p3">第三段文字</textPath></text>
-  </g>
-
-  <!-- 第四段文字 -->
-  <g class="seg4">
-    <path id="p4" d="M0,50 H0" fill="none"/>
-    <animate href="#p4" attributeName="d"
-             values="M0,50 H0; M0,50 H500; M0,50 H0"
-             keyTimes="0;0.67;1"
-             dur="3s"
-             begin="9s"
-             repeatCount="indefinite"
-             fill="freeze"/>
-    <text><textPath href="#p4">第四段文字</textPath></text>
-  </g>
-
+    /* 各段专属设置：文字颜色 & 开始延迟，--chars 为字符数 */
+    .seg1 { --chars: 6ch; color: #d3a694; animation: type 6s ease 0s  infinite; }
+    .seg2 { --chars: 6ch; color: #ebb6e4; animation: type 6s ease 6s infinite; }
+    .seg3 { --chars: 6ch; color: #bf89e8; animation: type 6s ease 12s infinite; }
+    .seg4 { --chars: 6ch; color: #96ae92; animation: type 6s ease 18s infinite; }
+  ]]></style>
 </svg>
