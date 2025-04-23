@@ -58,11 +58,18 @@
     <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
     <set href="#seg1" attributeName="visibility" to="visible" begin="loop.begin"/>
 
-    <!-- text1 -->
+    <!-- text1 (fade-in on delete to seg2 color) -->
     <text id="text1" font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#f3f6cb">
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="transparent">
       <textPath href="#p1">第一段文字</textPath>
-      <set attributeName="fill" to="#f3f6cb" begin="seg1del.begin"/>
+      <animate attributeName="fill"
+               begin="seg1del.begin"
+               dur="1s"
+               values="transparent;#8591bc"
+               keyTimes="0;1"
+               calcMode="spline"
+               keySplines="0.42 0 1 1"
+               fill="freeze" />
     </text>
   </g>
 
@@ -78,11 +85,18 @@
     <set attributeName="visibility" to="visible" begin="seg1del.end"/>
     <set attributeName="visibility" to="hidden" begin="seg2del.end+1s"/>
 
-    <!-- text2 -->
+    <!-- text2 (fade-in on delete to seg3 color) -->
     <text id="text2" font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#8591bc">
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="transparent">
       <textPath href="#p2">第二段文字</textPath>
-      <set attributeName="fill" to="#8591bc" begin="seg2del.begin"/>
+      <animate attributeName="fill"
+               begin="seg2del.begin"
+               dur="1s"
+               values="transparent;#98d5b3"
+               keyTimes="0;1"
+               calcMode="spline"
+               keySplines="0.42 0 1 1"
+               fill="freeze" />
     </text>
   </g>
 
@@ -98,11 +112,18 @@
     <set attributeName="visibility" to="visible" begin="seg2del.end"/>
     <set attributeName="visibility" to="hidden" begin="seg3del.end+1s"/>
 
-    <!-- text3 -->
+    <!-- text3 (fade-in on delete to seg4 color) -->
     <text id="text3" font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#98d5b3">
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="transparent">
       <textPath href="#p3">第三段文字</textPath>
-      <set attributeName="fill" to="#98d5b3" begin="seg3del.begin"/>
+      <animate attributeName="fill"
+               begin="seg3del.begin"
+               dur="1s"
+               values="transparent;#b6a5f7"
+               keyTimes="0;1"
+               calcMode="spline"
+               keySplines="0.42 0 1 1"
+               fill="freeze" />
     </text>
   </g>
 
@@ -114,20 +135,8 @@
              begin="seg3del.end" fill="freeze"/>
     <animate id="seg4del" href="#p4" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg4draw.end" fill="freeze"/>
+             begin":"seg4draw.end" fill="freeze"/>
     <set attributeName="visibility" to="visible" begin="seg3del.end"/>
     <set attributeName="visibility" to="hidden" begin="seg4del.end+1s"/>
 
-    <!-- text4 -->
-    <text id="text4" font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#b6a5f7">
-      <textPath href="#p4">第四段文字</textPath>
-      <set attributeName="fill" to="#b6a5f7" begin="seg4del.begin"/>
-    </text>
-  </g>
-
-  <!-- Invisible loop trigger -->
-  <animate id="loop" href="#p1" attributeName="d"
-           begin="seg4del.end+0.1s" dur="0.1s" fill="freeze"/>
-
-</svg>
+...
