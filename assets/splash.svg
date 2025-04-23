@@ -2,60 +2,93 @@
 <svg xmlns="http://www.w3.org/2000/svg"
      viewBox="0 0 600 100"
      preserveAspectRatio="xMidYMid slice">
+  <!-- CSS 变量区，供 JS 替换 -->
+  <style>
+    :root {
+      --COLOR_BG:     #06497b;
+      --COLOR_BG2:    #5d7916;
+      --COLOR_BG3:    #5f4a10;
+      --COLOR_BG4:    #660a0a;
+      --COLOR_TEXT1:  #fec0fd;
+      --COLOR_TEXT2:  #a0a5b7;
+      --COLOR_TEXT3:  #a8c2d8;
+      --COLOR_TEXT4:  #c4ca80;
+    }};
+      --COLOR_BG2:    {{COLOR_BG2}};
+      --COLOR_BG3:    {{COLOR_BG3}};
+      --COLOR_BG4:    {{COLOR_BG4}};
+      --COLOR_TEXT1:  {{COLOR_TEXT1}};
+      --COLOR_TEXT2:  {{COLOR_TEXT2}};
+      --COLOR_TEXT3:  {{COLOR_TEXT3}};
+      --COLOR_TEXT4:  {{COLOR_TEXT4}};
+    }
+  </style>
 
-  <!-- Background: discrete color per segment -->
-  <rect id="bg" width="100%" height="100%" fill="{{COLOR_BG}}"/>
-  <!-- fire on delete begin instead of draw -->
-  <set href="#bg" attributeName="fill" to="{{COLOR_BG}}"  begin="seg1del.begin"/>
-  <set href="#bg" attributeName="fill" to="{{COLOR_BG2}}" begin="seg2del.begin"/>
-  <set href="#bg" attributeName="fill" to="{{COLOR_BG3}}" begin="seg3del.begin"/>
-  <set href="#bg" attributeName="fill" to="{{COLOR_BG4}}" begin="seg4del.begin"/>
+  <!-- Background rectangle with smooth color transitions -->
+  <rect id="bg" width="100%" height="100%" fill="var(--COLOR_BG)">
+    <!-- 1→2 -->
+    <animate attributeName="fill"
+             begin="seg1del.begin"
+             dur="1s"
+             values="var(--COLOR_BG);var(--COLOR_BG2)"
+             keyTimes="0;1"
+             calcMode="spline"
+             keySplines="0.42 0 1 1"
+             fill="freeze" />
+    <!-- 2→3 -->
+    <animate attributeName="fill"
+             begin="seg2del.begin"
+             dur="1s"
+             values="var(--COLOR_BG2);var(--COLOR_BG3)"
+             keyTimes="0;1"
+             calcMode="spline"
+             keySplines="0.42 0 1 1"
+             fill="freeze" />
+    <!-- 3→4 -->
+    <animate attributeName="fill"
+             begin="seg3del.begin"
+             dur="1s"
+             values="var(--COLOR_BG3);var(--COLOR_BG4)"
+             keyTimes="0;1"
+             calcMode="spline"
+             keySplines="0.42 0 1 1"
+             fill="freeze" />
+    <!-- 4→1 wrap -->
+    <animate attributeName="fill"
+             begin="seg4del.begin"
+             dur="1s"
+             values="var(--COLOR_BG4);var(--COLOR_BG)"
+             keyTimes="0;1"
+             calcMode="spline"
+             keySplines="0.42 0 1 1"
+             fill="freeze" />
+  </rect>
 
   <!-- Segment 1 -->
   <g id="seg1" visibility="visible">
     <path id="p1" d="M0,50 H0" fill="none"/>
-    <!-- draw -->
     <animate id="seg1draw" href="#p1" attributeName="d"
              values="M0,50 H0;M0,50 H500" dur="2s"
              begin="0s;loop.end+0.1s" fill="freeze"/>
-    <!-- delete -->
     <animate id="seg1del" href="#p1" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg1draw.end" fill="freeze"/>
-    <!-- hide after delete -->
+             begin="seg1draw.end+0.5s" fill="freeze"/>
     <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
-    <!-- re-show at loop restart -->
     <set href="#seg1" attributeName="visibility" to="visible" begin="loop.begin"/>
 
-    <!-- text with bold + discrete fill on delete begin -->
-    <text id="text1"
-          font-family="system-ui"
-          font-size="32"
-          font-weight="bold"
-          text-anchor="middle"
-          x="50%"
-          y="50"
-          dominant-baseline="middle"
-          fill="{{COLOR_TEXT1}}">
-      <textPath href="#p1">第一段文字</textPath>
-      <set attributeName="fill" to="{{COLOR_TEXT1}}" begin="seg1del.begin"/>
+    <text id="text1" font-family="system-ui" font-size="32" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
+          fill="var(--COLOR_TEXT1)">
+      <textPath href="#p1">I am Stephen Lam</textPath>
+      <animate attributeName="fill"
+               begin="seg1del.begin"
+               dur="1s"
+               values="var(--COLOR_TEXT1);var(--COLOR_TEXT2)"
+               keyTimes="0;1"
+               calcMode="spline"
+               keySplines="0.42 0 1 1"
+               fill="remove" />
     </text>
-    <!-- cursor -->
-    <text visibility="hidden"
-          font-family="system-ui"
-          font-size="32"
-          font-weight="bold"
-          text-anchor="middle"
-          x="50%"
-          y="50"
-          dominant-baseline="middle"
-          fill="{{COLOR_TEXT1}}">
-      <textPath href="#p1" startOffset="100%">|</textPath>
-      <animate attributeName="opacity" values="1;0;1" dur="1s"
-               begin="seg1del.end" repeatCount="1" calcMode="discrete"/>
-      <set attributeName="visibility" to="visible" begin="seg1del.end"/>
-    </text>
-    <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
   </g>
 
   <!-- Segment 2 -->
@@ -66,35 +99,23 @@
              begin="seg1del.end" fill="freeze"/>
     <animate id="seg2del" href="#p2" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg2draw.end" fill="freeze"/>
-    <text id="text2"
-          font-family="system-ui"
-          font-size="32"
-          font-weight="bold"
-          text-anchor="middle"
-          x="50%"
-          y="50"
-          dominant-baseline="middle"
-          fill="{{COLOR_TEXT2}}">
-      <textPath href="#p2">第二段文字</textPath>
-      <set attributeName="fill" to="{{COLOR_TEXT2}}" begin="seg2del.begin"/>
-    </text>
-    <text visibility="hidden"
-          font-family="system-ui"
-          font-size="32"
-          font-weight="bold"
-          text-anchor="middle"
-          x="50%"
-          y="50"
-          dominant-baseline="middle"
-          fill="{{COLOR_TEXT2}}">
-      <textPath href="#p2" startOffset="100%">|</textPath>
-      <animate attributeName="opacity" values="1;0;1" dur="1s"
-               begin="seg2del.end" repeatCount="1" calcMode="discrete"/>
-      <set attributeName="visibility" to="visible" begin="seg2del.end"/>
-    </text>
+             begin="seg2draw.end+0.5s" fill="freeze"/>
     <set attributeName="visibility" to="visible" begin="seg1del.end"/>
     <set attributeName="visibility" to="hidden" begin="seg2del.end+1s"/>
+
+    <text id="text2" font-family="system-ui" font-size="32" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
+          fill="var(--COLOR_TEXT2)">
+      <textPath href="#p2">Hi How are you</textPath>
+      <animate attributeName="fill"
+               begin="seg2del.begin"
+               dur="1s"
+               values="var(--COLOR_TEXT2);var(--COLOR_TEXT3)"
+               keyTimes="0;1"
+               calcMode="spline"
+               keySplines="0.42 0 1 1"
+               fill="remove" />
+    </text>
   </g>
 
   <!-- Segment 3 -->
@@ -105,35 +126,23 @@
              begin="seg2del.end" fill="freeze"/>
     <animate id="seg3del" href="#p3" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg3draw.end" fill="freeze"/>
-    <text id="text3"
-          font-family="system-ui"
-          font-size="32"
-          font-weight="bold"
-          text-anchor="middle"
-          x="50%"
-          y="50"
-          dominant-baseline="middle"
-          fill="{{COLOR_TEXT3}}">
-      <textPath href="#p3">第三段文字</textPath>
-      <set attributeName="fill" to="{{COLOR_TEXT3}}" begin="seg3del.begin"/>
-    </text>
-    <text visibility="hidden"
-          font-family="system-ui"
-          font-size="32"
-          font-weight="bold"
-          text-anchor="middle"
-          x="50%"
-          y="50"
-          dominant-baseline="middle"
-          fill="{{COLOR_TEXT3}}">
-      <textPath href="#p3" startOffset="100%">|</textPath>
-      <animate attributeName="opacity" values="1;0;1" dur="1s"
-               begin="seg3del.end" repeatCount="1" calcMode="discrete"/>
-      <set attributeName="visibility" to="visible" begin="seg3del.end"/>
-    </text>
+             begin="seg3draw.end+0.5s" fill="freeze"/>
     <set attributeName="visibility" to="visible" begin="seg2del.end"/>
     <set attributeName="visibility" to="hidden" begin="seg3del.end+1s"/>
+
+    <text id="text3" font-family="system-ui" font-size="32" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
+          fill="var(--COLOR_TEXT3)">
+      <textPath href="#p3">Let's talk</textPath>
+      <animate attributeName="fill"
+               begin="seg3del.begin"
+               dur="1s"
+               values="var(--COLOR_TEXT3);var(--COLOR_TEXT4)"
+               keyTimes="0;1"
+               calcMode="spline"
+               keySplines="0.42 0 1 1"
+               fill="remove" />
+    </text>
   </g>
 
   <!-- Segment 4 -->
@@ -144,39 +153,26 @@
              begin="seg3del.end" fill="freeze"/>
     <animate id="seg4del" href="#p4" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg4draw.end" fill="freeze"/>
-    <text id="text4"
-          font-family="system-ui"
-          font-size="32"
-          font-weight="bold"
-          text-anchor="middle"
-          x="50%"
-          y="50"
-          dominant-baseline="middle"
-          fill="{{COLOR_TEXT4}}">
-      <textPath href="#p4">第四段文字</textPath>
-      <set attributeName="fill" to="{{COLOR_TEXT4}}" begin="seg4del.begin"/>
-    </text>
-    <text visibility="hidden"
-          font-family="system-ui"
-          font-size="32"
-          font-weight="bold"
-          text-anchor="middle"
-          x="50%"
-          y="50"
-          dominant-baseline="middle"
-          fill="{{COLOR_TEXT4}}">
-      <textPath href="#p4" startOffset="100%">|</textPath>
-      <animate id="seg4_blink" attributeName="opacity" values="1;0;1"
-               dur="1s" begin="seg4del.end" repeatCount="1" calcMode="discrete"/>
-      <set attributeName="visibility" to="visible" begin="seg4del.end"/>
-    </text>
+             begin="seg4draw.end+0.5s" fill="freeze"/>
     <set attributeName="visibility" to="visible" begin="seg3del.end"/>
     <set attributeName="visibility" to="hidden" begin="seg4del.end+1s"/>
+
+    <text id="text4" font-family="system-ui" font-size="32" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
+          fill="var(--COLOR_TEXT4)">
+      <textPath href="#p4">I can't wait</textPath>
+      <animate attributeName="fill"
+               begin="seg4del.begin"
+               dur="1s"
+               values="var(--COLOR_TEXT4);var(--COLOR_TEXT1)"
+               keyTimes="0;1"
+               calcMode="spline"
+               keySplines="0.42 0 1 1"
+               fill="remove" />
+    </text>
   </g>
 
   <!-- Invisible loop trigger -->
   <animate id="loop" href="#p1" attributeName="d"
-           begin="seg4del.end+0.1s" dur="0.1s" fill="freeze"/>
-
+           begin="seg4del.end+0.6s" dur="0.1s" fill="freeze"/>
 </svg>
