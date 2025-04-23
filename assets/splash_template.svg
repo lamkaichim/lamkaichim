@@ -3,17 +3,10 @@
      viewBox="0 0 600 100"
      preserveAspectRatio="xMidYMid slice">
 
-  <!-- Define CSS variables for dynamic colors -->
+  <!-- Placeholder style block; gen-svg.js will replace this entire block -->
   <style>
     :root {
-      --COLOR_BG:     #000000;
-      --COLOR_BG2:    #000000;
-      --COLOR_BG3:    #000000;
-      --COLOR_BG4:    #000000;
-      --COLOR_TEXT1:  #FFFFFF;
-      --COLOR_TEXT2:  #FFFFFF;
-      --COLOR_TEXT3:  #FFFFFF;
-      --COLOR_TEXT4:  #FFFFFF;
+      /* dynamic color variables will be injected here */
     }
   </style>
 
@@ -71,7 +64,7 @@
     <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
     <set href="#seg1" attributeName="visibility" to="visible" begin="loop.begin"/>
 
-    <!-- text1 (fade-in to next color) -->
+    <!-- text1 -->
     <text id="text1" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="var(--COLOR_TEXT1)">
       <textPath href="#p1">👋 Hi, I’m Stephen.</textPath>
@@ -89,15 +82,18 @@
   <!-- Segment 2 -->
   <g id="seg2" visibility="hidden">
     <path id="p2" d="M0,50 H0" fill="none"/>
+    <!-- draw -->
     <animate id="seg2draw" href="#p2" attributeName="d"
              values="M0,50 H0;M0,50 H500" dur="2s"
              begin="seg1del.end" fill="freeze"/>
+    <!-- delete -->
     <animate id="seg2del" href="#p2" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
              begin="seg2draw.end+0.5s" fill="freeze"/>
     <set attributeName="visibility" to="visible" begin="seg1del.end"/>
     <set attributeName="visibility" to="hidden" begin="seg2del.end+1s"/>
 
+    <!-- text2 -->
     <text id="text2" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="var(--COLOR_TEXT2)">
       <textPath href="#p2">💻 I do Full-Stack Dev.</textPath>
@@ -115,15 +111,18 @@
   <!-- Segment 3 -->
   <g id="seg3" visibility="hidden">
     <path id="p3" d="M0,50 H0" fill="none"/>
+    <!-- draw -->
     <animate id="seg3draw" href="#p3" attributeName="d"
              values="M0,50 H0;M0,50 H500" dur="2s"
              begin="seg2del.end" fill="freeze"/>
+    <!-- delete -->
     <animate id="seg3del" href="#p3" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
              begin="seg3draw.end+0.5s" fill="freeze"/>
     <set attributeName="visibility" to="visible" begin="seg2del.end"/>
     <set attributeName="visibility" to="hidden" begin="seg3del.end+1s"/>
 
+    <!-- text3 -->
     <text id="text3" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="var(--COLOR_TEXT3)">
       <textPath href="#p3">🎨 Enjoy coding.</textPath>
@@ -141,15 +140,18 @@
   <!-- Segment 4 -->
   <g id="seg4" visibility="hidden">
     <path id="p4" d="M0,50 H0" fill="none"/>
+    <!-- draw -->
     <animate id="seg4draw" href="#p4" attributeName="d"
              values="M0,50 H0;M0,50 H500" dur="2s"
              begin="seg3del.end" fill="freeze"/>
+    <!-- delete -->
     <animate id="seg4del" href="#p4" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
              begin="seg4draw.end+0.5s" fill="freeze"/>
     <set attributeName="visibility" to="visible" begin="seg3del.end"/>
     <set attributeName="visibility" to="hidden" begin="seg4del.end+1s"/>
 
+    <!-- text4 -->
     <text id="text4" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="var(--COLOR_TEXT4)">
       <textPath href="#p4">🌟 Let’s connect!</textPath>
@@ -158,13 +160,4 @@
                dur="1s"
                values="var(--COLOR_TEXT4);var(--COLOR_TEXT1)"
                keyTimes="0;1"
-               calcMode="spline"
-               keySplines="0.42 0 1 1"
-               fill="remove"/>
-    </text>
-  </g>
-
-  <!-- Invisible loop trigger -->
-  <animate id="loop" href="#p1" attributeName="d"
-           begin="seg4del.end+0.6s" dur="0.1s" fill="freeze"/>
-</svg>
+               calcMode="s
