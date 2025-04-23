@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>  
 <svg xmlns="http://www.w3.org/2000/svg"
      viewBox="0 0 600 100"
      preserveAspectRatio="xMidYMid slice">
 
-  <!-- 背景色按段删除开始时切换 -->
+  <!-- 1. 背景 -->
   <rect id="bg" width="100%" height="100%" fill="#3c3e40">
     <set href="#bg" attributeName="fill" to="#3c3e40" begin="seg1del.end+1.5s"/>
     <set href="#bg" attributeName="fill" to="#222323" begin="seg2del.end+1.5s"/>
@@ -11,72 +11,80 @@
     <set href="#bg" attributeName="fill" to="#7a3e5e" begin="seg4del.end+1.5s"/>
   </rect>
 
-  <!-- HTML/CSS 打字机容器 -->
+  <!-- 2. HTML/CSS 打字机 -->
   <foreignObject x="0" y="0" width="600" height="100">
-    <div xmlns="http://www.w3.org/1999/xhtml"
-         style="position:relative; width:100%; height:100%; overflow:hidden;">
-      <div class="tw seg1">第一段文字</div>
-      <div class="tw seg2">第二段文字</div>
-      <div class="tw seg3">第三段文字</div>
-      <div class="tw seg4">第四段文字</div>
+    <div xmlns="http://www.w3.org/1999/xhtml" style="position:relative;width:100%;height:100%;overflow:hidden;">
+      <div id="w1" class="typewriter seg1">第一段文字</div>
+      <div id="w2" class="typewriter seg2">第二段文字</div>
+      <div id="w3" class="typewriter seg3">第三段文字</div>
+      <div id="w4" class="typewriter seg4">第四段文字</div>
     </div>
   </foreignObject>
 
-  <!-- CSS 动画 -->
+  <!-- 3. CSS 动画 -->
   <style type="text/css"><![CDATA[
     :root {
-      --seg: 6s;      /* 单段总时长 */
-      --c1: 6ch;      /* 第一段文字长度 */
-      --c2: 6ch;      /* 第二段（请改为实际字符数）*/
-      --c3: 6ch;
-      --c4: 6ch;
-      --cw: 2px;      /* 光标宽度 */
+      --segD: 6s;   /* 单段周期 */
+      --cw: 2px;    /* 光标宽度 */
     }
-    .tw {
-      position:absolute; top:50%; left:50%;
-      transform:translate(-50%,-50%);
+    .typewriter {
+      position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
       white-space:nowrap; overflow:hidden;
       font:bold 32px system-ui,monospace;
+      color:currentColor;
       border-right:var(--cw) solid currentColor;
       width:0; opacity:0;
       animation-fill-mode:forwards;
-      animation-iteration-count:infinite;
+      animation-iteration-count:1;
     }
-    @keyframes type {
-      0%    { width:0;       opacity:0; }
-      33.33%{ width:var(--chars); opacity:1; }
-      50%   { width:var(--chars); opacity:1; }
-      66.67%{ width:0;       opacity:1; }
-      100%  { width:0;       opacity:0; }
+    @keyframes typing {
+      0%,100%   { width:0; opacity:0; }
+      33.333%   { width:var(--ch); opacity:1; }
+      50%       { width:var(--ch); opacity:1; }
+      83.333%   { width:0; opacity:1; }
     }
-    /* 四段分别设置字符长度、颜色、延迟 */
-    .seg1 {
-      --chars: var(--c1);
-      color:#d3a694; 
-      animation: type var(--seg) steps(calc(var(--c1)),end) var(--seg)*0 infinite;
-    }
-    .seg2 {
-      --chars: var(--c2);
-      color:#ebb6e4; 
-      animation: type var(--seg) steps(calc(var(--c2)),end) var(--seg)*1 infinite;
-    }
-    .seg3 {
-      --chars: var(--c3);
-      color:#bf89e8; 
-      animation: type var(--seg) steps(calc(var(--c3)),end) var(--seg)*2 infinite;
-    }
-    .seg4 {
-      --chars: var(--c4);
-      color:#96ae92; 
-      animation: type var(--seg) steps(calc(var(--c4)),end) var(--seg)*3 infinite;
-    }
+    .seg1 { --ch:6ch; color:#d3a694; animation:typing var(--segD) steps(6,end) 0s forwards; }
+    .seg2 { --ch:6ch; color:#ebb6e4; animation:typing var(--segD) steps(6,end) var(--segD) forwards; }
+    .seg3 { --ch:6ch; color:#bf89e8; animation:typing var(--segD) steps(6,end) calc(var(--segD)*2) forwards; }
+    .seg4 { --ch:6ch; color:#96ae92; animation:typing var(--segD) steps(6,end) calc(var(--segD)*3) forwards; }
   ]]></style>
 
-  <!-- SMIL: 仅用于循环触发与背景同步 -->
-  <path id="p1" d="M0,50 H0" visibility="hidden"/>
-  <animate id="seg1del" href="#p1" attributeName="d"
-           values="M0,50 H0;M0,50 H0" /* 占位，不做真正动画 */
-           begin="0s" dur="24s" fill="freeze"/>
+  <!-- 4. SMIL 驱动循环重置 CSS 动画 -->
+  <set id="r1" href="#w1" attributeName="data-run" to="true" begin="0s;loop.end+0.1s"/>
+  <set id="r2" href="#w2" attributeName="data-run" to="true" begin="seg1del.end+0.1s"/>
+  <set id="r3" href="#w3" attributeName="data-run" to="true" begin="seg2del.end+0.1s"/>
+  <set id="r4" href="#w4" attributeName="data-run" to="true" begin="seg3del.end+0.1s"/>
+
+  <!-- 5. SMIL 路径 & draw/del 逻辑 -->
+  <!-- Segment 1 -->
+  <path id="p1" d="M0,50 H0" fill="none" visibility="hidden"/>
+  <animate id="seg1draw" href="#p1" attributeName="d" values="M0,50 H0;M0,50 H500"
+           dur="2s" begin="0s;loop.end+0.1s" fill="freeze"/>
+  <animate id="seg1del"  href="#p1" attributeName="d" values="M0,50 H500;M0,50 H0"
+           dur="1s" begin="seg1draw.end+1.5s" fill="freeze"/>
+
+  <!-- Segment 2 -->
+  <path id="p2" d="M0,50 H0" fill="none" visibility="hidden"/>
+  <animate id="seg2draw" href="#p2" attributeName="d" values="M0,50 H0;M0,50 H500"
+           dur="2s" begin="seg1del.end+1.5s" fill="freeze"/>
+  <animate id="seg2del"  href="#p2" attributeName="d" values="M0,50 H500;M0,50 H0"
+           dur="1s" begin="seg2draw.end+1.5s" fill="freeze"/>
+
+  <!-- Segment 3 -->
+  <path id="p3" d="M0,50 H0" fill="none" visibility="hidden"/>
+  <animate id="seg3draw" href="#p3" attributeName="d" values="M0,50 H0;M0,50 H500"
+           dur="2s" begin="seg2del.end+1.5s" fill="freeze"/>
+  <animate id="seg3del"  href="#p3" attributeName="d" values="M0,50 H500;M0,50 H0"
+           dur="1s" begin="seg3draw.end+1.5s" fill="freeze"/>
+
+  <!-- Segment 4 -->
+  <path id="p4" d="M0,50 H0" fill="none" visibility="hidden"/>
+  <animate id="seg4draw" href="#p4" attributeName="d" values="M0,50 H0;M0,50 H500"
+           dur="2s" begin="seg3del.end+1.5s" fill="freeze"/>
+  <animate id="seg4del"  href="#p4" attributeName="d" values="M0,50 H500;M0,50 H0"
+           dur="1s" begin="seg4draw.end+1.5s" fill="freeze"/>
+
+  <!-- 6. 循环触发 -->
   <animate id="loop" href="#p1" attributeName="d"
-           begin="seg4del.end+1.5s" dur="0.1s" fill="freeze"/>
+           begin="seg4del.end+1.5s + 0.1s" dur="0.1s" fill="freeze"/>
 </svg>
