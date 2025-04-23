@@ -24,7 +24,7 @@ let svg = fs.readFileSync(tplPath, 'utf8');
 
 // 随机生成配色
 const colors = {
-  COLOR_BG1:   randomDarkHex(),
+  COLOR_BG:   randomDarkHex(),
   COLOR_BG2:   randomDarkHex(),
   COLOR_BG3:   randomDarkHex(),
   COLOR_BG4:   randomDarkHex(),
