@@ -1,52 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 0 600 100" preserveAspectRatio="xMidYMid slice">
+     viewBox="0 0 600 100"
+     preserveAspectRatio="xMidYMid slice">
 
-  <!-- 背景 -->
-  <rect width="100%" height="100%" fill="#3c3e40"/>
-  <!-- 背景变色 -->
-  <set href="#bg" attributeName="fill" to="#5d4d29" begin="del1.begin" fill="freeze"/>
-  <set href="#bg" attributeName="fill" to="#4a346c" begin="del2.begin" fill="freeze"/>
-  <set href="#bg" attributeName="fill" to="#143e03" begin="del3.begin" fill="freeze"/>
-  <set href="#bg" attributeName="fill" to="#3c3e40" begin="loop.end" fill="freeze"/>
+  <!-- 背景矩形 -->
+  <rect id="bg" width="100%" height="100%" fill="#3c3e40"/>
 
-  <!-- 用于打字/删除的路径 -->
-  <path id="p1" d="M0,50 H0" fill="none"/>
-  <animate id="draw1" href="#p1" attributeName="d"
-           values="M0,50 H0;M0,50 H300" dur="2s"
-           begin="0s; loop.end" fill="freeze"/>
-  <animate id="del1"  href="#p1" attributeName="d"
-           values="M0,50 H300;M0,50 H0" dur="1s"
-           begin="draw1.end+0.5s" fill="freeze"/>
+  <!-- 背景色变换（在各段 delete 开始时触发） -->
+  <set href="#bg" attributeName="fill" to="#3c3e40" begin="seg1del.begin" fill="freeze"/>
+  <set href="#bg" attributeName="fill" to="#222323" begin="seg2del.begin" fill="freeze"/>
+  <set href="#bg" attributeName="fill" to="#727d3c" begin="seg3del.begin" fill="freeze"/>
+  <set href="#bg" attributeName="fill" to="#7a3e5e" begin="loop.end"    fill="freeze"/>
 
-  <!-- 固定路径承载 new文字 -->
-  <path id="pStatic" d="M0,50 H300" fill="none"/>
+  <!-- 用于打字／删除的主路径 -->
+  <path id="p" d="M150,60 H150" fill="none"/>
 
   <!-- 循环触发器 -->
-  <animate id="loop" href="#p1" attributeName="d"
-           begin="del1.end+1s" dur="0.1s" fill="freeze"/>
+  <animate id="loop" href="#p" attributeName="d"
+           begin="seg3del.end+1s" dur="0.1s" fill="freeze"/>
 
-  <!-- 文本组 -->
-  <g font-family="system-ui, monospace" font-size="32" font-weight="bold">
+  <!-- ◼ Segment 1：动态打字／删除 + 静态附加文字 -->
+  <g id="seg1" visibility="visible">
+    <!-- 打字 -->
+    <animate id="seg1draw" href="#p" attributeName="d"
+             values="M150,60 H150; M150,60 H450"
+             dur="2s" begin="0s; loop.end" fill="freeze"/>
+    <!-- 删除 -->
+    <animate id="seg1del" href="#p" attributeName="d"
+             values="M150,60 H450; M150,60 H150"
+             dur="2s" begin="seg1draw.end+1s" fill="freeze"/>
 
-    <!-- 第一段文字 -->
-    <text id="text1" text-anchor="start" dominant-baseline="middle">
-      <textPath href="#p1" fill="#dfa3f9">第一段文字</textPath>
-      <!-- 变色 -->
-      <set href="#text1" attributeName="fill"
-           to="#95d6ed" begin="del1.begin" fill="freeze"/>
-      <set href="#text1" attributeName="fill"
-           to="#bf89e8" begin="loop.end"  fill="freeze"/>
+    <!-- 逐字文本 -->
+    <text font-family="system-ui, monospace" font-size="24" font-weight="bold"
+          text-anchor="start" x="150" y="60" dominant-baseline="middle"
+          fill="#d3a694" id="txt1">
+      <textPath href="#p">第一段文字</textPath>
+      <!-- 字体色同步变换 -->
+      <set attributeName="fill" to="#222323" begin="seg1del.begin" fill="freeze"/>
+      <set attributeName="fill" to="#d3a694" begin="loop.end"    fill="freeze"/>
     </text>
 
-    <!-- new文字 -->
-    <text id="textNew" text-anchor="start" dominant-baseline="middle">
-      <textPath href="#pStatic" startOffset="300" fill="#dfa3f9">new文字</textPath>
-      <set href="#textNew" attributeName="fill"
-           to="#95d6ed" begin="del1.begin" fill="freeze"/>
-      <set href="#textNew" attributeName="fill"
-           to="#bf89e8" begin="loop.end" fill="freeze"/>
+    <!-- 附加从不删除的文字 -->
+    <text font-family="system-ui, monospace" font-size="24" font-weight="bold"
+          text-anchor="start" x="460" y="60" dominant-baseline="middle"
+          fill="#d3a694" id="ext1">
+      <tspan>—附加文字</tspan>
+      <set attributeName="fill" to="#222323" begin="seg1del.begin" fill="freeze"/>
+      <set attributeName="fill" to="#d3a694" begin="loop.end"    fill="freeze"/>
     </text>
 
+    <!-- 常显圆球光标 -->
+    <circle id="c1" r="6" fill="#d3a694">
+      <!-- cx 跟随路径末端，从 450 —> 150 -->
+      <animate attributeName="cx"
+               values="150;450" dur="2s" begin="0s; loop.end" fill="freeze"/>
+      <animate attributeName="cx"
+               values="450;150" dur="2s" begin="seg1draw.end+1s" fill="freeze"/>
+      <!-- color 同步变换 -->
+      <set attributeName="fill" to="#222323" begin="seg1del.begin" fill="freeze"/>
+      <set attributeName="fill" to="#d3a694" begin="loop.end"    fill="freeze"/>
+      <!-- y 固定在 60 -->
+      <set attributeName="cy" to="60"/>
+    </circle>
   </g>
+
+  <!-- ◼ Segment 2 -->
+  <g id="seg2" visibility="hidden">
+    <path id="p2" d="M150,60 H150" fill="none"/>
+    <animate id="seg2draw" href="#p2" attributeName="d"
+             values="M150,60 H150; M150,60 H450"
+             dur="2s" begin="seg1del.end+1s" fill="freeze"/>
+    <animate id="seg2del" href="#p2" attributeName="d"
+             values="M150,60 H450; M150,60 H150"
+             dur="2s" begin="seg2draw.end+1s" fill="freeze"/>
+    <set attributeName="visibility" to="visible" begin="seg1del.end+1s"/>
+    <set attributeName="visibility" to="hidden"  begin="seg2del.end+1s"/>
+
+    <text text-anchor="start" x="150" y="60" dominant-baseline="middle"
+          font-family="system-ui, monospace" font-size="24" font-weight="bold"
+          fill="#ebb6e4" id="txt2">
+      <textPath href="#p2">第二段文字</textPath>
+      <set attributeName="fill" to="#727d3c" begin="seg2del.begin" fill="freeze"/>
+      <set attributeName="fill" to="#ebb6e4" begin="loop.end"     fill="freeze"/>
+    </text>
+    <text text-anchor="start" x="460" y="60" dominant-baseline="middle"
+          font-family="system-ui, monospace" font-size="24" font-weight="bold"
+          fill="#ebb6e4" id="ext2">
+      <tspan>—附加文字</tspan>
+      <set attributeName="fill" to="#727d3c" begin="seg2del.begin" fill="freeze"/>
+      <set attributeName="fill" to="#ebb6e4" begin="loop.end"     fill="freeze"/>
+    </text>
+    <circle r="6" id="c2">
+      <animate attributeName="cx"
+               values="150;450" dur="2s" begin="seg1del.end+1s" fill="freeze"/>
+      <animate attributeName="cx"
+               values="450;150" dur="2s" begin="seg2draw.end+1s" fill="freeze"/>
+      <set attributeName="cy" to="60"/>
+      <set attributeName="fill" to="#727d3c" begin="seg2del.begin" fill="freeze"/>
+      <set attributeName="fill" to="#ebb6e4" begin="loop.end"      fill="freeze"/>
+    </circle>
+  </g>
+
+  <!-- ◼ Segment 3 / ◼ Segment 4 同理… -->
+
 </svg>
