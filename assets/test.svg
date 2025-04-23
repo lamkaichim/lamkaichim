@@ -21,25 +21,23 @@
   <!-- Segment 1 -->
   <g id="seg1" visibility="visible">
     <path id="p1" d="M0,50 H0" fill="none"/>
-    <!-- draw -->
     <animate id="seg1draw" href="#p1" attributeName="d"
              values="M0,50 H0;M0,50 H500" dur="2s"
              begin="0s;loop.end+0.1s" fill="freeze"/>
-    <!-- delete -->
     <animate id="seg1del" href="#p1" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
              begin="seg1draw.end" fill="freeze"/>
-    <!-- hide & re-show -->
     <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
     <set href="#seg1" attributeName="visibility" to="visible" begin="loop.begin"/>
 
-    <!-- text -->
+    <!-- text with fade-out into background -->
     <text id="text1" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#d99ca8">
       <textPath href="#p1">第一段文字</textPath>
-      <set attributeName="fill" to="#d99ca8" begin="seg1del.begin"/>
+      <animate attributeName="fill"
+               begin="seg1del.begin" dur="0.5s"
+               values="#d99ca8;#6e5859" fill="freeze"/>
     </text>
-    <!-- cursor blink -->
     <text visibility="hidden" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#d99ca8">
       <textPath href="#p1" startOffset="100%">|</textPath>
@@ -65,7 +63,9 @@
     <text id="text2" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#bb8da2">
       <textPath href="#p2">第二段文字</textPath>
-      <set attributeName="fill" to="#bb8da2" begin="seg2del.begin"/>
+      <animate attributeName="fill"
+               begin="seg2del.begin" dur="0.5s"
+               values="#bb8da2;#5d4d29" fill="freeze"/>
     </text>
     <text visibility="hidden" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#bb8da2">
@@ -91,7 +91,9 @@
     <text id="text3" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#ad96db">
       <textPath href="#p3">第三段文字</textPath>
-      <set attributeName="fill" to="#ad96db" begin="seg3del.begin"/>
+      <animate attributeName="fill"
+               begin="seg3del.begin" dur="0.5s"
+               values="#ad96db;#4a346c" fill="freeze"/>
     </text>
     <text visibility="hidden" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#ad96db">
@@ -117,7 +119,9 @@
     <text id="text4" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#b0f4d7">
       <textPath href="#p4">第四段文字</textPath>
-      <set attributeName="fill" to="#b0f4d7" begin="seg4del.begin"/>
+      <animate attributeName="fill"
+               begin="seg4del.begin" dur="0.5s"
+               values="#b0f4d7;#143e03" fill="freeze"/>
     </text>
     <text visibility="hidden" font-family="system-ui" font-size="32" font-weight="bold"
           text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#b0f4d7">
@@ -131,4 +135,5 @@
   <!-- Invisible loop trigger -->
   <animate id="loop" href="#p1" attributeName="d"
            begin="seg4del.end+0.1s" dur="0.1s" fill="freeze"/>
+
 </svg>
