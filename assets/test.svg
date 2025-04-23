@@ -7,16 +7,16 @@
   <rect id="bg" width="100%" height="100%" fill="#6e5859"/>
   <animate href="#bg" attributeName="fill"
            begin="seg1del.begin" dur="1s"
-           values="#6e5859;#6e5859" fill="freeze"/>
-  <animate href="#bg" attributeName="fill"
-           begin="seg2del.begin" dur="1s"
            values="#6e5859;#5d4d29" fill="freeze"/>
   <animate href="#bg" attributeName="fill"
-           begin="seg3del.begin" dur="1s"
+           begin="seg2del.begin" dur="1s"
            values="#5d4d29;#4a346c" fill="freeze"/>
   <animate href="#bg" attributeName="fill"
-           begin="seg4del.begin" dur="1s"
+           begin="seg3del.begin" dur="1s"
            values="#4a346c;#143e03" fill="freeze"/>
+  <animate href="#bg" attributeName="fill"
+           begin="seg4del.begin" dur="1s"
+           values="#143e03;#6e5859" fill="freeze"/>
 
   <!-- Segment 1 -->
   <g id="seg1" visibility="visible">
@@ -106,8 +106,5 @@
   <!-- Invisible loop trigger -->
   <animate id="loop" href="#p1" attributeName="d"
            begin="seg4del.end+0.1s" dur="0.1s" fill="freeze"/>
-  <!-- reset bg and first text color at loop start -->
-  <set href="#bg" attributeName="fill" to="#6e5859" begin="loop.begin"/>
-  <set href="#text1" attributeName="fill" to="#d99ca8" begin="loop.begin"/>
 
 </svg>
