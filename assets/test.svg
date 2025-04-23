@@ -9,7 +9,7 @@
            begin="seg1del.begin" dur="1s"
            values="#6e5859;#5d4d29"
            keyTimes="0;1" calcMode="spline" keySplines="0.42 0 1 1"
-           fill="freeze"/>
+           fill="freeze"/>                            <!-- 使用 calcMode="spline" 实现缓入 :contentReference[oaicite:0]{index=0} -->
   <animate href="#bg" attributeName="fill"
            begin="seg2del.begin" dur="1s"
            values="#5d4d29;#4a346c"
@@ -52,7 +52,7 @@
                begin="seg1del.begin" dur="1s"
                values="#d99ca8;#bb8da2"
                keyTimes="0;1" calcMode="spline" keySplines="0.42 0 1 1"
-               fill="freeze"/>
+               fill="freeze"/>                 <!-- 使用 keySplines 自定义缓入曲线 :contentReference[oaicite:1]{index=1} -->
     </text>
   </g>
 
@@ -149,4 +149,17 @@
   <!-- Invisible loop trigger -->
   <animate id="loop" href="#p1" attributeName="d"
            begin="seg4del.end+0.1s" dur="0.1s" fill="freeze"/>
+
+  <!-- Loop start: ease-in back to initial colors -->
+  <animate href="#bg" attributeName="fill"
+           begin="loop.begin" dur="1s"
+           values="#143e03;#6e5859"
+           keyTimes="0;1" calcMode="spline" keySplines="0.42 0 1 1"
+           fill="freeze"/>                      <!-- 循环缓入背景回到初始色 :contentReference[oaicite:2]{index=2} -->
+  <animate href="#text1" attributeName="fill"
+           begin="loop.begin" dur="1s"
+           values="#bb8da2;#d99ca8"
+           keyTimes="0;1" calcMode="spline" keySplines="0.42 0 1 1"
+           fill="freeze"/>                      <!-- 循环缓入文字1回到初始色 :contentReference[oaicite:3]{index=3} -->
+
 </svg>
