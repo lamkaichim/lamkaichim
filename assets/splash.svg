@@ -47,5 +47,108 @@
   <animate id="loop" href="#p1" attributeName="d"
            begin="seg4del.end+0.6s" dur="0.1s" fill="freeze"/>
 
-  <!-- SEGMENTS -->
+  
+  <g id="seg1" visibility="visible">
+    <path id="p1" d="M0,50 H0" fill="none"/>
+    <animate id="seg1draw" href="#p1" attributeName="d"
+             values="M0,50 H0;M0,50 H500" dur="2s"
+             begin="0s;loop.end+0.1s" fill="freeze"/>
+    <animate id="seg1del" href="#p1" attributeName="d"
+             values="M0,50 H500;M0,50 H0" dur="1s"
+             begin="seg1draw.end+0.5s" fill="freeze"/>
+    <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
+    <set href="#seg1" attributeName="visibility" to="visible" begin="loop.begin"/>
+
+    <text id="text1" font-family="system-ui" font-size="32" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
+          fill="#b6a5f7">
+      <textPath href="#p1">I am Stephen Lam</textPath>
+      <animate attributeName="fill"
+               begin="seg1del.begin"
+               dur="1s"
+               values="#b6a5f7;#f3f6cb"
+               keyTimes="0;1"
+               calcMode="spline"
+               keySplines="0.42 0 1 1"
+               fill="remove" />
+    </text>
+  </g>
+
+  <g id="seg2" visibility="hidden">
+    <path id="p2" d="M0,50 H0" fill="none"/>
+    <animate id="seg2draw" href="#p2" attributeName="d"
+             values="M0,50 H0;M0,50 H500" dur="2s"
+             begin="seg1del.end" fill="freeze"/>
+    <animate id="seg2del" href="#p2" attributeName="d"
+             values="M0,50 H500;M0,50 H0" dur="1s"
+             begin="seg2draw.end+0.5s" fill="freeze"/>
+    <set attributeName="visibility" to="hidden" begin="seg2del.end+1s"/>
+    <set href="#seg2" attributeName="visibility" to="visible" begin="loop.begin"/>
+
+    <text id="text2" font-family="system-ui" font-size="32" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
+          fill="#f3f6cb">
+      <textPath href="#p2">Hi How are you</textPath>
+      <animate attributeName="fill"
+               begin="seg2del.begin"
+               dur="1s"
+               values="#f3f6cb;#8591bc"
+               keyTimes="0;1"
+               calcMode="spline"
+               keySplines="0.42 0 1 1"
+               fill="remove" />
+    </text>
+  </g>
+
+  <g id="seg3" visibility="hidden">
+    <path id="p3" d="M0,50 H0" fill="none"/>
+    <animate id="seg3draw" href="#p3" attributeName="d"
+             values="M0,50 H0;M0,50 H500" dur="2s"
+             begin="seg2del.end" fill="freeze"/>
+    <animate id="seg3del" href="#p3" attributeName="d"
+             values="M0,50 H500;M0,50 H0" dur="1s"
+             begin="seg3draw.end+0.5s" fill="freeze"/>
+    <set attributeName="visibility" to="hidden" begin="seg3del.end+1s"/>
+    <set href="#seg3" attributeName="visibility" to="visible" begin="loop.begin"/>
+
+    <text id="text3" font-family="system-ui" font-size="32" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
+          fill="#8591bc">
+      <textPath href="#p3">Let's talk</textPath>
+      <animate attributeName="fill"
+               begin="seg3del.begin"
+               dur="1s"
+               values="#8591bc;#98d5b3"
+               keyTimes="0;1"
+               calcMode="spline"
+               keySplines="0.42 0 1 1"
+               fill="remove" />
+    </text>
+  </g>
+
+  <g id="seg4" visibility="hidden">
+    <path id="p4" d="M0,50 H0" fill="none"/>
+    <animate id="seg4draw" href="#p4" attributeName="d"
+             values="M0,50 H0;M0,50 H500" dur="2s"
+             begin="seg3del.end" fill="freeze"/>
+    <animate id="seg4del" href="#p4" attributeName="d"
+             values="M0,50 H500;M0,50 H0" dur="1s"
+             begin="seg4draw.end+0.5s" fill="freeze"/>
+    <set attributeName="visibility" to="hidden" begin="seg4del.end+1s"/>
+    <set href="#seg4" attributeName="visibility" to="visible" begin="loop.begin"/>
+
+    <text id="text4" font-family="system-ui" font-size="32" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
+          fill="#98d5b3">
+      <textPath href="#p4">I can't wait</textPath>
+      <animate attributeName="fill"
+               begin="seg4del.begin"
+               dur="1s"
+               values="#98d5b3;#b6a5f7"
+               keyTimes="0;1"
+               calcMode="spline"
+               keySplines="0.42 0 1 1"
+               fill="remove" />
+    </text>
+  </g>
 </svg>
