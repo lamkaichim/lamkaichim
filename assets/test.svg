@@ -3,145 +3,65 @@
      viewBox="0 0 600 100"
      preserveAspectRatio="xMidYMid slice">
 
-  <!-- 背景：每段 delete 开始时换色 -->
+  <!-- 背景：SMIL 离散跳变 -->
   <rect id="bg" width="100%" height="100%" fill="#3c3e40">
-    <set href="#bg" attributeName="fill" to="#3c3e40" begin="seg1del.begin"/>
-    <set href="#bg" attributeName="fill" to="#222323" begin="seg2del.begin"/>
-    <set href="#bg" attributeName="fill" to="#727d3c" begin="seg3del.begin"/>
-    <set href="#bg" attributeName="fill" to="#7a3e5e" begin="seg4del.begin"/>
+    <animate attributeName="fill"
+             values="#3c3e40;#222323;#727d3c;#7a3e5e;#3c3e40"
+             keyTimes="0;0.25;0.5;0.75;1"
+             dur="24s" repeatCount="indefinite"
+             calcMode="discrete"/>
   </rect>
 
-  <!-- Segment 1 -->
-  <g id="seg1" visibility="visible">
-    <path id="p1" d="M0,50 H0" fill="none"/>
-    <animate id="seg1draw" href="#p1" attributeName="d"
-             values="M0,50 H0;M0,50 H500" dur="2s"
-             begin="0s;loop.end+0.1s" fill="freeze"/>
-    <animate id="seg1del" href="#p1" attributeName="d"
-             values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg1draw.end" fill="freeze"/>
-    <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
-    <set href="#seg1" attributeName="visibility" to="visible" begin="loop.begin"/>
+  <!-- HTML/CSS 打字机 -->
+  <foreignObject x="0" y="0" width="600" height="100">
+    <div xmlns="http://www.w3.org/1999/xhtml"
+         style="position:relative;width:100%;height:100%;overflow:hidden;">
+      <div class="tw seg1">第一段文字</div>
+      <div class="tw seg2">第二段文字</div>
+      <div class="tw seg3">第三段文字</div>
+      <div class="tw seg4">第四段文字</div>
+    </div>
+  </foreignObject>
 
-    <text font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
-          fill="#d3a694">
-      <textPath href="#p1">第一段文字</textPath>
-      <set attributeName="fill" to="#d3a694" begin="seg1del.begin"/>
-    </text>
-
-    <text visibility="hidden" font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
-          fill="#d3a694">
-      <textPath href="#p1" startOffset="100%">|</textPath>
-      <animate attributeName="opacity" values="1;0;1" dur="1s"
-               begin="seg1del.end" repeatCount="1" calcMode="discrete"/>
-      <set attributeName="visibility" to="visible" begin="seg1del.end"/>
-    </text>
-  </g>
-
-  <!-- Segment 2 -->
-  <g id="seg2" visibility="hidden">
-    <path id="p2" d="M0,50 H0" fill="none"/>
-    <animate id="seg2draw" href="#p2" attributeName="d"
-             values="M0,50 H0;M0,50 H500" dur="2s"
-             begin="seg1del.end+1s" fill="freeze"/>
-    <animate id="seg2del" href="#p2" attributeName="d"
-             values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg2draw.end" fill="freeze"/>
-    <set attributeName="visibility" to="hidden" begin="seg2del.end+1s"/>
-    <set href="#seg2" attributeName="visibility" to="visible" begin="seg1del.end+1s"/>
-
-    <text font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
-          fill="#ebb6e4">
-      <textPath href="#p2">第二段文字</textPath>
-      <set attributeName="fill" to="#ebb6e4" begin="seg2del.begin"/>
-    </text>
-
-    <text visibility="hidden" font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
-          fill="#ebb6e4">
-      <textPath href="#p2" startOffset="100%">|</textPath>
-      <animate attributeName="opacity" values="1;0;1" dur="1s"
-               begin="seg2del.end" repeatCount="1" calcMode="discrete"/>
-      <set attributeName="visibility" to="visible" begin="seg2del.end"/>
-    </text>
-  </g>
-
-  <!-- Segment 3 -->
-  <g id="seg3" visibility="hidden">
-    <path id="p3" d="M0,50 H0" fill="none"/>
-    <animate id="seg3draw" href="#p3" attributeName="d"
-             values="M0,50 H0;M0,50 H500" dur="2s"
-             begin="seg2del.end+1s" fill="freeze"/>
-    <animate id="seg3del" href="#p3" attributeName="d"
-             values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg3draw.end" fill="freeze"/>
-    <set attributeName="visibility" to="hidden" begin="seg3del.end+1s"/>
-    <set href="#seg3" attributeName="visibility" to="visible" begin="seg2del.end+1s"/>
-
-    <text font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
-          fill="#bf89e8">
-      <textPath href="#p3">第三段文字</textPath>
-      <set attributeName="fill" to="#bf89e8" begin="seg3del.begin"/>
-    </text>
-
-    <text visibility="hidden" font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
-          fill="#bf89e8">
-      <textPath href="#p3" startOffset="100%">|</textPath>
-      <animate attributeName="opacity" values="1;0;1" dur="1s"
-               begin="seg3del.end" repeatCount="1" calcMode="discrete"/>
-      <set attributeName="visibility" to="visible" begin="seg3del.end"/>
-    </text>
-  </g>
-
-  <!-- Segment 4 -->
-  <g id="seg4" visibility="hidden">
-    <path id="p4" d="M0,50 H0" fill="none"/>
-    <animate id="seg4draw" href="#p4" attributeName="d"
-             values="M0,50 H0;M0,50 H500" dur="2s"
-             begin="seg3del.end+1s" fill="freeze"/>
-    <animate id="seg4del" href="#p4" attributeName="d"
-             values="M0,50 H500;M0,50 H0" dur="1s"
-             begin="seg4draw.end" fill="freeze"/>
-    <set attributeName="visibility" to="hidden" begin="seg4del.end+1s"/>
-    <set href="#seg4" attributeName="visibility" to="visible" begin="seg3del.end+1s"/>
-
-    <text font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
-          fill="#96ae92">
-      <textPath href="#p4">第四段文字</textPath>
-      <set attributeName="fill" to="#96ae92" begin="seg4del.begin"/>
-    </text>
-
-    <text visibility="hidden" font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
-          fill="#96ae92">
-      <textPath href="#p4" startOffset="100%">|</textPath>
-      <animate attributeName="opacity" values="1;0;1" dur="1s"
-               begin="seg4del.end" repeatCount="1" calcMode="discrete"/>
-      <set attributeName="visibility" to="visible" begin="seg4del.end"/>
-    </text>
-  </g>
-
-  <!-- 循环触发 -->
-  <animate id="loop" href="#p1" attributeName="d"
-           begin="seg4del.end+1s" dur="0.1s" fill="freeze"/>
-
-  <!-- —— 以下为循环开始时的“清场 & 重置” —— -->
-  <!-- ① 复位可见性 -->
-  <set href="#seg1" attributeName="visibility" to="visible" begin="loop.begin"/>
-  <set href="#seg2" attributeName="visibility" to="hidden"  begin="loop.begin"/>
-  <set href="#seg3" attributeName="visibility" to="hidden"  begin="loop.begin"/>
-  <set href="#seg4" attributeName="visibility" to="hidden"  begin="loop.begin"/>
-
-  <!-- ② 重置所有路径长度 -->
-  <set href="#p1" attributeName="d" to="M0,50 H0" begin="loop.begin"/>
-  <set href="#p2" attributeName="d" to="M0,50 H0" begin="loop.begin"/>
-  <set href="#p3" attributeName="d" to="M0,50 H0" begin="loop.begin"/>
-  <set href="#p4" attributeName="d" to="M0,50 H0" begin="loop.begin"/>
-
+  <!-- CSS 动画 -->
+  <style type="text/css"><![CDATA[
+    :root {
+      --cycle: 6s;      /* 每段 6s */
+      --cursor: 2px;    /* 光标宽度 */
+    }
+    .tw {
+      position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+      white-space:nowrap; overflow:hidden;
+      font:bold 32px system-ui,monospace;
+      border-right:var(--cursor) solid currentColor;
+      width:0; opacity:0;
+      animation-fill-mode:forwards;
+    }
+    @keyframes type {
+      0%,100%   { width:0;   opacity:0; }
+      33.33%   { width:var(--ch); opacity:1; }
+      50%       { width:var(--ch); opacity:1; }
+      83.33%   { width:0;   opacity:1; }
+    }
+    .seg1 {
+      --ch:6ch;
+      color:#d3a694;
+      animation: type var(--cycle) steps(6,end) 0s infinite;
+    }
+    .seg2 {
+      --ch:6ch;
+      color:#ebb6e4;
+      animation: type var(--cycle) steps(6,end) var(--cycle) infinite;
+    }
+    .seg3 {
+      --ch:6ch;
+      color:#bf89e8;
+      animation: type var(--cycle) steps(6,end) calc(var(--cycle)*2) infinite;
+    }
+    .seg4 {
+      --ch:6ch;
+      color:#96ae92;
+      animation: type var(--cycle) steps(6,end) calc(var(--cycle)*3) infinite;
+    }
+  ]]></style>
 </svg>
