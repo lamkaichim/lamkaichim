@@ -3,12 +3,45 @@
      viewBox="0 0 600 100"
      preserveAspectRatio="xMidYMid slice">
 
-  <!-- Background: discrete colour per segment -->
-  <rect id="bg" width="100%" height="100%" fill="{{COLOR_BG}}"/>
-  <set href="#bg" attributeName="fill" to="{{COLOR_BG}}"  begin="seg1draw.begin"/>
-  <set href="#bg" attributeName="fill" to="{{COLOR_BG2}}" begin="seg2draw.begin"/>
-  <set href="#bg" attributeName="fill" to="{{COLOR_BG3}}" begin="seg3draw.begin"/>
-  <set href="#bg" attributeName="fill" to="{{COLOR_BG4}}" begin="seg4draw.begin"/>
+<!-- Background rectangle with smooth colour transitions -->
+<rect id="bg" width="100%" height="100%" fill="{{COLOR_BG}}">
+  <!-- {{COLOR_BG}} → {{COLOR_BG2}} -->
+  <animate attributeName="fill"
+           begin="seg1del.begin"
+           dur="1s"
+           values="{{COLOR_BG}};{{COLOR_BG2}}"
+           keyTimes="0;1"
+           calcMode="spline"
+           keySplines="0.42 0 1 1"
+           fill="freeze"/>
+  <!-- {{COLOR_BG2}} → {{COLOR_BG3}} -->
+  <animate attributeName="fill"
+           begin="seg2del.begin"
+           dur="1s"
+           values="{{COLOR_BG2}};{{COLOR_BG3}}"
+           keyTimes="0;1"
+           calcMode="spline"
+           keySplines="0.42 0 1 1"
+           fill="freeze"/>
+  <!-- {{COLOR_BG3}} → {{COLOR_BG4}} -->
+  <animate attributeName="fill"
+           begin="seg3del.begin"
+           dur="1s"
+           values="{{COLOR_BG3}};{{COLOR_BG4}}"
+           keyTimes="0;1"
+           calcMode="spline"
+           keySplines="0.42 0 1 1"
+           fill="freeze"/>
+  <!-- {{COLOR_BG4}} → {{COLOR_BG}} (wrap-around) -->
+  <animate attributeName="fill"
+           begin="seg4del.begin"
+           dur="1s"
+           values="{{COLOR_BG4}};{{COLOR_BG}}"
+           keyTimes="0;1"
+           calcMode="spline"
+           keySplines="0.42 0 1 1"
+           fill="freeze"/>
+</rect>
 
   <!-- ─────────────── Segment 1 ─────────────── -->
   <g id="seg1" visibility="visible">
