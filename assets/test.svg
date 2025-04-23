@@ -6,13 +6,12 @@
   <!-- 背景色 -->
   <rect width="100%" height="100%" fill="#3c3e40"/>
 
-  <!-- 用 foreignObject 嵌入 HTML/CSS -->
+  <!-- foreignObject 嵌入 HTML/CSS 动画 -->
   <foreignObject x="0" y="0" width="600" height="100">
     <div xmlns="http://www.w3.org/1999/xhtml"
          style="width:600px; height:100px;
                 display:flex; justify-content:center;
                 align-items:center; overflow:hidden; position:relative;">
-      <!-- 四段文字，绝对定位叠在同一位置，通过动画延迟分别播放 -->
       <div class="tw seg1">第一段文字</div>
       <div class="tw seg2">第二段文字</div>
       <div class="tw seg3">第三段文字</div>
@@ -20,47 +19,52 @@
     </div>
   </foreignObject>
 
-  <!-- CSS 动画 -->
   <style type="text/css"><![CDATA[
-    /* 基础变量 */
     .tw {
-      position: absolute; top:50%; left:50%;
+      position: absolute;
+      top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      font-family: system-ui, monospace;
-      font-size: 32px; font-weight: bold;
-      white-space: nowrap; overflow: visible;
-      border-right: 0.5em solid currentColor;  /* 圆形用伪元素，再去掉这里的直线 */
-      width: 0; opacity: 0;
-      /* 保持动画结束状态 */
+      font: bold 32px system-ui, monospace;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 0.5em solid currentColor;  /* 常亮光标 */
+      width: 0ch;
+      opacity: 0;
       animation-fill-mode: forwards;
     }
-    /* 圆形光标：利用 ::after */
-    .tw::after {
-      content: "";
-      display: inline-block;
-      vertical-align: middle;
-      width: 0.5em; height: 0.5em;
-      margin-left: 0.1em;
-      background: currentColor;
-      border-radius: 50%;
-      opacity: 1;
-      animation: blink 1s step-end infinite;
-    }
-    @keyframes blink { 50% { opacity: 0; } }
 
-    /* 打字机动画：6s 循环  —— 2s 打入，1s 停留，2s 删除，1s 停留 */
+    /* 打字机关键帧：6s 一轮 */
     @keyframes type {
-      0%   { width: 0ch; opacity: 1; }
-      33%  { width: calc(var(--chars)); opacity: 1; }
-      50%  { width: calc(var(--chars)); opacity: 1; }
-      83%  { width: 0ch; opacity: 1; }
-      100% { width: 0ch; opacity: 0; }
+      /* 0–33%：打字到全长并停留 */
+      0%   { width: 0ch;  opacity: 1; }
+      33%  { width: var(--count)ch; opacity:1; }
+      50%  { width: var(--count)ch; opacity:1; }
+      /* 50–83%：删除回 0 */
+      83%  { width: 0ch;  opacity:1; }
+      /* 83–100%：隐藏，为下一段腾位 */
+      100% { width: 0ch;  opacity:0; }
     }
 
-    /* 各段专属设置：文字颜色 & 开始延迟，--chars 为字符数 */
-    .seg1 { --chars: 6ch; color: #d3a694; animation: type 6s ease 0s  infinite; }
-    .seg2 { --chars: 6ch; color: #ebb6e4; animation: type 6s ease 6s infinite; }
-    .seg3 { --chars: 6ch; color: #bf89e8; animation: type 6s ease 12s infinite; }
-    .seg4 { --chars: 6ch; color: #96ae92; animation: type 6s ease 18s infinite; }
+    /* 各段配置：--count 为字符数，delay 为动画延迟 */
+    .seg1 {
+      --count: 6;                /* “第一段文字”6个字符 */
+      color: #d3a694;
+      animation: type 6s steps(var(--count), end) 0s infinite;
+    }
+    .seg2 {
+      --count: 6;                /* “第二段文字”6个字符 */
+      color: #ebb6e4;
+      animation: type 6s steps(var(--count), end) 6s infinite;
+    }
+    .seg3 {
+      --count: 6;                /* “第三段文字”6个字符 */
+      color: #bf89e8;
+      animation: type 6s steps(var(--count), end) 12s infinite;
+    }
+    .seg4 {
+      --count: 6;                /* “第四段文字”6个字符 */
+      color: #96ae92;
+      animation: type 6s steps(var(--count), end) 18s infinite;
+    }
   ]]></style>
 </svg>
