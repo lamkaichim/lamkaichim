@@ -12,55 +12,48 @@
 <g id="seg1" visibility="visible">
   <path id="p1" d="M0,50 H0" fill="none"/>
 
-  <!-- 打字：路径从 0→500 -->
+  <!-- 文字路径动画（打字2s，停0.5s，删除1s） -->
   <animate id="seg1draw" href="#p1" attributeName="d"
            values="M0,50 H0; M0,50 H500" dur="2s"
            begin="0s; loop.end+0.1s" fill="freeze"/>
-
-  <!-- 删除：路径从 500→0 -->
-  <animate id="seg1del" href="#p1" attributeName="d"
+  <animate id="seg1del"  href="#p1" attributeName="d"
            values="M0,50 H500; M0,50 H0" dur="1s"
            begin="seg1draw.end+0.5s" fill="freeze"/>
 
-  <!-- 控制可见性 -->
-  <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
-  <set href="#seg1" attributeName="visibility" to="visible" begin="loop.begin"/>
+  <!-- 可见性控制 -->
+  <set attributeName="visibility" to="hidden" begin="seg1del.end+0.5s"/>
+  <set href="#seg1"   attributeName="visibility" to="visible" begin="loop.begin"/>
 
-  <!-- 文字 -->
+  <!-- 文本 -->
   <text font-family="system-ui" font-size="32" font-weight="bold"
         text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
         fill="#c0cf9d">
-    <textPath href="#p1">Hey I am S</textPath>
+    <textPath href="#p1">&#x263A; Hey I am Stephen</textPath>
   </text>
 
-  <!-- 圆球光标 -->
+  <!-- 光标圆球 -->
   <circle id="cursor1" r="6" fill="#c0cf9d">
     <!--
-      animateMotion：
-        keyPoints="0.5;1;1" → 一开始在路径 50%（中心），
-                           然后与文字走到末端（100%），
-                           删除阶段也保持在末端（100%）。
-        keyTimes="0;0.571;1" → 0–57.1%（2s/3.5s）走 50→100%，
-                             57.1–100%（剩余 1.5s）保持在 100%。
-        dur="3.5s" 保证覆盖 2s 打字 + 1s 删除 + 0.5s 停留
+      - dur=3s 覆盖 draw(2s)+pause(0.5s)+del(1s)
+      - N=18（“☻ Hey I am Stephen” 共18字符），step=1/18≈0.0556
+      - keyPoints="0;0.0556;0.111;…;1"；keyTimes="0;0.0556;0.111;…;1"
+      - calcMode="discrete" 保持“跳格”效果
     -->
-    <animateMotion begin="seg1draw.begin"
-                   dur="3.5s"
-                   fill="freeze"
-                   keyPoints="0.5;1;1"
-                   keyTimes="0;0.571;1"
-                   calcMode="linear">
+    <animateMotion begin="seg1draw.begin" dur="3s" fill="freeze" calcMode="discrete"
+                   keyPoints="
+                     0;
+                     0.0556;0.1111;0.1667;0.2222;0.2778;
+                     0.3333;0.3889;0.4444;0.5000;0.5556;
+                     0.6111;0.6667;0.7222;0.7778;0.8333;
+                     0.8889;0.9444;1"
+                   keyTimes="
+                     0;
+                     0.0556;0.1111;0.1667;0.2222;0.2778;
+                     0.3333;0.3889;0.4444;0.5000;0.5556;
+                     0.6111;0.6667;0.7222;0.7778;0.8333;
+                     0.8889;0.9444;1">
       <mpath href="#p1"/>
     </animateMotion>
-
-    <!-- 闪烁效果（可选） -->
-    <animate attributeName="opacity"
-             begin="seg1del.end"
-             dur="1s"
-             values="1;0;1"
-             keyTimes="0;0.5;1"
-             repeatCount="indefinite"
-             calcMode="discrete"/>
   </circle>
 </g>
 
