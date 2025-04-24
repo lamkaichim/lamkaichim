@@ -3,154 +3,140 @@
      viewBox="0 0 600 100"
      preserveAspectRatio="xMidYMid slice">
 
-  <!-- Background rectangle with smooth color transitions -->
-  <rect id="bg" width="100%" height="100%" fill="#210d1b">
-    <!-- 1→2 --> 
-    <animate attributeName="fill"
-             begin="seg1del.begin"
-             dur="1s"
-             values="#210d1b;#144b01"
-             keyTimes="0;1"
-             calcMode="spline"
-             keySplines="0.42 0 1 1"
-             fill="freeze" />
-    <!-- 2→3 -->
-    <animate attributeName="fill"
-             begin="seg2del.begin"
-             dur="1s"
-             values="#144b01;#056233"
-             keyTimes="0;1"
-             calcMode="spline"
-             keySplines="0.42 0 1 1"
-             fill="freeze" />
-    <!-- 3→4 -->
-    <animate attributeName="fill"
-             begin="seg3del.begin"
-             dur="1s"
-             values="#056233;#765b72"
-             keyTimes="0;1"
-             calcMode="spline"
-             keySplines="0.42 0 1 1"
-             fill="freeze" />
-    <!-- 4→1 (wrap-around) -->
-    <animate attributeName="fill"
-             begin="seg4del.begin"
-             dur="1s"
-             values="#765b72;#210d1b"
-             keyTimes="0;1"
-             calcMode="spline"
-             keySplines="0.42 0 1 1"
-             fill="freeze" />
-  </rect>
+<!-- Background rectangle with smooth colour transitions -->
+<rect id="bg" width="100%" height="100%" fill="#693644">
+  <!-- #693644 → #3d3d7c -->
+  <animate attributeName="fill"
+           begin="seg1del.begin"
+           dur="1s"
+           values="#693644;#3d3d7c"
+           keyTimes="0;1"
+           calcMode="spline"
+           keySplines="0.42 0 1 1"
+           fill="freeze"/>
+  <!-- #3d3d7c → #215e6c -->
+  <animate attributeName="fill"
+           begin="seg2del.begin"
+           dur="1s"
+           values="#3d3d7c;#215e6c"
+           keyTimes="0;1"
+           calcMode="spline"
+           keySplines="0.42 0 1 1"
+           fill="freeze"/>
+  <!-- #215e6c → #6a1b2c -->
+  <animate attributeName="fill"
+           begin="seg3del.begin"
+           dur="1s"
+           values="#215e6c;#6a1b2c"
+           keyTimes="0;1"
+           calcMode="spline"
+           keySplines="0.42 0 1 1"
+           fill="freeze"/>
+  <!-- #6a1b2c → #693644 (wrap-around) -->
+  <animate attributeName="fill"
+           begin="seg4del.begin"
+           dur="1s"
+           values="#6a1b2c;#693644"
+           keyTimes="0;1"
+           calcMode="spline"
+           keySplines="0.42 0 1 1"
+           fill="freeze"/>
+</rect>
 
-  <!-- Segment 1 -->
+  <!-- ─────────────── Segment 1 ─────────────── -->
   <g id="seg1" visibility="visible">
-    <path id="p1" d="M0,50 H0" fill="none"  />
-    <!-- draw -->
+    <path id="p1" d="M0,50 H0" fill="none"/>
     <animate id="seg1draw" href="#p1" attributeName="d"
              values="M0,50 H0;M0,50 H500" dur="2s"
              begin="0s;loop.end+0.1s" fill="freeze"/>
-    <!-- delete -->
-    <animate id="seg1del" href="#p1" attributeName="d"
+    <animate id="seg1del"  href="#p1" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
              begin="seg1draw.end+0.5s" fill="freeze"/>
-    <!-- visibility toggles -->
-    <set attributeName="visibility" to="hidden" begin="seg1del.end+1s"/>
+    <set attributeName="visibility" to="hidden"  begin="seg1del.end+1s"/>
     <set href="#seg1" attributeName="visibility" to="visible" begin="loop.begin"/>
 
-    <!-- text1 (fade-in to its own color) -->
     <text id="text1" font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#b6a5f7">
-      <textPath href="#p1">&#x263A; Hi, I’m Stephen.</textPath>
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#c0cf9d">
+      <textPath href="#p1">&#x263A; Hey I am Stephen</textPath>
       <animate attributeName="fill"
-               begin="seg1del.begin"
-               dur="1s"
-               values="#b6a5f7;#f3f6cb"
-               keyTimes="0;1"
-               calcMode="spline"
-               keySplines="0.42 0 1 1"
-               fill="remove" />
+               begin="seg1del.begin" dur="1s"
+               values="#c0cf9d;#ea90a2"
+               keyTimes="0;1" calcMode="spline"
+               keySplines="0.42 0 1 1" fill="remove"/>
     </text>
   </g>
 
-  <!-- Segment 2 -->
+  <!-- ─────────────── Segment 2 ─────────────── -->
   <g id="seg2" visibility="hidden">
     <path id="p2" d="M0,50 H0" fill="none"/>
     <animate id="seg2draw" href="#p2" attributeName="d"
              values="M0,50 H0;M0,50 H500" dur="2s"
              begin="seg1del.end" fill="freeze"/>
-    <animate id="seg2del" href="#p2" attributeName="d"
+    <animate id="seg2del"  href="#p2" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
              begin="seg2draw.end+0.5s" fill="freeze"/>
     <set attributeName="visibility" to="visible" begin="seg1del.end"/>
     <set attributeName="visibility" to="hidden" begin="seg2del.end+1s"/>
 
-    <!-- text2 (fade-in to its own color) -->
     <text id="text2" font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#f3f6cb">
-      <textPath href="#p2">💻 I do Full-Stack Dev.</textPath>
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#ea90a2">
+      <textPath href="#p2">&#x2726; I do Full Stack JS</textPath>
+           <text id="cursor2"
+        font-family="system-ui" font-size="32" font-weight="bold"
+        text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
+        fill="#ea90a2">
+    <textPath href="#p2" startOffset="100%">|</textPath>
       <animate attributeName="fill"
-               begin="seg2del.begin"
-               dur="1s"
-               values="#f3f6cb;#8591bc"
-               keyTimes="0;1"
-               calcMode="spline"
-               keySplines="0.42 0 1 1"
-               fill="remove" />
+               begin="seg2del.begin" dur="1s"
+               values="#ea90a2;#b5fbc6"
+               keyTimes="0;1" calcMode="spline"
+               keySplines="0.42 0 1 1" fill="remove"/>
     </text>
   </g>
 
-  <!-- Segment 3 -->
+  <!-- ─────────────── Segment 3 ─────────────── -->
   <g id="seg3" visibility="hidden">
     <path id="p3" d="M0,50 H0" fill="none"/>
     <animate id="seg3draw" href="#p3" attributeName="d"
              values="M0,50 H0;M0,50 H500" dur="2s"
              begin="seg2del.end" fill="freeze"/>
-    <animate id="seg3del" href="#p3" attributeName="d"
+    <animate id="seg3del"  href="#p3" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
              begin="seg3draw.end+0.5s" fill="freeze"/>
     <set attributeName="visibility" to="visible" begin="seg2del.end"/>
     <set attributeName="visibility" to="hidden" begin="seg3del.end+1s"/>
 
-    <!-- text3 (fade-in to its own color) -->
     <text id="text3" font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#8591bc">
-      <textPath href="#p3">🎨 Enjoy coding.</textPath>
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#b5fbc6">
+      <textPath href="#p3">&#x2665; Enjoy coding</textPath>
       <animate attributeName="fill"
-               begin="seg3del.begin"
-               dur="1s"
-               values="#8591bc;#98d5b3"
-               keyTimes="0;1"
-               calcMode="spline"
-               keySplines="0.42 0 1 1"
-               fill="remove" />
+               begin="seg3del.begin" dur="1s"
+               values="#b5fbc6;#ebeb98"
+               keyTimes="0;1" calcMode="spline"
+               keySplines="0.42 0 1 1" fill="remove"/>
     </text>
   </g>
 
-  <!-- Segment 4 -->
+  <!-- ─────────────── Segment 4 ─────────────── -->
   <g id="seg4" visibility="hidden">
     <path id="p4" d="M0,50 H0" fill="none"/>
     <animate id="seg4draw" href="#p4" attributeName="d"
              values="M0,50 H0;M0,50 H500" dur="2s"
              begin="seg3del.end" fill="freeze"/>
-    <animate id="seg4del" href="#p4" attributeName="d"
+    <animate id="seg4del"  href="#p4" attributeName="d"
              values="M0,50 H500;M0,50 H0" dur="1s"
              begin="seg4draw.end+0.5s" fill="freeze"/>
     <set attributeName="visibility" to="visible" begin="seg3del.end"/>
     <set attributeName="visibility" to="hidden" begin="seg4del.end+1s"/>
 
-    <!-- text4 (fade-in to its own color) -->
     <text id="text4" font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#98d5b3">
-      <textPath href="#p4">🌟 Let’s connect!</textPath>
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#ebeb98">
+      <textPath href="#p4">&#x2605; Let us CONNECT</textPath>
       <animate attributeName="fill"
-               begin="seg4del.begin"
-               dur="1s"
-               values="#98d5b3;#b6a5f7"
-               keyTimes="0;1"
-               calcMode="spline"
-               keySplines="0.42 0 1 1"
-               fill="remove" />
+               begin="seg4del.begin" dur="1s"
+               values="#ebeb98;#c0cf9d"
+               keyTimes="0;1" calcMode="spline"
+               keySplines="0.42 0 1 1" fill="remove"/>
     </text>
   </g>
 
