@@ -67,41 +67,27 @@
   </g>
 
   <!-- ─────────────── Segment 2 ─────────────── -->
-<g id="seg2" visibility="hidden">
-  <!-- 已有的文字路径 draw/del 动画…… -->
-  <path id="p2" d="M0,50 H0" fill="none"/>
-  <animate id="seg2draw" href="#p2" attributeName="d"
-           values="M0,50 H0;M0,50 H500" dur="2s"
-           begin="seg1del.end" fill="freeze"/>
-  <animate id="seg2del" href="#p2" attributeName="d"
-           values="M0,50 H500;M0,50 H0" dur="1s"
-           begin="seg2draw.end+0.5s" fill="freeze"/>
-  <set attributeName="visibility" to="visible" begin="seg1del.end"/>
-  <set attributeName="visibility" to="hidden"  begin="seg2del.end+1s"/>
+  <g id="seg2" visibility="hidden">
+    <path id="p2" d="M0,50 H0" fill="none"/>
+    <animate id="seg2draw" href="#p2" attributeName="d"
+             values="M0,50 H0;M0,50 H500" dur="2s"
+             begin="seg1del.end" fill="freeze"/>
+    <animate id="seg2del"  href="#p2" attributeName="d"
+             values="M0,50 H500;M0,50 H0" dur="1s"
+             begin="seg2draw.end+0.5s" fill="freeze"/>
+    <set attributeName="visibility" to="visible" begin="seg1del.end"/>
+    <set attributeName="visibility" to="hidden" begin="seg2del.end+1s"/>
 
-  <!-- 原有的文字元素 -->
-  <text font-family="system-ui" font-size="32" font-weight="bold"
-        text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
-        fill="#ea90a2">
-    <textPath href="#p2">✦ I do Full Stack JS</textPath>
-  </text>
-
-  <!-- 增加的闪烁光标 -->
-  <text id="cursor2"
-        font-family="system-ui" font-size="32" font-weight="bold"
-        text-anchor="middle" x="50%" y="50" dominant-baseline="middle"
-        fill="#ea90a2">
-    <textPath href="#p2" startOffset="100%">|</textPath>
-    <animate attributeName="opacity"
-             values="1;0;1"
-             keyTimes="0;0.5;1"
-             dur="1s"
-             begin="seg2draw.begin"
-             repeatCount="indefinite"
-             calcMode="discrete"/>
-  </text>
-</g>
-
+    <text id="text2" font-family="system-ui" font-size="32" font-weight="bold"
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#ea90a2">
+      <textPath href="#p2">&#x2726; I do Full Stack JS</textPath>
+      <animate attributeName="fill"
+               begin="seg2del.begin" dur="1s"
+               values="#ea90a2;#b5fbc6"
+               keyTimes="0;1" calcMode="spline"
+               keySplines="0.42 0 1 1" fill="remove"/>
+    </text>
+  </g>
 
   <!-- ─────────────── Segment 3 ─────────────── -->
   <g id="seg3" visibility="hidden">
