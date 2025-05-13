@@ -5,9 +5,9 @@
 - 💼 **Professional Background:** 𝙵𝚘𝚛𝚖𝚎𝚛 𝙳𝚇𝙲 𝚃𝚎𝚌𝚑𝚗𝚘𝚕𝚘𝚐𝚢 𝙳𝚎𝚟𝚎𝚕𝚘𝚙𝚎𝚛, 𝚌𝚞𝚛𝚛𝚎𝚗𝚝𝚕𝚢 𝚎𝚗𝚑𝚊𝚗𝚌𝚒𝚗𝚐 𝚜𝚔𝚒𝚕𝚕𝚜 ➡️ 𝚜𝚒𝚍𝚎 𝚋𝚞𝚜𝚒𝚗𝚎𝚜𝚜.
 - 🎓 **Education:** 𝙷𝚘𝚕𝚍𝚜 𝚊 𝙱𝚂𝚌 𝚒𝚗 𝙲𝚘𝚖𝚙𝚞𝚝𝚎𝚛 𝙴𝚗𝚐𝚒𝚗𝚎𝚎𝚛𝚒𝚗𝚐 𝚏𝚛𝚘𝚖 𝙷𝙺𝙼𝚄.
 - 🌐 **Active Projects:** U𝚙𝚍𝚊𝚝𝚒𝚗𝚐 𝚖𝚢 𝙶𝚒𝚝𝙷𝚞𝚋 𝚙𝚛𝚘𝚓𝚎𝚌𝚝𝚜, 𝚍𝚎𝚖𝚘𝚗𝚜𝚝𝚛𝚊𝚝𝚒𝚗𝚐 𝚖𝚢 𝚍𝚎𝚟𝚎𝚕𝚘𝚙𝚖𝚎𝚗𝚝 𝚎𝚡𝚙𝚎𝚛𝚝𝚒𝚜𝚎.
-- 🔨 𝙸'𝚖 𝚌𝚞𝚛𝚛𝚎𝚗𝚝𝚕𝚢...
+
 ```yaml
-- Learning full stack development cycle using JS languages.
+🔨 Learning full stack development cycle using JS languages.
 ```
 ## 🔗 **Connect with me**
 
