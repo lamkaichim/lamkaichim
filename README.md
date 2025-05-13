@@ -1,7 +1,5 @@
 ![Banner Splash](./assets/splash.svg)
 
-![visitors](https://vbr.nathanchung.dev/badge?page_id=lamkaichim&color=white&logo=github&style=plastic&text=VISITORS)
-
 ## :book: About Me
 - 🖥 **Interest:** 𝙵𝚘𝚌𝚞𝚜𝚎𝚍 𝚘𝚗 𝚏𝚞𝚕𝚕-𝚜𝚝𝚊𝚌𝚔 𝚍𝚎𝚟𝚎𝚕𝚘𝚙𝚖𝚎𝚗𝚝, 𝚎𝚖𝚙𝚑𝚊𝚜𝚒𝚣𝚒𝚗𝚐 𝚜𝚘𝚏𝚝𝚠𝚊𝚛𝚎 𝚋𝚎𝚜𝚝 𝚙𝚛𝚊𝚌𝚝𝚒𝚌𝚎𝚜.
 - 💼 **Professional Background:** 𝙵𝚘𝚛𝚖𝚎𝚛 𝙳𝚇𝙲 𝚃𝚎𝚌𝚑𝚗𝚘𝚕𝚘𝚐𝚢 𝙳𝚎𝚟𝚎𝚕𝚘𝚙𝚎𝚛, 𝚌𝚞𝚛𝚛𝚎𝚗𝚝𝚕𝚢 𝚎𝚗𝚑𝚊𝚗𝚌𝚒𝚗𝚐 𝚜𝚔𝚒𝚕𝚕𝚜 ➡️ 𝚜𝚒𝚍𝚎 𝚋𝚞𝚜𝚒𝚗𝚎𝚜𝚜.
@@ -35,6 +33,8 @@ some statics
     <img src="https://github-profile-trophy.vercel.app/?username=lamkaichim&row=2&column=3&theme=oldie" alt="lamkaichim's Github Trophy" style="margin: 10px;" />
 </p>
 </details>
+
+![visitors](https://vbr.nathanchung.dev/badge?page_id=lamkaichim&color=white&logo=github&style=plastic&text=VISITORS)
 
 
 
