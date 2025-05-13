@@ -1,6 +1,6 @@
 ![Banner Splash](./assets/splash.svg)
 
-## :book: About Me
+## :book: AboutMe
 - 🖥 **Interest:** 𝙵𝚘𝚌𝚞𝚜𝚎𝚍 𝚘𝚗 𝚏𝚞𝚕𝚕-𝚜𝚝𝚊𝚌𝚔 𝚍𝚎𝚟𝚎𝚕𝚘𝚙𝚖𝚎𝚗𝚝, 𝚎𝚖𝚙𝚑𝚊𝚜𝚒𝚣𝚒𝚗𝚐 𝚜𝚘𝚏𝚝𝚠𝚊𝚛𝚎 𝚋𝚎𝚜𝚝 𝚙𝚛𝚊𝚌𝚝𝚒𝚌𝚎𝚜.
 - 💼 **Professional Background:** 𝙵𝚘𝚛𝚖𝚎𝚛 𝙳𝚇𝙲 𝚃𝚎𝚌𝚑𝚗𝚘𝚕𝚘𝚐𝚢 𝙳𝚎𝚟𝚎𝚕𝚘𝚙𝚎𝚛, 𝚌𝚞𝚛𝚛𝚎𝚗𝚝𝚕𝚢 𝚎𝚗𝚑𝚊𝚗𝚌𝚒𝚗𝚐 𝚜𝚔𝚒𝚕𝚕𝚜 ➡️ 𝚜𝚒𝚍𝚎 𝚋𝚞𝚜𝚒𝚗𝚎𝚜𝚜.
 - 🎓 **Education:** 𝙷𝚘𝚕𝚍𝚜 𝚊 𝙱𝚂𝚌 𝚒𝚗 𝙲𝚘𝚖𝚙𝚞𝚝𝚎𝚛 𝙴𝚗𝚐𝚒𝚗𝚎𝚎𝚛𝚒𝚗𝚐 𝚏𝚛𝚘𝚖 𝙷𝙺𝙼𝚄.
@@ -9,7 +9,7 @@
 ```yaml
 🔨 Learning full stack development cycle using JS languages.
 ```
-## 🔗 **Connect with me**
+## 🔗 **Connect**
 
 [<img src="https://github.com/lamkaichim/lamkaichim/blob/main/Social/linkedin.png" height="40em" align="center" alt="Follow Raymo111 on LinkedIn" title="Follow Stephen on LinkedIn"/>](https://linkedin.com/in/lamkaichim)
 [<img src="https://github.com/lamkaichim/lamkaichim/blob/main/Social/twitter.svg" height="40em" align="center" alt="Follow Raym0111 on Twitter" title="Follow Stephen on Twitter"/>](https://twitter.com/stephen_lkc)
