@@ -34,7 +34,8 @@ some statics
 </p>
 </details>
 
-![visitors](https://vbr.nathanchung.dev/badge?page_id=lamkaichim&color=white&logo=github&style=plastic&text=VISITORS)
+![Profile view counter on GitHub](https://komarev.com/ghpvc/?username=lamkaichim)
+
 
 
 
