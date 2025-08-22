@@ -4,39 +4,39 @@
      preserveAspectRatio="xMidYMid slice">
 
 <!-- Background rectangle with smooth colour transitions -->
-<rect id="bg" width="100%" height="100%" fill="#676c01">
-  <!-- #676c01 → #430860 -->
+<rect id="bg" width="100%" height="100%" fill="#47244e">
+  <!-- #47244e → #32525e -->
   <animate attributeName="fill"
            begin="seg1del.begin"
            dur="1s"
-           values="#676c01;#430860"
+           values="#47244e;#32525e"
            keyTimes="0;1"
            calcMode="spline"
            keySplines="0.42 0 1 1"
            fill="freeze"/>
-  <!-- #430860 → #2c2a50 -->
+  <!-- #32525e → #140174 -->
   <animate attributeName="fill"
            begin="seg2del.begin"
            dur="1s"
-           values="#430860;#2c2a50"
+           values="#32525e;#140174"
            keyTimes="0;1"
            calcMode="spline"
            keySplines="0.42 0 1 1"
            fill="freeze"/>
-  <!-- #2c2a50 → #325b58 -->
+  <!-- #140174 → #09494c -->
   <animate attributeName="fill"
            begin="seg3del.begin"
            dur="1s"
-           values="#2c2a50;#325b58"
+           values="#140174;#09494c"
            keyTimes="0;1"
            calcMode="spline"
            keySplines="0.42 0 1 1"
            fill="freeze"/>
-  <!-- #325b58 → #676c01 (wrap-around) -->
+  <!-- #09494c → #47244e (wrap-around) -->
   <animate attributeName="fill"
            begin="seg4del.begin"
            dur="1s"
-           values="#325b58;#676c01"
+           values="#09494c;#47244e"
            keyTimes="0;1"
            calcMode="spline"
            keySplines="0.42 0 1 1"
@@ -56,11 +56,11 @@
     <set href="#seg1" attributeName="visibility" to="visible" begin="loop.begin"/>
 
     <text id="text1" font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#d3fadc">
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#9fa7e5">
       <textPath href="#p1">&#x263A; Hey I am Stephen</textPath>
       <animate attributeName="fill"
                begin="seg1del.begin" dur="1s"
-               values="#d3fadc;#88c1e4"
+               values="#9fa7e5;#f1cafd"
                keyTimes="0;1" calcMode="spline"
                keySplines="0.42 0 1 1" fill="remove"/>
     </text>
@@ -79,11 +79,11 @@
     <set attributeName="visibility" to="hidden" begin="seg2del.end+1s"/>
 
     <text id="text2" font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#88c1e4">
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#f1cafd">
       <textPath href="#p2">&#x2726; I do Full Stack JS</textPath>
       <animate attributeName="fill"
                begin="seg2del.begin" dur="1s"
-               values="#88c1e4;#fa80fd"
+               values="#f1cafd;#f497ad"
                keyTimes="0;1" calcMode="spline"
                keySplines="0.42 0 1 1" fill="remove"/>
     </text>
@@ -102,11 +102,11 @@
     <set attributeName="visibility" to="hidden" begin="seg3del.end+1s"/>
 
     <text id="text3" font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#fa80fd">
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#f497ad">
       <textPath href="#p3">&#x2665; Enjoy coding</textPath>
       <animate attributeName="fill"
                begin="seg3del.begin" dur="1s"
-               values="#fa80fd;#dfe39e"
+               values="#f497ad;#efb4f9"
                keyTimes="0;1" calcMode="spline"
                keySplines="0.42 0 1 1" fill="remove"/>
     </text>
@@ -125,11 +125,11 @@
     <set attributeName="visibility" to="hidden" begin="seg4del.end+1s"/>
 
     <text id="text4" font-family="system-ui" font-size="32" font-weight="bold"
-          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#dfe39e">
+          text-anchor="middle" x="50%" y="50" dominant-baseline="middle" fill="#efb4f9">
       <textPath href="#p4">&#x2605; Let us CONNECT</textPath>
       <animate attributeName="fill"
                begin="seg4del.begin" dur="1s"
-               values="#dfe39e;#d3fadc"
+               values="#efb4f9;#9fa7e5"
                keyTimes="0;1" calcMode="spline"
                keySplines="0.42 0 1 1" fill="remove"/>
     </text>
